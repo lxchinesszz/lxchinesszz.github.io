@@ -16,6 +16,8 @@
     <link rel="dns-prefetch" href="http://lxchinesszz.gitee.io/chinesszz">
     <!--SEO-->
 
+<meta name="description" content="一个关注于程序猿技术提升的博客"/>
+
 
 
 
@@ -185,9 +187,19 @@
 <h4 id="初始化目录"><a href="#初始化目录" class="headerlink" title="初始化目录"></a>初始化目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
 <h4 id="生成静态页面"><a href="#生成静态页面" class="headerlink" title="生成静态页面"></a>生成静态页面</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
 <h4 id="清理缓存"><a href="#清理缓存" class="headerlink" title="清理缓存"></a>清理缓存</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-<h4 id="推送到服务器"><a href="#推送到服务器" class="headerlink" title="推送到服务器"></a>推送到服务器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo p</span><br></pre></td></tr></table></figure>
-<h4 id="本地服务预览"><a href="#本地服务预览" class="headerlink" title="本地服务预览"></a>本地服务预览</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<h4 id="推送到服务器"><a href="#推送到服务器" class="headerlink" title="推送到服务器"></a>推送到服务器</h4><p>推送时候要先: npm install hexo-deployer-git –save<br>安装依赖</p>
+<p>修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</span><br><span class="line">url: http://lxchinesszz.gitee.io/chinesszz/ 访问地址</span><br><span class="line">root: /chinesszz  访问项目</span><br><span class="line">permalink: :year/:month/:day/:title/</span><br><span class="line">permalink_defaults:</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<h4 id="本地服务预览"><a href="#本地服务预览" class="headerlink" title="本地服务预览"></a>本地服务预览</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 <h4 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">浏览器: http://127.0.0.1:4000/</span><br></pre></td></tr></table></figure>
+<h4 id="绑定github"><a href="#绑定github" class="headerlink" title="绑定github"></a>绑定github</h4><ol>
+<li>修改配置项目根目录_config.yml 文件，修改deploy的值然后保存</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: https://gitee.com/lxchinesszz/chinesszz.git</span><br><span class="line">    branch: 分支</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在oschina中点击服务,启动pages静态访问</li>
+</ol>
 
     </div>
 
@@ -253,7 +265,7 @@
                 </template>
             </div>
         </div>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="http://music.163.com/outchain/player?type=1&id=34930257&auto=1&height=32"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="http://music.163.com/outchain/player?type=1&id=34930257&auto=0&height=32"></iframe>
            </div>
 
         
