@@ -1,0 +1,425 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序猿升级课">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Spring Cloud初步理解 | 程序猿升级课</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='liuxin'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 技术改变生活! </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Spring-Boot/"><i class="fa "></i>SpringBoot</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Spring-Cloud/"><i class="fa "></i>SpringCloud</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Netty/"><i class="fa "></i>Netty</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂记/"><i class="fa /favicon.ico"></i>杂记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/about/me"><i class="fa "></i>关于</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Spring Cloud初步理解">
+            
+	            Spring Cloud初步理解
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/Spring Cloud">
+            Spring Cloud
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/Spring Cloud" title='Spring Cloud'>
+                        Spring Cloud
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/04/11</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="Ribbon实现负载均衡"><a href="#Ribbon实现负载均衡" class="headerlink" title="Ribbon实现负载均衡"></a>Ribbon实现负载均衡</h3><blockquote>
+<p>关键字：Feign、Ribbon、eureka、负载均衡</p>
+</blockquote>
+<ol>
+<li><p>大致：步骤，启动eureka服务(注册中心)</p>
+<ul>
+<li>使用Spring Cloud Netflix中的Eureka实现服务注册中心，以及服务注册发现；</li>
+</ul>
+</li>
+<li><p>将service(port:2222,port:2223)注册到eureka服务中</p>
+</li>
+<li><p>使用Ribbon代理去访问service</p>
+<ul>
+<li><font color="red">会实现负载均衡</font></li>
+<li>服务间通过Ribbon或Feign实现服务的消费以及均衡负载</li>
+</ul>
+</li>
+<li>通过Spring Cloud Config实现应用多环境的外部化配置及版本管理<ul>
+<li>使得服务集群更为健壮，使用Hystrix熔断机制避免微服务架构中个别服务出现异常引起的故障蔓延</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>引入断路器 Rabbion中引入Hystrix</p>
+</blockquote>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class ComputeService &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    RestTemplate restTemplate;</span><br><span class="line">    @HystrixCommand(fallbackMethod = &quot;addServiceFallback&quot;)</span><br><span class="line">    public String addService() &#123;</span><br><span class="line">        return restTemplate.getForEntity(&quot;http://COMPUTE-SERVICE/add?a=10&amp;b=20&quot;, String.class).getBody();</span><br><span class="line">    &#125;</span><br><span class="line">    public String addServiceFallback() &#123;</span><br><span class="line">        return &quot;error&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/4279695-00840cf246604c16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="架构图"></p>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/04/11/Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)/" class="pre-post btn btn-default" title='Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)</span>
+        </a>
+    
+    
+        <a href="/2018/04/11/HEXO之博客搭建/" class="next-post btn btn-default" title='HEXO之博客搭建'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">HEXO之博客搭建</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="http://music.163.com/outchain/player?type=1&id=34930257&auto=1&height=32"></iframe>
+           </div>
+
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <p>
+<a href="http://spring4all.com" target="_blank">Spring For All社区</a>
+是关于Spring的纯技术交流社区（涵盖Spring Boot、Spring Cloud等内容），集诸多开源爱好者和技术大牛贡献内容和交流问题。我们不夸大、不装逼、做最纯粹的技术分享！！！
+<hr/>小编GITHUB开源项目,接受贡献,不限于提交问题与需求，修复代码。欢迎Pull Request<br/>支持一下：<a href="https://github.com/lxchinesszz">Star一下</a>
+<hr/>专注于程序猿技术的提升的博客,欢迎投稿 <a href="mailto:lxchinesszz@163.com">投稿邮箱</a>
+</p>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="https://github.com/lxchinesszz" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="github fa fa-github"></i>
+			    </a>
+            
+	            <a href="mailto:lxchinesszz@163.com" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope fa fa-envelope"></i>
+			    </a>
+            
+	            <a href="https://wpa.qq.com/msgrd?v=3&uin=1213327162&site=qq&menu=yes" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link current" href="/categories/Netty/"><i class="fa" aria-hidden="true">Netty</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/"><i class="fa" aria-hidden="true">Spring Boot</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Cloud/"><i class="fa" aria-hidden="true">Spring Cloud</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂记/"><i class="fa" aria-hidden="true">杂记</i></a><span class="category-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">四月 2018</i></a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/"><i class="fa" aria-hidden="true">一月 2015</i></a><span class="archive-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Netty/" style="font-size: 10px;">Netty</a> <a href="/tags/Spring-Cloud/" style="font-size: 10px;">Spring Cloud</a> <a href="/tags/Spring定时器/" style="font-size: 10px;">Spring定时器</a> <a href="/tags/Spring整合Quartz/" style="font-size: 10px;">Spring整合Quartz</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友情链接</h3>
+        <div class="content friends-link">
+        
+            <a href="https://www.jianshu.com/u/e210c8fa704f" class="fa" target="_blank">简书</a>
+        
+            <a href="https://blog.csdn.net/message_lx" class="fa" target="_blank">CSDN</a>
+        
+            <a href="https://www.toutiao.com/c/user/3686495601/#mid=1563737358895105" class="fa" target="_blank">头条</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+     <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+|
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> |
+                <span>
+                    The Blog by <a href="个人介绍" class="copyright-links" target="_blank" rel="nofollow">liuxin</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序猿升级课">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Git常用命令 | 程序猿升级课</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='liuxin'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 技术改变生活! </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Spring-Boot/"><i class="fa "></i>SpringBoot</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Spring-Cloud/"><i class="fa "></i>SpringCloud</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Netty/"><i class="fa "></i>Netty</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂记/"><i class="fa /favicon.ico"></i>杂记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/about/me"><i class="fa "></i>关于</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Git常用命令">
+            
+	            Git常用命令
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/ ">
+             
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/Git" title='Git'>
+                        Git
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2015/01/11</span>
+        </span>
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>1186</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>查看配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+<p>本地项目添加到github</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">git init  初始化</span><br><span class="line"></span><br><span class="line">git add ./  进行跟踪</span><br><span class="line"></span><br><span class="line">git commit -m &apos;&apos;  提交本地</span><br><span class="line"></span><br><span class="line">#根据github仓库</span><br><span class="line">git remote add origin   https:liuxin..</span><br><span class="line">#如果上面操作失败说明已经绑定了一个，就删除之前的</span><br><span class="line">git remote rm origin</span><br><span class="line"></span><br><span class="line">#推到远程仓库</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<p>查看最近提交信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure>
+<p>添加并提交<br>git commit -am ‘message’<br><em>相当于添加跟踪并提交</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit -am &quot;some str&quot;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p>回退到上一次提交的状态<br>git revert HEAD<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git revert HEAD</span><br></pre></td></tr></table></figure></p>
+<p>回退到某个版本<br>git reset 057d </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">回退到某个版本 </span><br><span class="line">git reset 830bc084264841...</span><br></pre></td></tr></table></figure>
+<p>查看当前分支<br>git branch<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">KK-MINI:svc_shenghuojiaofei liuxin$ git branch</span><br><span class="line">  develop</span><br><span class="line">* master</span><br></pre></td></tr></table></figure></p>
+<p>创建分支<br>git branch feature<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">KK-MINI:svc_shenghuojiaofei liuxin$ git branch feature</span><br><span class="line">KK-MINI:svc_shenghuojiaofei liuxin$ git branch</span><br><span class="line">  develop</span><br><span class="line">  feature</span><br><span class="line">* master</span><br></pre></td></tr></table></figure></p>
+<p>切换分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">KK-MINI:svc_shenghuojiaofei liuxin$ git checkout feature</span><br><span class="line">M	.gitignore</span><br><span class="line">M	src/main/resource/application.properties</span><br><span class="line">Switched to branch &apos;feature&apos;</span><br><span class="line">KK-MINI:svc_shenghuojiaofei liuxin$ git branch</span><br><span class="line">  develop</span><br><span class="line">* feature</span><br><span class="line">  master</span><br></pre></td></tr></table></figure></p>
+<p>提交到最新分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">KK-MINI:svc_shenghuojiaofei liuxin$ git push -u origin feature</span><br><span class="line">Total 0 (delta 0), reused 0 (delta 0)</span><br><span class="line">To https://github.com/kpboluome/svc_shenghuojiaofei.git</span><br><span class="line"> * [new branch]      feature -&gt; feature</span><br><span class="line">Branch feature set up to track remote branch feature from origin.</span><br></pre></td></tr></table></figure>
+<p>删除远程分支</p>
+<pre><code>git push origin --delete testfenzhi 
+</code></pre><p>删除本地分支</p>
+<pre><code>git branch -D stg
+</code></pre><p>同步feature分支到master分支</p>
+<pre><code>git checkout master
+git merge feature
+git push origin master
+</code></pre><p>回退所有内容到上一个版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git　　reset　　HEAD^</span><br></pre></td></tr></table></figure>
+<p>回退a.py这个文件的版本到上一个版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git　　reset　　HEAD^　　a.py</span><br></pre></td></tr></table></figure>
+<p><code>`</code></p>
+<p>拉取远程分支到本地分支<br>可以把远程某各分支拉去到本地的branchname下，如果没有branchname，则会在本地新建branchname</p>
+<p><code>git fetch origin branchname:branchname</code></p>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/04/11/HEXO之博客搭建/" class="pre-post btn btn-default" title='HEXO之博客搭建'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">HEXO之博客搭建</span>
+        </a>
+    
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="http://music.163.com/outchain/player?type=1&id=34930257&auto=1&height=32"></iframe>
+           </div>
+
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <p>
+<a href="http://spring4all.com" target="_blank">Spring For All社区</a>
+是关于Spring的纯技术交流社区（涵盖Spring Boot、Spring Cloud等内容），集诸多开源爱好者和技术大牛贡献内容和交流问题。我们不夸大、不装逼、做最纯粹的技术分享！！！
+<hr/>小编GITHUB开源项目,接受贡献,不限于提交问题与需求，修复代码。欢迎Pull Request<br/>支持一下：<a href="https://github.com/lxchinesszz">Star一下</a>
+<hr/>专注于程序猿技术的提升的博客,欢迎投稿 <a href="mailto:lxchinesszz@163.com">投稿邮箱</a>
+</p>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="https://github.com/lxchinesszz" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="github fa fa-github"></i>
+			    </a>
+            
+	            <a href="mailto:lxchinesszz@163.com" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope fa fa-envelope"></i>
+			    </a>
+            
+	            <a href="https://wpa.qq.com/msgrd?v=3&uin=1213327162&site=qq&menu=yes" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link current" href="/categories/Netty/"><i class="fa" aria-hidden="true">Netty</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/"><i class="fa" aria-hidden="true">Spring Boot</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Cloud/"><i class="fa" aria-hidden="true">Spring Cloud</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂记/"><i class="fa" aria-hidden="true">杂记</i></a><span class="category-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">四月 2018</i></a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/"><i class="fa" aria-hidden="true">一月 2015</i></a><span class="archive-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Netty/" style="font-size: 10px;">Netty</a> <a href="/tags/Spring-Cloud/" style="font-size: 10px;">Spring Cloud</a> <a href="/tags/Spring定时器/" style="font-size: 10px;">Spring定时器</a> <a href="/tags/Spring整合Quartz/" style="font-size: 10px;">Spring整合Quartz</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友情链接</h3>
+        <div class="content friends-link">
+        
+            <a href="https://www.jianshu.com/u/e210c8fa704f" class="fa" target="_blank">简书</a>
+        
+            <a href="https://blog.csdn.net/message_lx" class="fa" target="_blank">CSDN</a>
+        
+            <a href="https://www.toutiao.com/c/user/3686495601/#mid=1563737358895105" class="fa" target="_blank">头条</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+     <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+|
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> |
+                <span>
+                    The Blog by <a href="个人介绍" class="copyright-links" target="_blank" rel="nofollow">liuxin</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
