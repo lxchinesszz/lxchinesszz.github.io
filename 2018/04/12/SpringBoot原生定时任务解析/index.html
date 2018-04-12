@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>归档：2018 | 程序猿升级课</title>
+<title>SpringBoot原生定时任务解析 | 程序猿升级课</title>
 
 
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
@@ -132,57 +132,109 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <div id="main">
-  <div id="post-list">
-    <ul class="archives-post-list">
-    	<h1 class="info">2018年 月</h1>
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="SpringBoot原生定时任务解析">
+            
+	            SpringBoot原生定时任务解析
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/Spring-Boot">
+            Spring-Boot
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/Spring定时器" title='Spring定时器'>
+                        Spring定时器
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
         
-          <li class="post-items" _href="/2018/04/12/SpringBoot原生定时任务解析/">
-            <h3 class="post-item-title">
-            	<a href="/2018/04/12/SpringBoot原生定时任务解析/"> SpringBoot原生定时任务解析 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/04/12/Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)/">
-            <h3 class="post-item-title">
-            	<a href="/2018/04/12/Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)/"> Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法) </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/04/11/Netty组件介绍/">
-            <h3 class="post-item-title">
-            	<a href="/2018/04/11/Netty组件介绍/"> Netty组件介绍 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/04/11/Spring Cloud初步理解/">
-            <h3 class="post-item-title">
-            	<a href="/2018/04/11/Spring Cloud初步理解/"> Spring Cloud初步理解 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/04/11/HEXO之博客搭建/">
-            <h3 class="post-item-title">
-            	<a href="/2018/04/11/HEXO之博客搭建/"> HEXO之博客搭建 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/01/12/SpringBoot整合Data-Jpa/">
-            <h3 class="post-item-title">
-            	<a href="/2018/01/12/SpringBoot整合Data-Jpa/"> SpringBoot整合Data-Jpa </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/01/12/StringBoot集成Rabbit根据业务返回ACK/">
-            <h3 class="post-item-title">
-            	<a href="/2018/01/12/StringBoot集成Rabbit根据业务返回ACK/"> StringBoot集成Rabbit根据业务返回ACK </a>
-            </h3>  
-          </li>
-        
-    </ul>
-  </div>
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/04/12</span>
+        </span>
+         <span id="busuanzi_container_page_pv">
+                              本文总阅读量:<span id="busuanzi_value_page_pv"></span>次
+                            </span>
+    
 </div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>#SpringBoot原生定时任务，不需要引入任何依赖</p>
+<p>==只要了解，几个注解就可以使用==</p>
+<ul>
+<li>1.在启动类上加入@EnableScheduling标签</li>
+<li>2.在定时任务方法上加入@Schedule(fixedDelay=5000)</li>
+<li>3.就是如此简单，简单的不可想象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> zebra.shjf;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ConfigurableApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.scheduling.annotation.EnableScheduling;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableScheduling</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestQuartzApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(TestQuartzApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScheduledTasks</span></span>&#123;</span><br><span class="line">    <span class="meta">@Scheduled</span>(fixedDelay = <span class="number">5000</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"当前时间："</span> + <span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/04/12/Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)/" class="next-post btn btn-default" title='Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
 
 
 
