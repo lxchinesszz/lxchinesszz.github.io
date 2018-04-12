@@ -1,0 +1,410 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序猿升级课">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://lxchinesszz.github.io">
+    <!--SEO-->
+
+<meta name="description" content="一个关注于程序猿技术提升的博客"/>
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>SpringBoot整合Quartz-动态读取任务执行 | 程序猿升级课</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
+
+
+    <link rel="icon" href="http://lxchinesszz.gitee.io/chinesszz/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='liuxin'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 技术改变生活! </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Spring-Boot/"><i class="fa "></i>SpringBoot</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Spring-Cloud/"><i class="fa "></i>SpringCloud</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Netty/"><i class="fa "></i>Netty</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂记/"><i class="fa /favicon.ico"></i>杂记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/2015/03/11/me/"><i class="fa "></i>关于</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="SpringBoot整合Quartz-动态读取任务执行">
+            
+	            SpringBoot整合Quartz-动态读取任务执行
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/Spring-Boot">
+            Spring-Boot
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/Spring-Boot" title='Spring-Boot'>
+                        Spring-Boot
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2017/04/12</span>
+        </span>
+         <span id="busuanzi_container_page_pv">
+                              本文总阅读量:<span id="busuanzi_value_page_pv"></span>次
+                            </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <blockquote>
+<p>本次使用redis作为数据库，存储定时任务类<br>redis的连接不是重点，重点是解析序列化处理过的任务数组和Quartz如何添加任务</p>
+</blockquote>
+<h1 id="1-JobEntity-用来保存执行任务类"><a href="#1-JobEntity-用来保存执行任务类" class="headerlink" title="1. JobEntity 用来保存执行任务类"></a>1. JobEntity 用来保存执行任务类</h1><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JobEntity</span> <span class="keyword"><span class="keyword">implements</span> <span class="type">Serializable</span></span> </span>&#123;</span><br><span class="line">    <span class="comment">//cron表达式</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">String</span> cronExpression;</span><br><span class="line">    <span class="comment">//组名</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">String</span> jobGroup = Scheduler.DEFAULT_GROUP;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">String</span> jobName;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">String</span> className; <span class="comment">// 执行任务的类(完整路径  包含包名)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">String</span> methodName;<span class="comment">//执行任务的方法名</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">set</span> ...</span><br><span class="line">    <span class="keyword">get</span> ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="2-任务类"><a href="#2-任务类" class="headerlink" title="2.任务类"></a>2.任务类</h1><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">xun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"--------定时任务2-------"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test2</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"--------定时任务1-------"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-存入redis"><a href="#3-存入redis" class="headerlink" title="3.存入redis"></a>3.存入redis</h1><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public void start2() &#123;</span><br><span class="line">        Gson gson = new Gson();</span><br><span class="line">        JobEntity jobEntity = new JobEntity();</span><br><span class="line">        jobEntity.setMethodName(<span class="string">"test"</span>);</span><br><span class="line">        jobEntity.setJobName(<span class="string">"MyJob2"</span>);</span><br><span class="line">        jobEntity.setClassName(<span class="string">"zebra.shjf.schedule.Test2"</span>);</span><br><span class="line">        jobEntity.setCronExpression(<span class="string">"0/1 * * * * ?"</span>);</span><br><span class="line">        jobEntity.setJobGroup(<span class="string">"MyGroup2"</span>);</span><br><span class="line"></span><br><span class="line">        JobEntity jobEntity2 = new JobEntity();</span><br><span class="line">        jobEntity2.setMethodName(<span class="string">"xun"</span>);</span><br><span class="line">        jobEntity2.setJobName(<span class="string">"MyJob"</span>);</span><br><span class="line">        jobEntity2.setClassName(<span class="string">"zebra.shjf.schedule.Test"</span>);</span><br><span class="line">        jobEntity2.setCronExpression(<span class="string">"0/1 * * * * ?"</span>);</span><br><span class="line">        jobEntity2.setJobGroup(<span class="string">"MyGroup"</span>);</span><br><span class="line"></span><br><span class="line">        ArrayList&lt;JobEntity&gt; <span class="built_in">list</span> = new ArrayList&lt;JobEntity&gt;();</span><br><span class="line">        <span class="built_in">list</span>.add(jobEntity);</span><br><span class="line">        <span class="built_in">list</span>.add(jobEntity2);</span><br><span class="line">        jedis.<span class="built_in">set</span>(<span class="string">"jobEntity"</span>, gson.toJson(<span class="built_in">list</span>));</span><br><span class="line">    &#125;</span><br><span class="line"> <span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; get <span class="string">"jobEntity"</span></span><br><span class="line">    <span class="string">"[&#123;\"</span>cronExpression\<span class="string">":\"</span><span class="number">0</span>/<span class="number">1</span> * * * * ?\<span class="string">",\"</span>jobGroup\<span class="string">":\"</span>MyGroup2\<span class="string">",\"</span>jobName\<span class="string">":\"</span>MyJob2\<span class="string">",\"</span><span class="built_in">className</span>\<span class="string">":\"</span>zebra.shjf.schedule.Test2\<span class="string">",\"</span>methodName\<span class="string">":\"</span>test\<span class="string">"&#125;,&#123;\"</span>cronExpression\<span class="string">":\"</span><span class="number">0</span>/<span class="number">1</span> * * * * ?\<span class="string">",\"</span>jobGroup\<span class="string">":\"</span>MyGroup\<span class="string">",\"</span>jobName\<span class="string">":\"</span>MyJob\<span class="string">",\"</span><span class="built_in">className</span>\<span class="string">":\"</span>zebra.shjf.schedule.Test\<span class="string">",\"</span>methodName\<span class="string">":\"</span>xun\<span class="string">"&#125;]"</span></span><br></pre></td></tr></table></figure>
+<h1 id="3-重点解析-注释解释"><a href="#3-重点解析-注释解释" class="headerlink" title="3.重点解析(注释解释)"></a>3.重点解析(注释解释)</h1><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">@<span class="type">Test</span></span><br><span class="line"> public void start3() throws <span class="type">Exception</span> &#123;</span><br><span class="line">     <span class="comment">//准备添加从redis中得到的实体类，目的是遍历，然后添加到定时容器中，去执行</span></span><br><span class="line">     <span class="type">ArrayList</span>&lt;<span class="type">JobEntity</span>&gt;arrayList=<span class="function"><span class="keyword">new</span> <span class="title">ArrayList</span>&lt;<span class="title">JobEntity</span>&gt;();</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">     <span class="title">Gson</span> <span class="title">gson</span> = <span class="title">new</span> <span class="title">Gson</span>();</span></span><br><span class="line"><span class="function">     <span class="comment">//从redis中得到json数组对象</span></span></span><br><span class="line"><span class="function">     <span class="title">String</span> <span class="title">str</span> = <span class="title">jedis</span>.<span class="title">get</span>("jobEntity");</span></span><br><span class="line"><span class="function">     <span class="comment">//json解析器</span></span></span><br><span class="line"><span class="function">     <span class="title">JsonParser</span> <span class="title">parser</span> = <span class="title">new</span> <span class="title">JsonParser</span>();</span></span><br><span class="line"><span class="function">     <span class="comment">//解析出json元素，jsonElement对象中有一些方法判断是对象还是数组，各对应不同的处理</span></span></span><br><span class="line"><span class="function">     <span class="title">JsonElement</span> <span class="title">jsonElement</span> = <span class="title">parser</span>.<span class="title">parse</span>(str);</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">     <span class="comment">//如果是json数组就转换为jsonArray</span></span></span><br><span class="line"><span class="function">     <span class="title">JsonArray</span> <span class="title">jsonArray</span> = <span class="title">null</span>;</span></span><br><span class="line"><span class="function">     <span class="title">if</span> (jsonElement.isJsonArray()) &#123;</span></span><br><span class="line"><span class="function">         <span class="title">jsonArray</span> = <span class="title">jsonElement</span>.<span class="title">getAsJsonArray</span>();</span></span><br><span class="line"><span class="function">     &#125;</span></span><br><span class="line"><span class="function">     <span class="comment">//遍历</span></span></span><br><span class="line"><span class="function">     <span class="title">Iterator</span> <span class="title">it</span>= <span class="title">jsonArray</span>.<span class="title">iterator</span>();</span></span><br><span class="line"><span class="function">     <span class="title">while</span> (it.hasNext())&#123;</span></span><br><span class="line"><span class="function">         <span class="title">JsonElement</span> <span class="title">e</span> = (<span class="type">JsonElement</span>)<span class="title">it</span>.<span class="title">next</span>();</span></span><br><span class="line"><span class="function">         <span class="comment">//把获得的数组中每一个对象，重新添加到数组中</span></span></span><br><span class="line"><span class="function">         <span class="title">arrayList</span>.<span class="title">add</span>(gson.fromJson(e,<span class="type">JobEntity</span>.class));</span></span><br><span class="line"><span class="function">     &#125;</span></span><br><span class="line"><span class="function">     <span class="comment">//容器</span></span></span><br><span class="line"><span class="function">     <span class="title">Scheduler</span> <span class="title">scheduler</span>=<span class="title">null</span>;</span></span><br><span class="line"><span class="function">     <span class="comment">//遍历数组</span></span></span><br><span class="line"><span class="function">     <span class="title">for</span>(<span class="type">JobEntity</span> jobEntity:arrayList)&#123;</span></span><br><span class="line"><span class="function">         <span class="comment">//遍历获得每个job对象</span></span></span><br><span class="line"><span class="function">         <span class="title">JobDetail</span> <span class="title">jobDetail</span> = <span class="title">JobBuilder</span>.<span class="title">newJob</span>(<span class="type">ScheduledTasks</span>.class).<span class="title">withIdentity</span>(jobEntity.getJobName(), <span class="title">jobEntity</span>.<span class="title">getJobGroup</span>()).<span class="comment">//</span></span></span><br><span class="line"><span class="function">                 <span class="title">usingJobData</span>("className", jobEntity.getClassName())</span></span><br><span class="line"><span class="function">                 .<span class="title">usingJobData</span>("methodName", jobEntity.getMethodName()).<span class="title">build</span>();</span></span><br><span class="line"><span class="function">         <span class="comment">//jobDetail.getJobDataMap().put("test", jobEntity);</span></span></span><br><span class="line"><span class="function">         <span class="comment">//为每个任务动态构建表达式</span></span></span><br><span class="line"><span class="function">         <span class="title">CronScheduleBuilder</span> <span class="title">cron</span> = <span class="title">CronScheduleBuilder</span>.<span class="title">cronSchedule</span>(jobEntity.getCronExpression());</span></span><br><span class="line"><span class="function">         <span class="comment">//构建触发器</span></span></span><br><span class="line"><span class="function">         <span class="title">CronTrigger</span> <span class="title">trigger</span> = <span class="title">TriggerBuilder</span>.<span class="title">newTrigger</span>().<span class="title">withIdentity</span>(jobEntity.getJobName(), <span class="title">jobEntity</span>.<span class="title">getJobGroup</span>()).<span class="title">withSchedule</span>(cron).<span class="title">build</span>();</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">         <span class="title">SchedulerFactory</span> <span class="title">schedulerFactory</span> = <span class="title">new</span> <span class="title">StdSchedulerFactory</span>();</span></span><br><span class="line"><span class="function">         <span class="title">scheduler</span> = <span class="title">schedulerFactory</span>.<span class="title">getScheduler</span>();</span></span><br><span class="line"><span class="function">         <span class="title">scheduler</span>.<span class="title">scheduleJob</span>(jobDetail, trigger);</span></span><br><span class="line"><span class="function">     &#125;</span></span><br><span class="line"><span class="function">     <span class="title">scheduler</span>.<span class="title">start</span>();</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">     <span class="title">Thread</span> <span class="title">thread</span> = <span class="title">new</span> <span class="title">Thread</span>();</span></span><br><span class="line"><span class="function">     <span class="title">thread</span>.<span class="title">sleep</span>(<span class="number">10000</span>);</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"> &#125;</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/04/12/Spring整合Quartz2-1-1/" class="pre-post btn btn-default" title='Spring整合Quartz2.1.1'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Spring整合Quartz2.1.1</span>
+        </a>
+    
+    
+        <a href="/2017/04/12/SpringBoot-Quartz整合定时任务/" class="next-post btn btn-default" title='SpringBoot+Quartz整合定时任务'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">SpringBoot+Quartz整合定时任务</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="http://music.163.com/outchain/player?type=1&id=34930257&auto=0&height=32"></iframe>
+           </div>
+
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <p>
+<a href="http://spring4all.com" target="_blank">Spring For All社区</a>
+是关于Spring的纯技术交流社区（涵盖Spring Boot、Spring Cloud等内容），集诸多开源爱好者和技术大牛贡献内容和交流问题。我们不夸大、不装逼、做最纯粹的技术分享！！！
+<hr/>小编GITHUB开源项目,接受贡献,不限于提交问题与需求，修复代码。欢迎Pull Request<br/>支持一下：<a href="https://github.com/lxchinesszz">Star一下</a>
+<hr/>专注于程序猿技术的提升的博客,欢迎投稿 <a href="mailto:lxchinesszz@163.com">投稿邮箱</a>
+</p>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="https://github.com/lxchinesszz" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="github fa fa-github"></i>
+			    </a>
+            
+	            <a href="mailto:lxchinesszz@163.com" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope fa fa-envelope"></i>
+			    </a>
+            
+	            <a href="https://wpa.qq.com/msgrd?v=3&uin=1213327162&site=qq&menu=yes" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link current" href="/categories/Netty/"><i class="fa" aria-hidden="true">Netty</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/"><i class="fa" aria-hidden="true">Spring Boot</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Cloud/"><i class="fa" aria-hidden="true">Spring Cloud</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/"><i class="fa" aria-hidden="true">Spring-Boot</i></a><span class="category-list-count">40</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/about/"><i class="fa" aria-hidden="true">about</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂记/"><i class="fa" aria-hidden="true">杂记</i></a><span class="category-list-count">11</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">四月 2018</i></a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/"><i class="fa" aria-hidden="true">一月 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/"><i class="fa" aria-hidden="true">十二月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">九月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/"><i class="fa" aria-hidden="true">七月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/"><i class="fa" aria-hidden="true">六月 2017</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/"><i class="fa" aria-hidden="true">五月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/"><i class="fa" aria-hidden="true">四月 2017</i></a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/"><i class="fa" aria-hidden="true">三月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/"><i class="fa" aria-hidden="true">二月 2017</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/"><i class="fa" aria-hidden="true">六月 2016</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/"><i class="fa" aria-hidden="true">五月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/"><i class="fa" aria-hidden="true">四月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/"><i class="fa" aria-hidden="true">三月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/"><i class="fa" aria-hidden="true">一月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/"><i class="fa" aria-hidden="true">六月 2015</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/"><i class="fa" aria-hidden="true">四月 2015</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/"><i class="fa" aria-hidden="true">三月 2015</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/"><i class="fa" aria-hidden="true">一月 2015</i></a><span class="archive-list-count">2</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Netty/" style="font-size: 12.5px;">Netty</a> <a href="/tags/Spring-Cloud/" style="font-size: 10px;">Spring Cloud</a> <a href="/tags/Spring-Boot/" style="font-size: 20px;">Spring-Boot</a> <a href="/tags/Spring定时器/" style="font-size: 10px;">Spring定时器</a> <a href="/tags/Spring整合Quartz/" style="font-size: 10px;">Spring整合Quartz</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/日志/" style="font-size: 15px;">日志</a> <a href="/tags/服务器/" style="font-size: 17.5px;">服务器</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友情链接</h3>
+        <div class="content friends-link">
+        
+            <a href="https://www.jianshu.com/u/e210c8fa704f" class="fa" target="_blank">简书</a>
+        
+            <a href="https://blog.csdn.net/message_lx" class="fa" target="_blank">CSDN</a>
+        
+            <a href="https://www.toutiao.com/c/user/3686495601/#mid=1563737358895105" class="fa" target="_blank">头条</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+        <span id="busuanzi_container_site_pv">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        |
+        <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人次
+        </span>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> |
+                <span>
+                    The Blog by <a href="个人介绍" class="copyright-links" target="_blank" rel="nofollow">liuxin</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
