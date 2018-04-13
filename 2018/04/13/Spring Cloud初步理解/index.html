@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>HEXO之博客搭建 | 程序猿升级课</title>
+<title>Spring Cloud初步理解 | 程序猿升级课</title>
 
 
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
@@ -140,9 +140,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="HEXO之博客搭建">
+        <h1 id="Spring Cloud初步理解">
             
-	            HEXO之博客搭建
+	            Spring Cloud初步理解
             
         </h1>
         <div class="post-meta">
@@ -150,8 +150,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/杂记">
-            杂记
+        <a href="/categories/Spring Cloud">
+            Spring Cloud
         </a>
     </span>
     
@@ -161,8 +161,8 @@
         <span class="tags-meta">
             
                 
-                    <a href="/tags/博客搭建" title='博客搭建'>
-                        博客搭建
+                    <a href="/tags/Spring Cloud" title='Spring Cloud'>
+                        Spring Cloud
                     </a>
                 
             
@@ -174,7 +174,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/04/11</span>
+            <span class="date-meta">2018/04/13</span>
         </span>
          <span id="busuanzi_container_page_pv">
                               本文总阅读量:<span id="busuanzi_value_page_pv"></span>次
@@ -187,40 +187,33 @@
     </div>
     
     <div class="post-body post-content">
-        <blockquote>
-<p>HEXO</p>
+        <h3 id="Ribbon实现负载均衡"><a href="#Ribbon实现负载均衡" class="headerlink" title="Ribbon实现负载均衡"></a>Ribbon实现负载均衡</h3><blockquote>
+<p>关键字：Feign、Ribbon、eureka、负载均衡</p>
 </blockquote>
-<h4 id="安装hexo博客工具"><a href="#安装hexo博客工具" class="headerlink" title="安装hexo博客工具"></a>安装hexo博客工具</h4><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-<span class="keyword">cli</span></span><br></pre></td></tr></table></figure>
-<h4 id="初始化目录"><a href="#初始化目录" class="headerlink" title="初始化目录"></a>初始化目录</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo init</span></span><br></pre></td></tr></table></figure>
-<h4 id="生成静态页面"><a href="#生成静态页面" class="headerlink" title="生成静态页面"></a>生成静态页面</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo g</span></span><br></pre></td></tr></table></figure>
-<h4 id="清理缓存"><a href="#清理缓存" class="headerlink" title="清理缓存"></a>清理缓存</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo clean</span></span><br></pre></td></tr></table></figure>
-<h4 id="推送到服务器"><a href="#推送到服务器" class="headerlink" title="推送到服务器"></a>推送到服务器</h4><p>推送时候要先: npm install hexo-deployer-git –save<br>安装依赖</p>
-<p>修改</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## If your site <span class="keyword">is</span> <span class="keyword">put</span> in <span class="keyword">a</span> subdirectory, <span class="keyword">set</span> url <span class="keyword">as</span> <span class="string">'http://yoursite.com/child'</span> <span class="built_in">and</span> root <span class="keyword">as</span> <span class="string">'/child/'</span></span><br><span class="line">ur<span class="variable">l:</span> http://lxchinesszz.gitee.io/chinesszz/ 访问地址</span><br><span class="line">roo<span class="variable">t:</span> /chinesszz  访问项目</span><br><span class="line">permalink: :year/:month/:day/:title/</span><br><span class="line">permalink_default<span class="variable">s:</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo d</span></span><br></pre></td></tr></table></figure>
-<h4 id="本地服务预览"><a href="#本地服务预览" class="headerlink" title="本地服务预览"></a>本地服务预览</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo s</span></span><br></pre></td></tr></table></figure>
-<h4 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h4><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">浏览器: <span class="string">http:</span><span class="comment">//127.0.0.1:4000/</span></span><br></pre></td></tr></table></figure>
-<h4 id="绑定码云"><a href="#绑定码云" class="headerlink" title="绑定码云"></a>绑定码云</h4><ol>
-<li>修改配置项目根目录_config.yml 文件，修改deploy的值然后保存</li>
-</ol>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">    <span class="attribute">type</span>: git</span><br><span class="line">    <span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//gitee.com/lxchinesszz/chinesszz.git</span></span><br><span class="line">    <span class="attribute">branch</span>: 分支</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>在oschina中点击服务,启动pages静态访问</li>
-</ol>
-<h4 id="绑定到GITHUB"><a href="#绑定到GITHUB" class="headerlink" title="绑定到GITHUB"></a>绑定到GITHUB</h4><ol>
-<li>当绑定到github上需要常见仓库为 用户名.github.io</li>
-</ol>
-<h4 id="购买域名并转发到github"><a href="#购买域名并转发到github" class="headerlink" title="购买域名并转发到github"></a>购买域名并转发到github</h4><ol>
-<li><p>购买域名,并备案</p>
+<ol>
+<li><p>大致：步骤，启动eureka服务(注册中心)</p>
+<ul>
+<li>使用Spring Cloud Netflix中的Eureka实现服务注册中心，以及服务注册发现；</li>
+</ul>
 </li>
-<li><p>配置域名转发</p>
+<li><p>将service(port:2222,port:2223)注册到eureka服务中</p>
+</li>
+<li><p>使用Ribbon代理去访问service</p>
+<ul>
+<li><font color="red">会实现负载均衡</font></li>
+<li>服务间通过Ribbon或Feign实现服务的消费以及均衡负载</li>
+</ul>
+</li>
+<li>通过Spring Cloud Config实现应用多环境的外部化配置及版本管理<ul>
+<li>使得服务集群更为健壮，使用Hystrix熔断机制避免微服务架构中个别服务出现异常引起的故障蔓延</li>
+</ul>
 </li>
 </ol>
-<p><img src="http://otjenik28.bkt.clouddn.com/image.png" alt=""></p>
-<ol start="3">
-<li>在github上仓库点击Setting设置域名</li>
-</ol>
-<p><img src="http://otjenik28.bkt.clouddn.com/image1.png" alt=""></p>
+<blockquote>
+<p>引入断路器 Rabbion中引入Hystrix</p>
+</blockquote>
+<pre><code><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputeService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    RestTemplate restTemplate;</span><br><span class="line">    <span class="meta">@HystrixCommand(fallbackMethod = <span class="meta-string">"addServiceFallback"</span>)</span></span><br><span class="line">    <span class="keyword">public</span> String addService() &#123;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.getForEntity(<span class="string">"http://COMPUTE-SERVICE/add?a=10&amp;b=20"</span>, String.<span class="keyword">class</span>).getBody();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String addServiceFallback() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"error"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/4279695-00840cf246604c16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="架构图"></p>
 
     </div>
 
@@ -238,19 +231,38 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/04/11/Spring Cloud初步理解/" class="pre-post btn btn-default" title='Spring Cloud初步理解'>
+        <a href="/2018/04/13/忘掉那些所谓的真理，请继续重复发明好轮子/" class="pre-post btn btn-default" title='忘掉那些所谓的真理，请继续重复发明好轮子'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">Spring Cloud初步理解</span>
+            <span class="hidden-xs">忘掉那些所谓的真理，请继续重复发明好轮子</span>
         </a>
     
     
-        <a href="/2018/01/12/SpringBoot整合Data-Jpa/" class="next-post btn btn-default" title='SpringBoot整合Data-Jpa'>
+        <a href="/2018/04/13/SpringBoot原生定时任务解析/" class="next-post btn btn-default" title='SpringBoot原生定时任务解析'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">SpringBoot整合Data-Jpa</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">SpringBoot原生定时任务解析</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
 
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNTY3NC8xMjIxMA==">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
 
 
 
@@ -329,7 +341,7 @@
         
     <div class="widget">
         <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Netty/"><i class="fa" aria-hidden="true">Netty</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Cloud/"><i class="fa" aria-hidden="true">Spring Cloud</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/Spring-Boot/"><i class="fa" aria-hidden="true">Spring-Boot</i></a><span class="category-list-count">42</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/about/"><i class="fa" aria-hidden="true">about</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂记/"><i class="fa" aria-hidden="true">杂记</i></a><span class="category-list-count">11</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Netty/"><i class="fa" aria-hidden="true">Netty</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Cloud/"><i class="fa" aria-hidden="true">Spring Cloud</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/"><i class="fa" aria-hidden="true">Spring-Boot</i></a><span class="category-list-count">42</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/about/"><i class="fa" aria-hidden="true">about</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/杂记/"><i class="fa" aria-hidden="true">杂记</i></a><span class="category-list-count">12</span></li></ul>
     </div>
 
 
@@ -337,7 +349,7 @@
         
     <div class="widget">
       <h3 class="title">归档</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">四月 2018</i></a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/"><i class="fa" aria-hidden="true">一月 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/"><i class="fa" aria-hidden="true">十二月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">九月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/"><i class="fa" aria-hidden="true">七月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/"><i class="fa" aria-hidden="true">六月 2017</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/"><i class="fa" aria-hidden="true">五月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/"><i class="fa" aria-hidden="true">四月 2017</i></a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/"><i class="fa" aria-hidden="true">三月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/"><i class="fa" aria-hidden="true">二月 2017</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/"><i class="fa" aria-hidden="true">六月 2016</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/"><i class="fa" aria-hidden="true">五月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/"><i class="fa" aria-hidden="true">四月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/"><i class="fa" aria-hidden="true">三月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/"><i class="fa" aria-hidden="true">一月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/"><i class="fa" aria-hidden="true">六月 2015</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/"><i class="fa" aria-hidden="true">四月 2015</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/"><i class="fa" aria-hidden="true">三月 2015</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/"><i class="fa" aria-hidden="true">一月 2015</i></a><span class="archive-list-count">2</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">四月 2018</i></a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/"><i class="fa" aria-hidden="true">一月 2018</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">九月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/"><i class="fa" aria-hidden="true">七月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/"><i class="fa" aria-hidden="true">六月 2017</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/"><i class="fa" aria-hidden="true">五月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/"><i class="fa" aria-hidden="true">四月 2017</i></a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/"><i class="fa" aria-hidden="true">三月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/"><i class="fa" aria-hidden="true">二月 2017</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/"><i class="fa" aria-hidden="true">九月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/"><i class="fa" aria-hidden="true">六月 2016</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/"><i class="fa" aria-hidden="true">五月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/"><i class="fa" aria-hidden="true">四月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/"><i class="fa" aria-hidden="true">三月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/"><i class="fa" aria-hidden="true">一月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/"><i class="fa" aria-hidden="true">六月 2015</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/"><i class="fa" aria-hidden="true">四月 2015</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/"><i class="fa" aria-hidden="true">三月 2015</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/"><i class="fa" aria-hidden="true">一月 2015</i></a><span class="archive-list-count">2</span></li></ul>
     </div>
 
 
@@ -346,7 +358,7 @@
   <div class="widget">
     <h3 class="title">标签云</h3>
     <div class="content tag-cloud">
-        <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Netty/" style="font-size: 12.5px;">Netty</a> <a href="/tags/Spring-Cloud/" style="font-size: 10px;">Spring Cloud</a> <a href="/tags/Spring-Boot/" style="font-size: 20px;">Spring-Boot</a> <a href="/tags/Spring定时器/" style="font-size: 10px;">Spring定时器</a> <a href="/tags/Spring整合Quartz/" style="font-size: 10px;">Spring整合Quartz</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/日志/" style="font-size: 15px;">日志</a> <a href="/tags/服务器/" style="font-size: 17.5px;">服务器</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a>
+        <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Netty/" style="font-size: 12.5px;">Netty</a> <a href="/tags/Spring-Cloud/" style="font-size: 10px;">Spring Cloud</a> <a href="/tags/Spring-Boot/" style="font-size: 20px;">Spring-Boot</a> <a href="/tags/Spring定时器/" style="font-size: 10px;">Spring定时器</a> <a href="/tags/Spring整合Quartz/" style="font-size: 10px;">Spring整合Quartz</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/日志/" style="font-size: 15px;">日志</a> <a href="/tags/服务器/" style="font-size: 17.5px;">服务器</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a>
     </div>
   </div>
 
