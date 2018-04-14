@@ -1288,7 +1288,7 @@ pre .javascript .function {
 }
 
 
-
+/*赞赏css样式*/
 .donate_bar {
     text-align: center;
     margin-top: 5%
@@ -1335,5 +1335,5 @@ pre .javascript .function {
 #donate_guide img{
   height: 200px;
   height: 200px;
-  align-items:center;
+  margin-left: 110px;
 }
