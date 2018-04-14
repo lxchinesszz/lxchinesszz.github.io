@@ -240,20 +240,9 @@
 </ul>
 <h3 id="自定义Conditional约束类"><a href="#自定义Conditional约束类" class="headerlink" title="自定义Conditional约束类"></a>自定义Conditional约束类</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ConditionalOtoSaasApplication</span> <span class="keyword">extends</span> <span class="title">SpringBootCondition</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    public <span class="type">ConditionOutcome</span> getMatchOutcome(<span class="type">ConditionContext</span> conditionContext, <span class="type">AnnotatedTypeMetadata</span> annotatedTypeMetadata) &#123;</span><br><span class="line">        <span class="type">Object</span> name = annotatedTypeMetadata.getAnnotationAttributes(<span class="type">ConditionalOnMyProperties</span>.<span class="keyword">class</span>.getName()).get(<span class="string">"name"</span>);</span><br><span class="line">        conditionContext.getEnvironment();</span><br><span class="line">        <span class="keyword">if</span> (((<span class="type">String</span>) name).equalsIgnoreCase(<span class="string">"test"</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">ConditionOutcome</span>(<span class="literal">true</span>, <span class="string">"get name properties"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">ConditionOutcome</span>(<span class="literal">false</span>, <span class="string">"no get name properties"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target</span>(&#123;<span class="type">ElementType</span>.<span class="type">TYPE</span>, <span class="type">ElementType</span>.<span class="type">METHOD</span>&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(<span class="type">RetentionPolicy</span>.<span class="type">RUNTIME</span>)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Conditional</span>(<span class="type">ConditionalOtoSaasApplication</span>.<span class="keyword">class</span>)</span><br><span class="line">public <span class="meta">@interface</span> <span class="type">ConditionalOnMyProperties</span> &#123;</span><br><span class="line">    <span class="type">String</span> name();</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConditionalOnMyProperties</span>(name = <span class="string">"test"</span>)</span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">BlmConfig</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> url;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    </div>
-
-    <div class="post-footer">
-        <div>
-            
-                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
-            
-        </div>
-        <div>
-            
-        </div>
-         <!--打赏模块-->
+        <!--打赏模块-->
           
-             <! -- 添加捐赠图标 -->
+               <! -- 添加捐赠图标 -->
 <div class ="post-donate">
     <div id="donate_board" class="donate_bar center">
         <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
@@ -279,6 +268,17 @@
 <! -- 添加捐赠图标 -->
 
           
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
+        </div>
+        <div>
+            
+        </div>
     </div>
 </article>
 

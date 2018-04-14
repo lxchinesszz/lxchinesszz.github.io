@@ -218,20 +218,9 @@
 <p>那么现在的任务就是把，这个上下文对象防盗JobDetil的map中，2.2.1的区别来了，不在是一起new的jobDetail了,由JobBuilder和TriggerBuilder构建<br><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@<span class="type">SpringBootApplication</span></span><br><span class="line">@<span class="type">EnableScheduling</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">TestQuartzApplication</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    public static void main(<span class="type">String</span>[] args) throws <span class="type">Exception</span> &#123;</span><br><span class="line">        <span class="type">ConfigurableApplicationContext</span> cac = <span class="type">SpringApplication</span>.run(<span class="type">TestQuartzApplication</span>.<span class="keyword">class</span>, args);</span><br><span class="line">        <span class="type">String</span>[] names = cac.getBeanDefinitionNames();</span><br><span class="line">        <span class="type">Arrays</span>.asList(names).forEach(name -&gt; <span class="type">System</span>.out.println(name));<span class="comment">//打印bean</span></span><br><span class="line">        <span class="type">SchedulerFactory</span> schedulerFactory = <span class="function"><span class="keyword">new</span> <span class="title">StdSchedulerFactory</span>();</span></span><br><span class="line"><span class="function">        <span class="title">Scheduler</span> <span class="title">scheduler</span> = <span class="title">schedulerFactory</span>.<span class="title">getScheduler</span>();</span></span><br><span class="line"><span class="function">        <span class="title">JobDetail</span> <span class="title">jobDetail</span> = <span class="title">JobBuilder</span>.<span class="title">newJob</span>(<span class="type">ScheduledTasks</span>.class).<span class="title">withIdentity</span>("testkey", "testvalue").<span class="title">withDescription</span>("一个测试的类").<span class="title">build</span>();</span></span><br><span class="line"><span class="function">        <span class="title">jobDetail</span>.<span class="title">getJobDataMap</span>().<span class="title">put</span>("<span class="type">ConfigurableApplicationContext</span>",cac);<span class="comment">//重点是这句话</span></span></span><br><span class="line"><span class="function">        <span class="title">Trigger</span> <span class="title">trigger</span> = <span class="title">TriggerBuilder</span>.<span class="title">newTrigger</span>().<span class="title">startNow</span>().<span class="title">withSchedule</span>(<span class="type">CronScheduleBuilder</span>.cronSchedule("<span class="number">0</span>/<span class="number">1</span> * * * * ?")).<span class="title">startNow</span>().<span class="title">build</span>();</span></span><br><span class="line"><span class="function">        <span class="title">scheduler</span>.<span class="title">scheduleJob</span>(jobDetail,trigger);</span></span><br><span class="line"><span class="function">        <span class="title">scheduler</span>.<span class="title">start</span>();</span></span><br><span class="line"><span class="function">    &#125;</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 
-    </div>
-
-    <div class="post-footer">
-        <div>
-            
-                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
-            
-        </div>
-        <div>
-            
-        </div>
-         <!--打赏模块-->
+        <!--打赏模块-->
           
-             <! -- 添加捐赠图标 -->
+               <! -- 添加捐赠图标 -->
 <div class ="post-donate">
     <div id="donate_board" class="donate_bar center">
         <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
@@ -258,6 +247,17 @@
 
           
     </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
 </article>
 
 <div class="article-nav prev-next-wrap clearfix">
@@ -268,9 +268,9 @@
         </a>
     
     
-        <a href="/2017/04/12/Spring整合Quartz2-1-1/" class="next-post btn btn-default" title='Spring整合Quartz2.1.1'>
+        <a href="/2017/04/12/Spring Cloud初步理解/" class="next-post btn btn-default" title='Spring Cloud初步理解'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">Spring整合Quartz2.1.1</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">Spring Cloud初步理解</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>

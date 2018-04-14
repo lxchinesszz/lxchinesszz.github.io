@@ -205,20 +205,9 @@
 <h3 id="定义监听-ApplicationListener"><a href="#定义监听-ApplicationListener" class="headerlink" title="定义监听 ApplicationListener"></a>定义监听 <code>ApplicationListener</code></h3><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EmailListener</span> <span class="title">implements</span> <span class="title">ApplicationListener</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onApplicationEvent</span>(<span class="params">ApplicationEvent <span class="keyword">event</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">event</span> instanceof EmailEvent)&#123;</span><br><span class="line">            EmailEvent emailEvent = (EmailEvent)<span class="keyword">event</span>;</span><br><span class="line">            emailEvent.print();</span><br><span class="line">            System.<span class="keyword">out</span>.println(<span class="string">"the source is:"</span>+emailEvent.getSource());</span><br><span class="line">            System.<span class="keyword">out</span>.println(<span class="string">"the address is:"</span>+emailEvent.address);</span><br><span class="line">            System.<span class="keyword">out</span>.println(<span class="string">"the email's context is:"</span>+emailEvent.text);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="代码测试"><a href="#代码测试" class="headerlink" title="代码测试"></a>代码测试</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">      ConfigurableApplicationContext applicationContext = SpringApplication.<span class="built_in">run</span>(Application.class, args);</span><br><span class="line">      EmailEvent emailEvent=<span class="keyword">new</span> EmailEvent(<span class="string">"hello"</span>,<span class="string">"lxchinesszz@163.com"</span>,<span class="string">"this is a email text"</span>);</span><br><span class="line">      applicationContext.publishEvent(emailEvent);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
-    </div>
-
-    <div class="post-footer">
-        <div>
-            
-                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
-            
-        </div>
-        <div>
-            
-        </div>
-         <!--打赏模块-->
+        <!--打赏模块-->
           
-             <! -- 添加捐赠图标 -->
+               <! -- 添加捐赠图标 -->
 <div class ="post-donate">
     <div id="donate_board" class="donate_bar center">
         <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
@@ -244,6 +233,17 @@
 <! -- 添加捐赠图标 -->
 
           
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
+        </div>
+        <div>
+            
+        </div>
     </div>
 </article>
 

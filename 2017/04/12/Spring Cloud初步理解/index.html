@@ -225,20 +225,9 @@
 <pre><code><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputeService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    RestTemplate restTemplate;</span><br><span class="line">    <span class="meta">@HystrixCommand(fallbackMethod = <span class="meta-string">"addServiceFallback"</span>)</span></span><br><span class="line">    <span class="keyword">public</span> String addService() &#123;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.getForEntity(<span class="string">"http://COMPUTE-SERVICE/add?a=10&amp;b=20"</span>, String.<span class="keyword">class</span>).getBody();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String addServiceFallback() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"error"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </code></pre><p><img src="http://upload-images.jianshu.io/upload_images/4279695-00840cf246604c16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="架构图"></p>
 
-    </div>
-
-    <div class="post-footer">
-        <div>
-            
-                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
-            
-        </div>
-        <div>
-            
-        </div>
-         <!--打赏模块-->
+        <!--打赏模块-->
           
-             <! -- 添加捐赠图标 -->
+               <! -- 添加捐赠图标 -->
 <div class ="post-donate">
     <div id="donate_board" class="donate_bar center">
         <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
@@ -265,19 +254,30 @@
 
           
     </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
 </article>
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2017/04/12/Spring整合Quartz2-1-1/" class="pre-post btn btn-default" title='Spring整合Quartz2.1.1'>
+        <a href="/2017/04/12/Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)/" class="pre-post btn btn-default" title='Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">Spring整合Quartz2.1.1</span>
+            <span class="hidden-xs">Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)</span>
         </a>
     
     
-        <a href="/2017/04/12/SpringBoot整合Quartz-动态读取任务执行/" class="next-post btn btn-default" title='SpringBoot整合Quartz-动态读取任务执行'>
+        <a href="/2017/04/12/Spring整合Quartz2-1-1/" class="next-post btn btn-default" title='Spring整合Quartz2.1.1'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">SpringBoot整合Quartz-动态读取任务执行</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">Spring整合Quartz2.1.1</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>

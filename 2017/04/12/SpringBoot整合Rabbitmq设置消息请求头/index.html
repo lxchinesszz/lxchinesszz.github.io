@@ -200,20 +200,9 @@
         <p><strong>设置请求头，编码，唯一id</strong></p>
 <figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Message message = MessageBuilder.withBody(context.getBytes())</span><br><span class="line">.<span class="built_in">set</span>ContentType(MessageProperties.CONTENT_TYPE_JSON)</span><br><span class="line">.<span class="built_in">set</span>ContentEncoding(<span class="string">"utf-8"</span>)</span><br><span class="line">.<span class="built_in">set</span>MessageId(UUID.<span class="keyword">random</span>UUID()+<span class="string">""</span>)</span><br><span class="line">.build();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">this.rabbitTemplate.convertAndSend(<span class="string">"retry_payment"</span>, <span class="string">"retry_payment"</span>, message);</span><br></pre></td></tr></table></figure>
 
-    </div>
-
-    <div class="post-footer">
-        <div>
-            
-                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
-            
-        </div>
-        <div>
-            
-        </div>
-         <!--打赏模块-->
+        <!--打赏模块-->
           
-             <! -- 添加捐赠图标 -->
+               <! -- 添加捐赠图标 -->
 <div class ="post-donate">
     <div id="donate_board" class="donate_bar center">
         <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
@@ -239,6 +228,17 @@
 <! -- 添加捐赠图标 -->
 
           
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
+        </div>
+        <div>
+            
+        </div>
     </div>
 </article>
 

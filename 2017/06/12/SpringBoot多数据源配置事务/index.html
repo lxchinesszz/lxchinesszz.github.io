@@ -226,20 +226,9 @@
 <p>返回默认返回的处理器，就OK</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">@Configuration // 开启注解事务管理，等同于xml配置文件中的 &lt;tx:annotation-driven /&gt;</span><br><span class="line">public class AccountApplication implements TransactionManagementConfigurer &#123;</span><br><span class="line"></span><br><span class="line">    @Resource(name="txManager2")</span><br><span class="line">    private PlatformTransactionManager txManager2;</span><br><span class="line"></span><br><span class="line">    // 创建事务管理器1</span><br><span class="line">    @Bean(name = "txManager1")</span><br><span class="line">    public PlatformTransactionManager txManager(DataSource dataSource) &#123;</span><br><span class="line">        return new DataSourceTransactionManager(dataSource);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 创建事务管理器2</span><br><span class="line">    @Bean(name = "txManager2")</span><br><span class="line">    public PlatformTransactionManager txManager2(EntityManagerFactory factory) &#123;</span><br><span class="line">        return new JpaTransactionManager(factory);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 实现接口 TransactionManagementConfigurer 方法，其返回值代表在拥有多个事务管理器的情况下默认使用的事务管理器</span><br><span class="line">    @Override</span><br><span class="line">    public PlatformTransactionManager annotationDrivenTransactionManager() &#123;</span><br><span class="line">        return txManager2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(AccountApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    </div>
-
-    <div class="post-footer">
-        <div>
-            
-                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
-            
-        </div>
-        <div>
-            
-        </div>
-         <!--打赏模块-->
+        <!--打赏模块-->
           
-             <! -- 添加捐赠图标 -->
+               <! -- 添加捐赠图标 -->
 <div class ="post-donate">
     <div id="donate_board" class="donate_bar center">
         <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
@@ -265,6 +254,17 @@
 <! -- 添加捐赠图标 -->
 
           
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
+        </div>
+        <div>
+            
+        </div>
     </div>
 </article>
 

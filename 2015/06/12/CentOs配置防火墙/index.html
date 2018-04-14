@@ -203,20 +203,9 @@
     <div class="post-body post-content">
         <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">使用命令的方式配置CentOS7防火墙</span><br><span class="line"></span><br><span class="line"><span class="comment">##Add</span></span><br><span class="line">firewall-<span class="keyword">cmd</span><span class="bash"> --permanent --zone=public --add-port=80/tcp</span></span><br><span class="line"><span class="bash"><span class="comment">##Remove</span></span></span><br><span class="line"><span class="bash">firewall-cmd --permanent --zone=public --remove-port=80/tcp</span></span><br><span class="line"><span class="bash"><span class="comment">##Reload</span></span></span><br><span class="line"><span class="bash">firewall-cmd --reload</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">复制代码</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">检查是否生效</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">firewall-cmd --zone=public --query-port=80/tcp</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">列出所有的开放端口</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">firewall-cmd --list-all</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">查看防火墙状态</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">systemctl status firewalld.service</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">启动防火墙</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">systemctl start firewalld.service</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">关闭防火墙</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">systemctl stop firewalld.service</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">重新启动防火墙</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">systemctl restart firewalld.service</span></span><br></pre></td></tr></table></figure>
 
-    </div>
-
-    <div class="post-footer">
-        <div>
-            
-                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
-            
-        </div>
-        <div>
-            
-        </div>
-         <!--打赏模块-->
+        <!--打赏模块-->
           
-             <! -- 添加捐赠图标 -->
+               <! -- 添加捐赠图标 -->
 <div class ="post-donate">
     <div id="donate_board" class="donate_bar center">
         <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
@@ -242,6 +231,17 @@
 <! -- 添加捐赠图标 -->
 
           
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
+        </div>
+        <div>
+            
+        </div>
     </div>
 </article>
 
