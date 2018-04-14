@@ -1337,4 +1337,6 @@ pre .javascript .function {
   height: 250px;
   margin-right: auto;
   margin-left: auto;
+  visibility: hidden;
+  display: none;
 }
