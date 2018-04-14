@@ -229,14 +229,42 @@
         <div>
             
         </div>
+         <!--打赏模块-->
+          
+             <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+           小礼物走一走
+        </span>
+        <br>
+      </div>
+    <div id="donate_guide" class="donate_bar center hidden" >
+        <!-- 支付宝打赏图案 -->
+        <img src="https://raw.githubusercontent.com/chuangwailinjie/chuangwailinjie.github.io/master/img/zhifubao.jpg" alt="支付宝打赏">
+        <!-- 微信打赏图案 -->
+        <img src="https://raw.githubusercontent.com/chuangwailinjie/chuangwailinjie.github.io/master/img/wx.jpg" alt="微信打赏">
+    </div>
+    <script type="text/javascript">
+        document.getElementById('btn_donate').onclick = function(){
+            $('#donate_board').addClass('hidden');
+            $('#donate_guide').removeClass('hidden');
+        }
+    </script>
+</div>
+<! -- 添加捐赠图标 -->
+
+          
     </div>
 </article>
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2017/04/12/SpringBoot自动扫描启动配置文件问题/" class="pre-post btn btn-default" title='SpringBoot自动扫描启动配置文件问题'>
+        <a href="/2017/04/12/Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)/" class="pre-post btn btn-default" title='Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">SpringBoot自动扫描启动配置文件问题</span>
+            <span class="hidden-xs">Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)</span>
         </a>
     
     

@@ -249,6 +249,34 @@ spring初始化bean就能立即发现其错误，并进行错误处理，造成�
         <div>
             
         </div>
+         <!--打赏模块-->
+          
+             <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+           小礼物走一走
+        </span>
+        <br>
+      </div>
+    <div id="donate_guide" class="donate_bar center hidden" >
+        <!-- 支付宝打赏图案 -->
+        <img src="https://raw.githubusercontent.com/chuangwailinjie/chuangwailinjie.github.io/master/img/zhifubao.jpg" alt="支付宝打赏">
+        <!-- 微信打赏图案 -->
+        <img src="https://raw.githubusercontent.com/chuangwailinjie/chuangwailinjie.github.io/master/img/wx.jpg" alt="微信打赏">
+    </div>
+    <script type="text/javascript">
+        document.getElementById('btn_donate').onclick = function(){
+            $('#donate_board').addClass('hidden');
+            $('#donate_guide').removeClass('hidden');
+        }
+    </script>
+</div>
+<! -- 添加捐赠图标 -->
+
+          
     </div>
 </article>
 
