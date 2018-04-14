@@ -1326,16 +1326,15 @@ pre .javascript .function {
 }
 
 #donate_guide{
-  height: 410px;
+  height: 210px;
   width: 420px;
   margin: 0 auto;
   text-align: center;
 }
 
 #donate_guide img{
-  height: 400px;
-  height: 400px;
+  height: 250px;
+  height: 250px;
   margin-right: auto;
   margin-left: auto;
-  box-shadow:0 0 20px 0 #000000;
 }
