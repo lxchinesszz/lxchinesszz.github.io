@@ -1289,13 +1289,14 @@ pre .javascript .function {
 
 
 /*赞赏css样式*/
+
 .donate_bar {
   text-align: center;
   margin-top: 5%
 }
 
 
-.donate_bar a.btn_donate {
+#btn_donate_a {
   display: inline-block;
   width: 82px;
   height: 82px;
@@ -1309,7 +1310,7 @@ pre .javascript .function {
   transition: background 0s
 }
 
-.donate_bar a.btn_donate:hover {
+#btn_donate_a:hover {
   background-position: 0 -82px
 }
 
@@ -1324,6 +1325,7 @@ pre .javascript .function {
 
 .post-donate{
   margin-top: 80px;
+  text-align: center;
 }
 
 #donate_board{
@@ -1339,14 +1341,13 @@ pre .javascript .function {
   /*display:inline-block;*/
   margin-right:auto;
   margin-left: auto;
-  /*visibility: hidden;*/
-  /*display: none;*/
+  visibility: hidden;
+  display: none;
 }
 
-#donate_guide img{
+#donate_guide img {
   height: 200px;
   height: 200px;
-
-  /*  margin-right:auto;
-    margin-left: auto;*/
 }
+/*  margin-right:auto;
+  margin-left: auto;*/
