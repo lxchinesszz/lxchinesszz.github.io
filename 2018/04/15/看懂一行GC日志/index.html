@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>分类: about | 程序猿升级课</title>
+<title>看懂一行GC日志 | 程序猿升级课</title>
 
 
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
@@ -136,49 +136,164 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <h3>
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="看懂一行GC日志">
+            
+	            看懂一行GC日志
+            
+        </h1>
+        <div class="post-meta">
     
-        about
     
-</h3>
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/杂记">
+            杂记
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/GC" title='GC'>
+                        GC
+                    </a>
+                
+            
+        </span>
+    </span>
+    <!-- 添加作者-->
+    <span class="fa-wrap">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <span>
+            
+                liuxin
+             
+        </span>
+    </span>
 
-    <article class="post">
+    
+
+    
         
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2015/03/11/me/">me</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2015年03月11日
-                    </time>
-                     <i class="fa fa-user" aria-hidden="true"></i>
-                            <span>
-                                
-                                    匿名
-                                 
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/04/15</span>
+        </span>
+         <span id="busuanzi_container_page_pv">
+                              本文总阅读量:<span id="busuanzi_value_page_pv"></span>次
                             </span>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    个人信息
-笔名: chinesszz , 网名: X , 非著名码农。生于1993年，籍贯河南，现居上海。电子商务专业,专注于基础架构和rpc通信框架研发。目前就职于某互联网软件服务公司
+    
+</div>
 
-专注于企业微服务架构研究及开源框架底层源码研...
-                
-            </p>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p><img src="http://otjenik28.bkt.clouddn.com/1image.png" alt=""></p>
+<h3 id="PSYoungGen-表示垃圾收集类型年轻代使用了Parallel-Scavenge"><a href="#PSYoungGen-表示垃圾收集类型年轻代使用了Parallel-Scavenge" class="headerlink" title="PSYoungGen 表示垃圾收集类型年轻代使用了Parallel Scavenge"></a>PSYoungGen 表示垃圾收集类型年轻代使用了Parallel Scavenge</h3><p><img src="http://otjenik28.bkt.clouddn.com/2image.png" alt=""></p>
+<h4 id="中括号里面数字"><a href="#中括号里面数字" class="headerlink" title="中括号里面数字:"></a>中括号里面数字:</h4><ul>
+<li>5632K: 年轻代收集前大小</li>
+<li>496K:   年轻代收集后大小</li>
+<li>6144K: 年轻代总大小</li>
+</ul>
+<p><img src="http://otjenik28.bkt.clouddn.com/3image.png" alt=""></p>
+<ul>
+<li>5632K: 表示年轻代收集前,占堆大小</li>
+<li>2931K: 表示年轻代收集后,占堆大小</li>
+<li>19968K: 表示年轻代总大小</li>
+</ul>
+<ul>
+<li>user: 用户耗时</li>
+<li>sys:   系统耗时 (指的是cpu耗时,在多核的情况下,会大于real耗时)</li>
+<li>real:  真实耗时(包括,真实等待时间,eg: 磁盘io等待,线程等待)</li>
+</ul>
+
+        <!--打赏模块-->
+          
+               <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate_a"  href="javascript:;" onclick="aClick()" title="打赏."></a>
+        <span class="donate_txt">
+           &uarr;<br>
+           如果您觉得文章对你有用,可以赏我一杯咖啡
+        </span>
+        <br>
+      </div>
+    <div id="donate_guide" class="donate_bar" >
+          <!-- 微信打赏图案 -->
+        <img src="http://otjenik28.bkt.clouddn.com/wwx.png"
+    </div>
+    <script type="text/javascript">
+       function aClick(){
+            <!--元素隐藏，但是原由位置不隐藏-->
+                        document.getElementById("donate_board").style.visibility="hidden";
+                         <!--隐藏原由位置-->
+                        document.getElementById("donate_board").style.display="none";
+                        document.getElementById("donate_board").style.marginRight='auto';
+             			document.getElementById("donate_board").style.marginLeft='auto';
+                        document.getElementById("donate_guide").style.visibility="visible";
+                        document.getElementById("donate_guide").style.display="inline";
+                        document.getElementById("donate_guide").style.marginRight='auto';
+             			document.getElementById("donate_guide").style.marginLeft='auto';
+
+        }
+    </script>
+</div>
+<! -- 添加捐赠图标 -->
+
+          
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
         </div>
-    </article>
- 
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/04/13/忘掉那些所谓的真理，请继续重复发明好轮子/" class="next-post btn btn-default" title='忘掉那些所谓的真理，请继续重复发明好轮子'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">忘掉那些所谓的真理，请继续重复发明好轮子</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
 
 
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNTY3NC8xMjIxMA==">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
 
 
-
-
+    </div>
 
 
 
