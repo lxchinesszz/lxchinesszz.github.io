@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>SpringBoot使用日志接口UI | 程序猿升级课</title>
+<title>Spring Cloud初步理解 | 程序猿升级课</title>
 
 
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
@@ -140,9 +140,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="SpringBoot使用日志接口UI">
+        <h1 id="Spring Cloud初步理解">
             
-	            SpringBoot使用日志接口UI
+	            Spring Cloud初步理解
             
         </h1>
         <div class="post-meta">
@@ -150,8 +150,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/Spring-Boot">
-            Spring-Boot
+        <a href="/categories/Spring Cloud">
+            Spring Cloud
         </a>
     </span>
     
@@ -161,8 +161,8 @@
         <span class="tags-meta">
             
                 
-                    <a href="/tags/Spring-Boot" title='Spring-Boot'>
-                        Spring-Boot
+                    <a href="/tags/Spring Cloud" title='Spring Cloud'>
+                        Spring Cloud
                     </a>
                 
             
@@ -197,7 +197,33 @@
     </div>
     
     <div class="post-body post-content">
-        <figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"> &lt;!--加入Swagger2的依赖实现api文档--&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;io.springfox&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;</span><br><span class="line">            &lt;<span class="keyword">version</span>&gt;<span class="number">2.2</span>.2&lt;/<span class="keyword">version</span>&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;io.springfox&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;springfox-swagger-ui&lt;/artifactId&gt;</span><br><span class="line">            &lt;<span class="keyword">version</span>&gt;<span class="number">2.4</span>.0&lt;/<span class="keyword">version</span>&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> butterfly.shjf;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Scope;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.ApiInfoBuilder;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.PathSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.RequestHandlerSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.service.ApiInfo;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spi.DocumentationType;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spring.web.plugins.Docket;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.swagger2.annotations.EnableSwagger2;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by liuxin on 16/12/9.</span></span><br><span class="line"><span class="comment"> * 创建api文档访问信息</span></span><br><span class="line"><span class="comment"> * url：http://localhost:8080/swagger-ui.html</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">@Configuration</span></span><br><span class="line"><span class="keyword">@EnableSwagger2</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Swagger2 &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Docket createRestApi() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">                .apiInfo(apiInfo())</span><br><span class="line">                .select()</span><br><span class="line">                .apis(RequestHandlerSelectors.basePackage(<span class="string">"com.shjf"</span>))</span><br><span class="line">                .paths(PathSelectors.any())</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ApiInfo apiInfo() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ApiInfoBuilder()</span><br><span class="line">                .title(<span class="string">"shjf-Api文档"</span>)</span><br><span class="line">                .description(<span class="string">"blm付费通项目api文档"</span>)</span><br><span class="line">                .contact(<span class="string">"liuxin"</span>)</span><br><span class="line">                .<span class="keyword">version</span>(<span class="string">"1.0"</span>)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="Ribbon实现负载均衡"><a href="#Ribbon实现负载均衡" class="headerlink" title="Ribbon实现负载均衡"></a>Ribbon实现负载均衡</h3><blockquote>
+<p>关键字：Feign、Ribbon、eureka、负载均衡</p>
+</blockquote>
+<ol>
+<li><p>大致：步骤，启动eureka服务(注册中心)</p>
+<ul>
+<li>使用Spring Cloud Netflix中的Eureka实现服务注册中心，以及服务注册发现；</li>
+</ul>
+</li>
+<li><p>将service(port:2222,port:2223)注册到eureka服务中</p>
+</li>
+<li><p>使用Ribbon代理去访问service</p>
+<ul>
+<li><font color="red">会实现负载均衡</font></li>
+<li>服务间通过Ribbon或Feign实现服务的消费以及均衡负载</li>
+</ul>
+</li>
+<li>通过Spring Cloud Config实现应用多环境的外部化配置及版本管理<ul>
+<li>使得服务集群更为健壮，使用Hystrix熔断机制避免微服务架构中个别服务出现异常引起的故障蔓延</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>引入断路器 Rabbion中引入Hystrix</p>
+</blockquote>
+<pre><code><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputeService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    RestTemplate restTemplate;</span><br><span class="line">    <span class="meta">@HystrixCommand(fallbackMethod = <span class="meta-string">"addServiceFallback"</span>)</span></span><br><span class="line">    <span class="keyword">public</span> String addService() &#123;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.getForEntity(<span class="string">"http://COMPUTE-SERVICE/add?a=10&amp;b=20"</span>, String.<span class="keyword">class</span>).getBody();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String addServiceFallback() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"error"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/4279695-00840cf246604c16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="架构图"></p>
 
     </div>
 
@@ -215,15 +241,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2017/04/12/SpringBoot创建maven多模块项目/" class="pre-post btn btn-default" title='SpringBoot创建maven多模块项目'>
+        <a href="/2017/04/12/Spring整合Quartz2-1-1/" class="pre-post btn btn-default" title='Spring整合Quartz2.1.1'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">SpringBoot创建maven多模块项目</span>
+            <span class="hidden-xs">Spring整合Quartz2.1.1</span>
         </a>
     
     
-        <a href="/2017/04/12/SpringBoot配置异常处理类/" class="next-post btn btn-default" title='SpringBoot配置异常处理类'>
+        <a href="/2017/04/12/SpringBoot整合Quartz-动态读取任务执行/" class="next-post btn btn-default" title='SpringBoot整合Quartz-动态读取任务执行'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">SpringBoot配置异常处理类</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">SpringBoot整合Quartz-动态读取任务执行</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
