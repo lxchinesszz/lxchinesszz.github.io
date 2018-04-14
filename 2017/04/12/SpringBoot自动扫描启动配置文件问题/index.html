@@ -219,7 +219,7 @@
         </span>
         <br>
       </div>
-    <div id="donate_guide" class="donate_bar center hidden" >
+    <div id="donate_guide" class="donate_bar center" style="visibility:hidden;display:none" >
         <!-- 支付宝打赏图案 -->
         <img src="https://raw.githubusercontent.com/chuangwailinjie/chuangwailinjie.github.io/master/img/zhifubao.jpg" alt="支付宝打赏">
         <!-- 微信打赏图案 -->
@@ -227,7 +227,9 @@
     </div>
     <script type="text/javascript">
        function aClick(){
+       <!--元素隐藏，但是原由位置不隐藏-->
             document.getElementById("donate_board").style.visibility="hidden";
+             <!--隐藏原由位置-->
             document.getElementById("donate_board").style.display="none";
             document.getElementById("donate_guide").style.visibility="visible";
             document.getElementById("donate_guide").style.display="inline";
@@ -259,9 +261,9 @@
         </a>
     
     
-        <a href="/2017/04/12/Spring Cloud初步理解/" class="next-post btn btn-default" title='Spring Cloud初步理解'>
+        <a href="/2017/04/12/Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)/" class="next-post btn btn-default" title='Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">Spring Cloud初步理解</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>

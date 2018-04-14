@@ -613,7 +613,7 @@ Kibaba5.5.0 只支持E...
     
         <div class="post-media">
             <a href="/2015/03/11/me/">
-                <img class="img-ajax" src="/img/loading.gif"  data-src="http://otjenik28.bkt.clouddn.com/lxweixin.png"   alt="me">
+                <img class="img-ajax" src="/img/loading.gif"  data-src="http://otjenik28.bkt.clouddn.com/lxtoutiao.png"   alt="me">
             </a>
         </div>
     
@@ -851,7 +851,7 @@ Kibaba5.5.0 只支持E...
         </span>
         <br>
       </div>
-    <div id="donate_guide" class="donate_bar center hidden" >
+    <div id="donate_guide" class="donate_bar center" style="visibility:hidden;display:none" >
         <!-- 支付宝打赏图案 -->
         <img src="https://raw.githubusercontent.com/chuangwailinjie/chuangwailinjie.github.io/master/img/zhifubao.jpg" alt="支付宝打赏">
         <!-- 微信打赏图案 -->
@@ -859,7 +859,9 @@ Kibaba5.5.0 只支持E...
     </div>
     <script type="text/javascript">
        function aClick(){
+       <!--元素隐藏，但是原由位置不隐藏-->
             document.getElementById("donate_board").style.visibility="hidden";
+             <!--隐藏原由位置-->
             document.getElementById("donate_board").style.display="none";
             document.getElementById("donate_guide").style.visibility="visible";
             document.getElementById("donate_guide").style.display="inline";
