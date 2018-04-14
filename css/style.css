@@ -1337,7 +1337,7 @@ pre .javascript .function {
 #donate_guide{
   height: 210px;
   width: 420px;
-  background-color: #64cffc;
+  /*background-color: #64cffc;*/
   /*display:inline-block;*/
   margin-right:auto;
   margin-left: auto;
