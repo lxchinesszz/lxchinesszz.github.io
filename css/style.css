@@ -1290,9 +1290,10 @@ pre .javascript .function {
 
 /*赞赏css样式*/
 .donate_bar {
-    text-align: center;
-    margin-top: 5%
-  }
+  text-align: center;
+  margin-top: 5%
+}
+
 
 .donate_bar a.btn_donate {
   display: inline-block;
@@ -1325,18 +1326,27 @@ pre .javascript .function {
   margin-top: 80px;
 }
 
+#donate_board{
+  /*display:inline;*/
+  margin-right:auto;
+  margin-left: auto;
+}
+
 #donate_guide{
   height: 210px;
   width: 420px;
-  margin: 0 auto;
-  text-align: center;
+  background-color: #64cffc;
+  /*display:inline-block;*/
+  margin-right:auto;
+  margin-left: auto;
+  /*visibility: hidden;*/
+  /*display: none;*/
 }
 
 #donate_guide img{
-  height: 250px;
-  height: 250px;
-  margin-right: auto;
-  margin-left: auto;
-  visibility: hidden;
-  display: none;
+  height: 200px;
+  height: 200px;
+
+  /*  margin-right:auto;
+    margin-left: auto;*/
 }
