@@ -148,7 +148,7 @@
     
         <div class="post-media">
             <a href="/2017/04/12/SpringBoot创建maven多模块项目/">
-                <img class="img-ajax" src="/img/loading.gif"  data-src="https://raw.githubusercontent.com/lxchinesszz/multi-boluome/master/web/src/main/resources/static/image/2.%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E5%85%8B%E9%9A%86%E9%A1%B9%E7%9B%AE.png"   alt="SpringBoot创建maven多模块项目">
+                <img class="img-ajax" src="/img/loading.gif"  data-src="https://raw.githubusercontent.com/lxchinesszz/multi-boluome/master/web/src/main/resources/static/image/4.%E5%89%8D%E7%9B%AE%E5%BD%95.png"   alt="SpringBoot创建maven多模块项目">
             </a>
         </div>
     
@@ -732,10 +732,16 @@
 
 <article class="post">
     
+        <div class="post-media">
+            <a href="/2017/04/12/Spring Cloud初步理解/">
+                <img class="img-ajax" src="/img/loading.gif"  data-src="http://upload-images.jianshu.io/upload_images/4279695-00840cf246604c16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"   alt="Spring Cloud初步理解">
+            </a>
+        </div>
+    
     <div class="post-content">
         <div class="post-head home-post-head">
             <h1 class="post-title">
-                <a href="/2017/04/12/Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)/">Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)</a>
+                <a href="/2017/04/12/Spring Cloud初步理解/">Spring Cloud初步理解</a>
             </h1>
             <div class="post-meta">  &bull;
                 <time class="post-date" datetime="" title="">
@@ -745,11 +751,14 @@
         </div>
         <p class="brief">
             
-                
-==前文==，Quartz中迭代后，变化很大，让我走了很多的误区，这里简单解释一点，希望大家可以跳过误区，建议大家从下往上读（希望对大家有点帮助），我是一只爱分享的小菜鸟
+                Ribbon实现负载均衡
+关键字：Feign、Ribbon、eureka、负载均衡
 
 
-JobDetail和Trigger和Schedule都是...
+大致：步骤，启动eureka服务(注册中心)
+
+使用Spring Cloud Netflix中的Eureka实现服务注册中心，以及服务注册发现；
+...
             
         </p>
     </div>
@@ -761,8 +770,8 @@ JobDetail和Trigger和Schedule都是...
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/Spring-Boot">
-            Spring-Boot
+        <a href="/categories/Spring Cloud">
+            Spring Cloud
         </a>
     </span>
     
@@ -772,8 +781,8 @@ JobDetail和Trigger和Schedule都是...
         <span class="tags-meta">
             
                 
-                    <a href="/tags/Spring整合Quartz" title='Spring整合Quartz'>
-                        Spring整合Quartz
+                    <a href="/tags/Spring Cloud" title='Spring Cloud'>
+                        Spring Cloud
                     </a>
                 
             
@@ -797,7 +806,7 @@ JobDetail和Trigger和Schedule都是...
             </div>
 
             <div class="post-permalink">
-                <a href="/2017/04/12/Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)/" class="btn btn-default">阅读全文</a>
+                <a href="/2017/04/12/Spring Cloud初步理解/" class="btn btn-default">阅读全文</a>
             </div>
         </footer>
     
@@ -891,7 +900,7 @@ JobDetail和Trigger和Schedule都是...
 <! -- 添加捐赠图标 -->
 <div class ="post-donate">
     <div id="donate_board" class="donate_bar center">
-        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <a id="btn_donate" class="btn_donate" href="javascript:;" onclick="aClick()" title="打赏."></a>
         <span class="donate_txt">
            &uarr;<br>
            如果您觉得文章对你有用,可以赏我一杯咖啡
@@ -905,7 +914,7 @@ JobDetail和Trigger和Schedule都是...
         <img src="https://raw.githubusercontent.com/chuangwailinjie/chuangwailinjie.github.io/master/img/wx.jpg" alt="微信打赏">
     </div>
     <script type="text/javascript">
-        document.getElementById('btn_donate').onclick = function(){
+       function aClick(){
             $('#donate_board').addClass('hidden');
             $('#donate_guide').removeClass('hidden');
         }

@@ -210,7 +210,7 @@
                <! -- 添加捐赠图标 -->
 <div class ="post-donate">
     <div id="donate_board" class="donate_bar center">
-        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <a id="btn_donate" class="btn_donate" href="javascript:;" onclick="aClick()" title="打赏."></a>
         <span class="donate_txt">
            &uarr;<br>
            如果您觉得文章对你有用,可以赏我一杯咖啡
@@ -224,7 +224,7 @@
         <img src="https://raw.githubusercontent.com/chuangwailinjie/chuangwailinjie.github.io/master/img/wx.jpg" alt="微信打赏">
     </div>
     <script type="text/javascript">
-        document.getElementById('btn_donate').onclick = function(){
+       function aClick(){
             $('#donate_board').addClass('hidden');
             $('#donate_guide').removeClass('hidden');
         }
@@ -249,15 +249,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2017/04/12/SpringBoot配置视图/" class="pre-post btn btn-default" title='SpringBoot配置视图'>
+        <a href="/2017/04/12/SpringBoot-Quartz整合定时任务/" class="pre-post btn btn-default" title='SpringBoot+Quartz整合定时任务'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">SpringBoot配置视图</span>
+            <span class="hidden-xs">SpringBoot+Quartz整合定时任务</span>
         </a>
     
     
-        <a href="/2017/04/12/SpringBoot项目中整合dubbo实战/" class="next-post btn btn-default" title='SpringBoot项目中整合dubbo实战'>
+        <a href="/2017/04/12/SpringBoot配置视图/" class="next-post btn btn-default" title='SpringBoot配置视图'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">SpringBoot项目中整合dubbo实战</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">SpringBoot配置视图</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>

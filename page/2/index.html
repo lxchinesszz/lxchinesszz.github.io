@@ -369,7 +369,7 @@
     
         <div class="post-media">
             <a href="/2017/04/12/SpringBoot集成Rabbit使用TopicRabbit指定发送集合/">
-                <img class="img-ajax" src="/img/loading.gif"  data-src="https://github.com/lxchinesszz/design/blob/master/src/main/resources/%E6%B7%BB%E5%8A%A0user%E7%9A%84Queue.png?raw=true"   alt="SpringBoot集成Rabbit使用TopicRabbit指定发送集合">
+                <img class="img-ajax" src="/img/loading.gif"  data-src="https://github.com/lxchinesszz/design/blob/master/src/main/resources/%E7%82%B9%E5%87%BBflow%E8%BF%9B%E5%8E%BB%E6%B7%BB%E5%8A%A0rout-key.png?raw=true"   alt="SpringBoot集成Rabbit使用TopicRabbit指定发送集合">
             </a>
         </div>
     
@@ -900,7 +900,7 @@ bind-queue:flow_user
 <! -- 添加捐赠图标 -->
 <div class ="post-donate">
     <div id="donate_board" class="donate_bar center">
-        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <a id="btn_donate" class="btn_donate" href="javascript:;" onclick="aClick()" title="打赏."></a>
         <span class="donate_txt">
            &uarr;<br>
            如果您觉得文章对你有用,可以赏我一杯咖啡
@@ -914,7 +914,7 @@ bind-queue:flow_user
         <img src="https://raw.githubusercontent.com/chuangwailinjie/chuangwailinjie.github.io/master/img/wx.jpg" alt="微信打赏">
     </div>
     <script type="text/javascript">
-        document.getElementById('btn_donate').onclick = function(){
+       function aClick(){
             $('#donate_board').addClass('hidden');
             $('#donate_guide').removeClass('hidden');
         }
