@@ -173,7 +173,7 @@
         <i class="fa fa-user" aria-hidden="true"></i>
         <span>
             
-                匿名
+                liuxin
              
         </span>
     </span>
@@ -198,6 +198,7 @@
     
     <div class="post-body post-content">
         <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebMvc</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ApplicationConfigurerAdapter</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    public void configureDefaultServletHandling(<span class="type">DefaultServletHandlerConfigurer</span> configurer) &#123;</span><br><span class="line">        configurer.enable();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    public <span class="type">InternalResourceViewResolver</span> viewResolver() &#123;</span><br><span class="line">        <span class="type">InternalResourceViewResolver</span> resolver = <span class="keyword">new</span> <span class="type">InternalResourceViewResolver</span>();</span><br><span class="line">        resolver.setPrefix(<span class="string">"WEB-INF/html"</span>);</span><br><span class="line">        resolver.setSuffix(<span class="string">".html"</span>);</span><br><span class="line">        <span class="keyword">return</span> resolver;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
     </div>
 
     <div class="post-footer">
@@ -220,9 +221,9 @@
         </a>
     
     
-        <a href="/2017/04/12/TCP-Keepalive解读/" class="next-post btn btn-default" title='TCP-Keepalive解读'>
+        <a href="/2017/04/12/SpringBoot项目中整合dubbo实战/" class="next-post btn btn-default" title='SpringBoot项目中整合dubbo实战'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">TCP-Keepalive解读</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">SpringBoot项目中整合dubbo实战</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
