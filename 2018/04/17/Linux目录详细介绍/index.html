@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>归档 | 程序猿升级课</title>
+<title>Linux目录详细介绍 | 程序猿升级课</title>
 
 
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
@@ -136,33 +136,329 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <div id="main">
-  <div id="post-list">
-    <ul class="archives-post-list">
-    	<h1 class="info">年 月</h1>
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Linux目录详细介绍">
+            
+	            Linux目录详细介绍
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/杂记">
+            杂记
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/Linux服务器" title='Linux服务器'>
+                        Linux服务器
+                    </a>
+                
+            
+        </span>
+    </span>
+    <!-- 添加作者-->
+    <span class="fa-wrap">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <span>
+            
+                liuxin
+             
+        </span>
+    </span>
+
+    
+
+    
         
-          <li class="post-items" _href="/2015/01/11/Contos安装yum源/">
-            <h3 class="post-item-title">
-            	<a href="/2015/01/11/Contos安装yum源/"> Contos安装yum源 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2015/01/11/GIt命令/">
-            <h3 class="post-item-title">
-            	<a href="/2015/01/11/GIt命令/"> Git常用命令 </a>
-            </h3>  
-          </li>
-        
-    </ul>
-  </div>
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/04/17</span>
+        </span>
+         <span id="busuanzi_container_page_pv">
+                              本文总阅读量:<span id="busuanzi_value_page_pv"></span>次
+                            </span>
+    
 </div>
 
-    <nav class="pagination" role="navigation">
-        <div id="page-nav">
-            <a class="extend prev" rel="prev" href="/archives/page/6/"><i class='fa fa-angle-left'></i></a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><span class="page-number current">7</span>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <blockquote>
+<p>平时开发中难免会经常操作服务器,而大部分服务器都是Linux,作为程序员我们经常会被linux服务器众多的目录所吓倒, 小编我之前也是这样,所以就收集了很多的linux常用的操作命令和linux目录的介绍，今天就把我笔记里面的linux目录这快的笔记，分享给大家，如果各位发现有问题，请及时指出哈,最后谢谢各位阅读，每天学习一点小知识。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>文件目录</th>
+<th>缩写</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/bin</td>
+<td>User Binaries</td>
+<td>用户二进制文件</td>
+</tr>
+<tr>
+<td>/sbin</td>
+<td>System Binaries</td>
+<td>系统二进制文件</td>
+</tr>
+<tr>
+<td>/etc</td>
+<td>Configuration Files</td>
+<td>配置文件</td>
+</tr>
+<tr>
+<td>/dev</td>
+<td>Device Files</td>
+<td>设备文件</td>
+</tr>
+<tr>
+<td>/proc</td>
+<td>Process Information</td>
+<td>处理器信息</td>
+</tr>
+<tr>
+<td>/var</td>
+<td>Variable Files</td>
+<td>变量文件</td>
+</tr>
+<tr>
+<td>/tmp</td>
+<td>Temporary Files</td>
+<td>临时文件</td>
+</tr>
+<tr>
+<td>/usr</td>
+<td>User Programs</td>
+<td>用户程序</td>
+</tr>
+<tr>
+<td>/home</td>
+<td>Home Directories</td>
+<td>用户目录</td>
+</tr>
+<tr>
+<td>/boot</td>
+<td>Boot Loader Files</td>
+<td>系统引导文件</td>
+</tr>
+<tr>
+<td>/lib</td>
+<td>System Libraries</td>
+<td>系统依赖库</td>
+</tr>
+<tr>
+<td>/opt</td>
+<td>Optional add-on Apps</td>
+<td>附加应用</td>
+</tr>
+<tr>
+<td>/mnt</td>
+<td>Mount Directory</td>
+<td>临时挂载目录</td>
+</tr>
+<tr>
+<td>/media</td>
+<td>Removable Devices</td>
+<td>可移动设备文件</td>
+</tr>
+<tr>
+<td>/srv</td>
+<td>Service Data</td>
+<td>服务数据</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>/ - 根</li>
+</ul>
+<p>每个文件和目录都从根目录开始。</p>
+<p>只有root用户拥有这个目录下的写权限。</p>
+<p>请注意/ root是root用户的主目录，与/不一样。</p>
+<ul>
+<li>/ bin - 用户二进制文件</li>
+</ul>
+<p>包含二进制可执行文件。</p>
+<p>您需要在单用户模式下使用的常用linux命令位于此目录下。</p>
+<p>系统的所有用户使用的命令位于此处。</p>
+<p>例如：ps，ls，ping，grep，cp。</p>
+<ul>
+<li>/ sbin - 系统二进制文件</li>
+</ul>
+<p>就像/ bin一样，/ sbin也包含二进制可执行文件。</p>
+<p>但是，位于此目录下的linux命令通常由系统aministrator使用，用于系统维护目的。</p>
+<p>例如：iptables，reboot，fdisk，ifconfig，swapon</p>
+<ul>
+<li>/ etc - 配置文件</li>
+</ul>
+<p>包含所有程序所需的配置文件。</p>
+<p>这还包含用于启动/停止单个程序的启动和关闭shell脚本。</p>
+<p>例如：/etc/resolv.conf，/etc/logrotate.conf</p>
+<ul>
+<li>/ dev - 设备文件</li>
+</ul>
+<p>包含设备文件。</p>
+<p>这些包括终端设备，USB或连接到系统的任何设备。</p>
+<p>例如：/ dev / tty1，/ dev / usbmon0</p>
+<ul>
+<li>/ proc - 进程信息</li>
+</ul>
+<p>包含有关系统进程的信息。</p>
+<p>这是一个包含运行进程信息的伪文件系统。例如：/ proc / {pid}目录包含有关该特定pid进程的信息。</p>
+<p>这是一个具有关于系统资源的文本信息的虚拟文件系统。例如：/ proc / uptime</p>
+<ul>
+<li>/ var - 变量文件</li>
+</ul>
+<p>var代表可变文件。</p>
+<p>预期会增长的文件内容可以在这个目录下找到。</p>
+<p>这包括 - 系统日志文件（/ var / log）; 包和数据库文件（/ var / lib）; 电子邮件（/ var / mail）; 打印队列（/ var / spool）; 锁定文件（/ var / lock）; 重新启动时需要临时文件（/ var / tmp）;</p>
+<ul>
+<li>/ tmp - 临时文件</li>
+</ul>
+<p>包含由系统和用户创建的临时文件的目录。</p>
+<p>系统重新启动时，此目录下的文件将被删除。</p>
+<ul>
+<li>/ usr - 用户程序</li>
+</ul>
+<p>包含二进制文件，库，文档和二级程序的源代码。</p>
+<p>/ usr / bin包含用户程序的二进制文件。如果在/ bin下找不到用户二进制文件，请查看/ usr / bin。例如：at，awk，cc，less，scp</p>
+<p>/ usr / sbin包含系统管理员的二进制文件。如果在/ sbin下找不到系统二进制文件，请查看/ usr / sbin。例如：atd，cron，sshd，useradd，userdel</p>
+<p>/ usr / lib包含/ usr / bin和/ usr / sbin的库</p>
+<p>/ usr / local包含您从源代码安装的用户程序。例如，当您从源代码安装apache时，它将在/ usr / local / apache2下</p>
+<ul>
+<li>/ home - 主页目录</li>
+</ul>
+<p>所有用户的主目录存储他们的个人文件。</p>
+<p>例如：/ home / john，/ home / nikita</p>
+<ul>
+<li>/ boot - 引导加载程序文件</li>
+</ul>
+<p>包含启动加载器相关的文件。</p>
+<p>内核initrd，vmlinux，grub文件位于/ boot下</p>
+<p>例如：initrd.img-2.6.32-24-generic，vmlinuz-2.6.32-24-generic</p>
+<ul>
+<li>/ lib - 系统库</li>
+</ul>
+<p>包含支持位于/ bin和/ sbin下的二进制文件的库文件</p>
+<p>库文件名是ld <em>或lib </em> .so。*</p>
+<p>例如：ld-2.11.1.so，libncurses.so.5.7</p>
+<ul>
+<li>/ opt - 可选的附加应用程序</li>
+</ul>
+<p>opt代表可选。</p>
+<p>包含来自各个供应商的附加应用程序。</p>
+<p>附加应用程序应安装在/ opt /或/ opt /子目录下。</p>
+<ul>
+<li>/ mnt - 挂载目录</li>
+</ul>
+<p>系统管理员可以挂载文件系统的临时挂载目录。</p>
+<ul>
+<li>/媒体 - 可移动媒体设备</li>
+</ul>
+<p>临时安装目录的可移动设备。</p>
+<p>例如，用于CD-ROM的/ media / cdrom; /媒体/软盘软驱; / media / cdrecorder for CD writer</p>
+<ul>
+<li>/ srv - 服务数据</li>
+</ul>
+<p>srv代表服务。</p>
+<p>包含服务器特定的服务相关数据。</p>
+<p>例如，/ srv / cvs包含CVS相关数据。</p>
+
+        <!--打赏模块-->
+          
+               <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate_a"  href="javascript:;" onclick="aClick()" title="打赏."></a>
+        <span class="donate_txt">
+           &uarr;<br>
+           如果您觉得文章对你有用,可以赏我一杯咖啡
+        </span>
+        <br>
+      </div>
+    <div id="donate_guide" class="donate_bar" >
+          <!-- 微信打赏图案 -->
+        <img src="http://otjenik28.bkt.clouddn.com/wwx.png"
+    </div>
+    <script type="text/javascript">
+       function aClick(){
+            <!--元素隐藏，但是原由位置不隐藏-->
+                        document.getElementById("donate_board").style.visibility="hidden";
+                         <!--隐藏原由位置-->
+                        document.getElementById("donate_board").style.display="none";
+                        document.getElementById("donate_board").style.marginRight='auto';
+             			document.getElementById("donate_board").style.marginLeft='auto';
+                        document.getElementById("donate_guide").style.visibility="visible";
+                        document.getElementById("donate_guide").style.display="inline";
+                        document.getElementById("donate_guide").style.marginRight='auto';
+             			document.getElementById("donate_guide").style.marginLeft='auto';
+
+        }
+    </script>
+</div>
+<! -- 添加捐赠图标 -->
+
+          
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
         </div>
-    </nav>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/04/16/Java开发之深浅拷贝/" class="next-post btn btn-default" title='Java开发之深浅拷贝'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Java开发之深浅拷贝</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNTY3NC8xMjIxMA==">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
 
 
 
