@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>分类: Spring-Boot | 程序猿升级课</title>
+<title>分类: 通信 | 程序猿升级课</title>
 
 
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
@@ -155,7 +155,7 @@
                 <main class="col-md-8 main-content ">
                     <h3>
     
-        Spring-Boot
+        通信
     
 </h3>
 
@@ -164,11 +164,11 @@
         <div class="post-content">
             <div class="post-head home-post-head">
                 <h1 class="post-title">
-                    <a href="/2018/01/12/SpringBoot整合Data-Jpa/">SpringBoot整合Data-Jpa</a>
+                    <a href="/2018/04/11/Netty组件介绍/">Netty组件介绍</a>
                 </h1>
                 <div class="post-meta">  &bull;
                     <time class="post-date" datetime="" title="">
-                        2018年01月12日
+                        2018年04月11日
                     </time>
                      <i class="fa fa-user" aria-hidden="true"></i>
                             <span>
@@ -181,11 +181,15 @@
             <p class="brief">
                 
                     
-最近开辟了一个新项目,因为初期考虑到可能会调整数据库的风险,所以orm,在设计之初就考虑为Spring Data Jpa, 以下是工程data层数据,整体是参照配置多数据源的方案,进行配置的
+在学习Netty之前，建议首先学习一个NIO，对关键的NIO组件有一个清醒认识
 
-目录
-因为阿里数据源Druid
-整合数...
+Buffer
+Selector
+总览
+Bootstrap or ServerBootstrap
+EventLoop
+EventLoopGroup
+Ch...
                 
             </p>
         </div>
@@ -196,11 +200,11 @@
         <div class="post-content">
             <div class="post-head home-post-head">
                 <h1 class="post-title">
-                    <a href="/2018/01/12/StringBoot集成Rabbit根据业务返回ACK/">StringBoot集成Rabbit根据业务返回ACK</a>
+                    <a href="/2017/04/12/TCP-Keepalive解读/">TCP-Keepalive解读</a>
                 </h1>
                 <div class="post-meta">  &bull;
                     <time class="post-date" datetime="" title="">
-                        2018年01月12日
+                        2017年04月12日
                     </time>
                      <i class="fa fa-user" aria-hidden="true"></i>
                             <span>
@@ -212,264 +216,8 @@
             </div>
             <p class="brief">
                 
-                    为了维护消息的有效性，当消费消息时候处理失败时候，不进行消费，需要我们根据业务区返回ACK，本项目我使用Redis和ack机制双重保险,保障消息一定能够正确的消费
-首先,接着上部分内容，使用Topic,机制(不明白的,可以回顾上部分内...
-                
-            </p>
-        </div>
-    </article>
- 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2018/01/12/SpringBoot整合Sentry监控项目日志/">SpringBoot整合Sentry监控项目日志</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2018年01月12日
-                    </time>
-                     <i class="fa fa-user" aria-hidden="true"></i>
-                            <span>
-                                
-                                    匿名
-                                 
-                            </span>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    Sentry Java版使用简介基本概念Sentry是什么Sentry 是一个开源的实时错误报告工具，支持 web 前后端、移动应用以及游戏，支持 Python、OC、Java、Go、Node、Django、RoR 等主流编程语言和框...
-                
-            </p>
-        </div>
-    </article>
- 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2017/09/12/SpringBoot定义事件和监听器/">SpringBoot定义事件和监听器</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2017年09月12日
-                    </time>
-                     <i class="fa fa-user" aria-hidden="true"></i>
-                            <span>
-                                
-                                    liuxin
-                                 
-                            </span>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    
-继承事件 ApplicationEvent
-定义监听 ApplicationListener
-
-继承事件 ApplicationEvent1234567891011121314151617181920212223public cla...
-                
-            </p>
-        </div>
-    </article>
- 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2017/07/12/SpringBoot之自定义Servlet/">SpringBoot之自定义Servlet</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2017年07月12日
-                    </time>
-                     <i class="fa fa-user" aria-hidden="true"></i>
-                            <span>
-                                
-                                    liuxin
-                                 
-                            </span>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    
-生产中我们有时候需要自定义servlet比如,对一些特定的资源路径进来的请求,做一些特殊处理，本文，介绍两种自定义的方法。
-
-目录
-@WebServlet 注解方式
-注册ServletRegistrationBean
-
-1.@Web...
-                
-            </p>
-        </div>
-    </article>
- 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2017/06/12/SpringBoot中JMX-RPC-JNDI关键字解释/">SpringBoot中JMX-RPC-JNDI关键字解释</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2017年06月12日
-                    </time>
-                     <i class="fa fa-user" aria-hidden="true"></i>
-                            <span>
-                                
-                                    liuxin
-                                 
-                            </span>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    SpringBoot中JMX监控
-SpringBoot自带调用JMX监控
-
-rpc协议
-rmi 远程方法调用
-JMX 
-Jndi
-
-rpc（Remote Procedure Call ProtocolRPC（Remote Proced...
-                
-            </p>
-        </div>
-    </article>
- 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2017/06/12/SpringBoot多数据源配置事务/">SpringBoot多数据源配置事务</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2017年06月12日
-                    </time>
-                     <i class="fa fa-user" aria-hidden="true"></i>
-                            <span>
-                                
-                                    liuxin
-                                 
-                            </span>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    
-在多数据源中配置事务，其实对于SpringBoot来很简单，当然这个的前提是首先把多数据源都配好的情况下，如果不会多数据源配置，请看该系列 SpringBoot整合多数据源
-
-
-首先在启动类配置
-
-12345678@SpringBo...
-                
-            </p>
-        </div>
-    </article>
- 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2017/06/12/SpringBoot动态修改日志级别/">SpringBoot动态修改日志级别</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2017年06月12日
-                    </time>
-                     <i class="fa fa-user" aria-hidden="true"></i>
-                            <span>
-                                
-                                    liuxin
-                                 
-                            </span>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    SpringBoot1.5新特性目录
-安装依赖
-测试显示日志级别
-测试修改日志级别
-
-1.在pom中添加依赖1234567891011121314151617&amp;lt;parent&amp;gt;true&amp;lt;groupId&amp;gt;org.s...
-                
-            </p>
-        </div>
-    </article>
- 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2017/06/12/SpringBoot中使用-Async实现异步调用/">SpringBoot使用Async实现异步调用</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2017年06月12日
-                    </time>
-                     <i class="fa fa-user" aria-hidden="true"></i>
-                            <span>
-                                
-                                    liuxin
-                                 
-                            </span>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    
-本文引用地址大神程序员DD  link 
-
-什么是“异步调用”？
-“异步调用”对应的是“同步调用”，同步调用指程序按照定义顺序依次执行，每一行程序都必须等待上一行程序执行完成之后才能执行；异步调用指程序在顺序执行时，不等待异步调用的...
-                
-            </p>
-        </div>
-    </article>
- 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2017/05/22/SpringBoot第三方配置绑定/">SpringBoot第三方配置绑定</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2017年05月22日
-                    </time>
-                     <i class="fa fa-user" aria-hidden="true"></i>
-                            <span>
-                                
-                                    liuxin
-                                 
-                            </span>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    
-使用@ConfigurationProperties注释类，还可以在公共@Bean方法上使用它。当您想要将属性绑定到控件之外的第三方组件时，这可能特别有用。
-
-
-首先要导入依赖
-
-12345&amp;lt;dependency&amp;gt;   ...
+                    Netty 扩展TCP是无感知的虚拟连接，中间断开两端不会立刻得到通知。一般在使用长连接的环境下，需要心跳保活机制可以勉强感知其存活。业务层面有心跳机制，TCP协议也提供了心跳保活机制。
+TCP 活性探测理解因为TCP是无感知的虚拟连...
                 
             </p>
         </div>
@@ -478,12 +226,6 @@ rpc（Remote Procedure Call ProtocolRPC（Remote Proced...
 
 
 
-
-    <nav class="pagination" role="navigation">
-        <div id="page-nav">
-            <span class="page-number current">1</span><a class="page-number" href="/categories/Spring-Boot/page/2/">2</a><a class="page-number" href="/categories/Spring-Boot/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/categories/Spring-Boot/page/5/">5</a><a class="extend next" rel="next" href="/categories/Spring-Boot/page/2/"><i class='fa fa-angle-right'></i></a>
-        </div>
-    </nav>
 
 
 
