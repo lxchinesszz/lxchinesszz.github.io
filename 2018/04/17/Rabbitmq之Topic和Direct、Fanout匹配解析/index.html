@@ -214,29 +214,36 @@
     
     <div class="post-body post-content">
         <p><a href="http://www.w2bc.com/article/193923" target="_blank" rel="noopener">RabbitMQ详解</a></p>
-<h1 id="MQ常用概念"><a href="#MQ常用概念" class="headerlink" title="MQ常用概念"></a>MQ常用概念</h1><h3 id="快速入门使用"><a href="#快速入门使用" class="headerlink" title="快速入门使用"></a>快速入门使用</h3><ul>
+<h1>MQ常用概念</h1>
+<h3 id="快速入门使用"><a class="header-anchor" href="#快速入门使用">¶</a>快速入门使用</h3>
+<ul>
 <li>推荐查看 <em>&lt;&lt;SpringBoot集成Rabbit使用TopicRabbit指定发送集合&gt;&gt;</em></li>
 </ul>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
-<li><strong>交换机(Exchange)</strong><ul>
+<h2 id="目录"><a class="header-anchor" href="#目录">¶</a>目录</h2>
+<ul>
+<li><strong>交换机(Exchange)</strong>
+<ul>
 <li><strong>1.Direct Exchange</strong>  根据route key 直接找到队列</li>
 <li><strong>2.Topic Exchange</strong>   根据route key 匹配队列</li>
-<li><strong>3.Fanout Exchange</strong>   不处理route key 全网发送，所有绑定的队列都发送 </li>
+<li><strong>3.Fanout Exchange</strong>   不处理route key 全网发送，所有绑定的队列都发送</li>
 </ul>
 </li>
 </ul>
-<h3 id="交换机-Exchange"><a href="#交换机-Exchange" class="headerlink" title="交换机(Exchange)"></a>交换机(Exchange)</h3><p><strong>1. Direct Exchange</strong></p>
+<h3 id="交换机-exchange"><a class="header-anchor" href="#交换机-exchange">¶</a>交换机(Exchange)</h3>
+<p><strong>1. Direct Exchange</strong></p>
 <p>Direct Exchange是RabbitMQ默认的交换机模式，也是最简单的模式，根据key全文匹配去寻找队列。</p>
 <p><img src="http://pic.w2bc.com/upload/201612/01/201612010906059975.png" alt=""></p>
-<p>Q1 绑定了一个 <code>binding key</code> 名字为 <code>orange</code>； </p>
+<p>Q1 绑定了一个 <code>binding key</code> 名字为 <code>orange</code>；</p>
 <p>Q2 就有 2 个 <code>binding key</code>，名字为<code>black</code>和 <code>green</code>。</p>
 <p><em>当消息中的 路由键 和 这个 binding key 对应上的时候，那么就知道了该消息去到哪一个队列中。</em></p>
 <ul>
-<li><p>代码演示 A</p>
+<li>
+<p>代码演示 A</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Queue <span class="title">helloQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Queue(<span class="string">"retry_payment"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function">DirectExchange <span class="title">exchange</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> DirectExchange(<span class="string">"retry_payment"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//绑定一个key，当消息匹配到就会放到这个队列中</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function">Binding <span class="title">bindingExchangeMessage</span><span class="params">(Queue queueMessage, DirectExchange exchange)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> BindingBuilder.bind(queueMessage).to(exchange).with(<span class="string">"retry_payment"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//向指定routingKey中推送，推送到指定队列</span></span><br><span class="line">rabbitTemplate.convertAndSend(exchange:<span class="string">"retry_payment"</span>, routingKey:<span class="string">"retry_payment"</span>, message:message);</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>代码演示 B</p>
+<li>
+<p>代码演示 B</p>
 </li>
 </ul>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Channel channel = connection.createChannel();  </span><br><span class="line">channel.exchangeDeclare(<span class="string">"retry_payment"</span>, <span class="string">"direct"</span>);  <span class="comment">//声明一个交换机,direct 可以换位topic或者是fannout</span></span><br><span class="line">channel.queueDeclare(<span class="string">"retry_payment"</span>);  <span class="comment">//声明一个队列</span></span><br><span class="line">channel.queueBind(<span class="string">"queueName"</span>, <span class="string">"exchangeName"</span>, <span class="string">"routingKey"</span>);  <span class="comment">//绑定路由键</span></span><br><span class="line">  </span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//需要绑定路由键,发送消息</span></span><br><span class="line"><span class="keyword">byte</span>[] messageBodyBytes = <span class="string">"hello world"</span>.getBytes(); </span><br><span class="line">channel.basicPublish(<span class="string">"exchangeName"</span>, <span class="string">"routingKey"</span>, MessageProperties.PERSISTENT_TEXT_PLAIN, messageBodyBytes);</span><br></pre></td></tr></table></figure>
@@ -246,12 +253,12 @@
 <p><em>Topic Exchange 转发消息主要是根据通配符。</em> 在这种交换机下，队列和交换机的绑定会定义一种路由模式，那么，通配符就要在这种路由模式和路由键之间匹配后交换机才能转发消息。</p>
 <p>在这种交换机模式下：</p>
 <ul>
-<li>路由键必须是一串字符，用句号（<code>.</code>） 隔开，比如说 agreements.us，或者 agreements.eu.stockholm 等。</li>
-<li>路由模式必须包含一个 星号（<code>*</code>），主要用于匹配路由键指定位置的一个单词，比如说，一个路由模式是这样子：agreements..b.*，那么就只能匹配路由键是这样子的：第一个单词是 agreements，第四个单词是 b。 井号（#）就表示相当于一个或者多个单词，例如一个匹配模式是agreements.eu.berlin.#，那么，以agreements.eu.berlin开头的路由键都是可以的。</li>
+<li>路由键必须是一串字符，用句号（<code>.</code>） 隔开，比如说 <a href="http://agreements.us" target="_blank" rel="noopener">agreements.us</a>，或者 agreements.eu.stockholm 等。</li>
+<li>路由模式必须包含一个 星号（<code>*</code>），主要用于匹配路由键指定位置的一个单词，比如说，一个路由模式是这样子：agreements…b.*，那么就只能匹配路由键是这样子的：第一个单词是 agreements，第四个单词是 b。 井号（#）就表示相当于一个或者多个单词，例如一个匹配模式是agreements.eu.berlin.#，那么，以agreements.eu.berlin开头的路由键都是可以的。</li>
 </ul>
 <p>具体代码发送的时候还是一样，第一个参数表示交换机，第二个参数表示routing key，第三个参数即消息。如下：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">rabbitTemplate</span><span class="selector-class">.convertAndSend</span>("<span class="selector-tag">testTopicExchange</span>","<span class="selector-tag">key1</span><span class="selector-class">.a</span><span class="selector-class">.c</span><span class="selector-class">.key2</span>", " <span class="selector-tag">this</span> <span class="selector-tag">is</span>  <span class="selector-tag">RabbitMQ</span>!");</span><br></pre></td></tr></table></figure>
-<p>topic 和 direct 类似, 只是匹配上支持了”模式”, 在”点分”的 routing_key 形式中, 可以使用两个通配符:</p>
+<p>topic 和 direct 类似, 只是匹配上支持了&quot;模式&quot;, 在&quot;点分&quot;的 routing_key 形式中, 可以使用两个通配符:</p>
 <ul>
 <li><code>*</code>表示一个词.</li>
 <li><code>#</code>表示零个或多个词.</li>
@@ -259,9 +266,10 @@
 <hr>
 <p><strong>3.Fanout Exchange</strong></p>
 <p><img src="http://dl.iteye.com/upload/attachment/264106/0bbdcd3d-9fc6-3107-b7e0-db67c174d46a.png" alt=""></p>
-<p>不处理路由键。你只需要简单的将队列绑定到交换机上。一个发送到交换机的消息都会被转发到与该交换机绑定的所有队列上。很像子网广播，每台子网内的主机都获得了一份复制的消息。Fanout交换机转发消息是最快的。 </p>
+<p>不处理路由键。你只需要简单的将队列绑定到交换机上。一个发送到交换机的消息都会被转发到与该交换机绑定的所有队列上。很像子网广播，每台子网内的主机都获得了一份复制的消息。Fanout交换机转发消息是最快的。</p>
 <p>发送消息，只需要指定交换机，<code>route key</code> 可以为空</p>
-<h4 id="给消息设置属性值"><a href="#给消息设置属性值" class="headerlink" title="给消息设置属性值"></a>给消息设置属性值</h4><figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">设置请求头或者编码</span><br><span class="line">  MessageProperties messageProperties= <span class="class"><span class="keyword">message</span>.<span class="title">getMessageProperties</span>();</span></span><br></pre></td></tr></table></figure>
+<h4 id="给消息设置属性值"><a class="header-anchor" href="#给消息设置属性值">¶</a>给消息设置属性值</h4>
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">设置请求头或者编码</span><br><span class="line">  MessageProperties messageProperties= <span class="class"><span class="keyword">message</span>.<span class="title">getMessageProperties</span>();</span></span><br></pre></td></tr></table></figure>
 
         <!--打赏模块-->
           

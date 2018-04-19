@@ -214,9 +214,11 @@
     
     <div class="post-body post-content">
         <blockquote>
-<p>现代IDE（Eclipse，IDEA等）都支持热交换的字节码，所以如果你做一个不影响类或方法签名的更改，它应该重新加载干净没有副作用。<br>Spring Loaded有点进一步，它可以重新加载类定义与方法签名中的更改。有一些自定义它可以强制ApplicationContext刷新自己（但没有一般的机制，以确保对于一个正在运行的应用程序是安全的，所以它只会是一个开发时间的伎俩）。</p>
+<p>现代IDE（Eclipse，IDEA等）都支持热交换的字节码，所以如果你做一个不影响类或方法签名的更改，它应该重新加载干净没有副作用。<br>
+Spring Loaded有点进一步，它可以重新加载类定义与方法签名中的更改。有一些自定义它可以强制ApplicationContext刷新自己（但没有一般的机制，以确保对于一个正在运行的应用程序是安全的，所以它只会是一个开发时间的伎俩）。</p>
 </blockquote>
-<h3 id="重新加载Java类，而不重新启动容器"><a href="#重新加载Java类，而不重新启动容器" class="headerlink" title="重新加载Java类，而不重新启动容器"></a>重新加载Java类，而不重新启动容器</h3><p>配置用于Maven的Spring Loaded</p>
+<h3 id="重新加载java类-而不重新启动容器"><a class="header-anchor" href="#重新加载java类-而不重新启动容器">¶</a>重新加载Java类，而不重新启动容器</h3>
+<p>配置用于Maven的Spring Loaded</p>
 <p>要使用Spring Loaded与Maven命令行，只需添加它作为Spring Boot插件声明中的依赖关系，例如</p>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">&lt;plugin&gt;</span></span><br><span class="line">    <span class="params">&lt;groupId&gt;</span>org.springframework.boot<span class="params">&lt;/groupId&gt;</span></span><br><span class="line">    <span class="params">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="params">&lt;/artifactId&gt;</span></span><br><span class="line">    <span class="params">&lt;dependencies&gt;</span></span><br><span class="line">        <span class="params">&lt;dependency&gt;</span></span><br><span class="line">            <span class="params">&lt;groupId&gt;</span>org.springframework<span class="params">&lt;/groupId&gt;</span></span><br><span class="line">            <span class="params">&lt;artifactId&gt;</span>springloaded<span class="params">&lt;/artifactId&gt;</span></span><br><span class="line">            <span class="params">&lt;version&gt;</span><span class="number">1.2</span><span class="number">.6</span>.RELEASE<span class="params">&lt;/version&gt;</span></span><br><span class="line">        <span class="params">&lt;/dependency&gt;</span></span><br><span class="line">    <span class="params">&lt;/dependencies&gt;</span></span><br><span class="line"><span class="params">&lt;/plugin&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">## 或者是下面这个依赖</span></span><br><span class="line"> <span class="params">&lt;dependency&gt;</span> </span><br><span class="line">        <span class="params">&lt;groupId&gt;</span> org.springframework.boot <span class="params">&lt;/ groupId&gt;</span> </span><br><span class="line">        <span class="params">&lt;artifactId&gt;</span> spring-boot-devtools <span class="params">&lt;/ artifactId&gt;</span> </span><br><span class="line">        <span class="params">&lt;optional&gt;</span> true <span class="params">&lt;/ optional&gt;</span> </span><br><span class="line">    <span class="params">&lt;/ dependency&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这通常适用于Eclipse和IntelliJ IDEA，只要他们的构建配置与Maven默认值（Eclipse m2e这是开箱即用）一致</p>
@@ -272,15 +274,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2017/04/12/SpringBoot-Quartz整合定时任务/" class="pre-post btn btn-default" title='SpringBoot+Quartz整合定时任务'>
+        <a href="/2017/04/12/SpringBoot项目中整合dubbo实战/" class="pre-post btn btn-default" title='SpringBoot项目中整合dubbo实战'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">SpringBoot+Quartz整合定时任务</span>
+            <span class="hidden-xs">SpringBoot项目中整合dubbo实战</span>
         </a>
     
     
-        <a href="/2017/04/12/SpringBoot项目中整合dubbo实战/" class="next-post btn btn-default" title='SpringBoot项目中整合dubbo实战'>
+        <a href="/2017/04/12/SpringBoot配置视图/" class="next-post btn btn-default" title='SpringBoot配置视图'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">SpringBoot项目中整合dubbo实战</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">SpringBoot配置视图</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>

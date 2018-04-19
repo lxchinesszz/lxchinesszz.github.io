@@ -182,7 +182,9 @@
             <p class="brief">
                 
                     
-首先定义一个异常12345public class MyException extends Exception &amp;#123;    public MyException(String message) &amp;#123;        s...
+首先定义一个异常
+
+12345public class MyException extends Exception &amp;#123;    public MyException(String message) &amp;#123;       ...
                 
             </p>
         </div>
@@ -212,9 +214,10 @@
                     
 生产中会经历，开发，测试，到上线。三个阶段
 
-这个三个阶段，都有各自的配置文件，如果只是一个配置文件来回改
-会很容易出现错误的，那么springboot提供了很简答的解决办法
-使用spring.profiles.active=tes...
+ 这个三个阶段，都有各自的配置文件，如果只是一个配置文件来回改
+ 会很容易出现错误的，那么springboot提供了很简答的解决办法
+
+使用spring.profiles.active=...
                 
             </p>
         </div>
@@ -273,7 +276,8 @@
 
 
 首先因为aop包
-123456 &amp;lt;!--aop...
+
+ 123456 &amp;lt;!--a...
                 
             </p>
         </div>
@@ -300,9 +304,10 @@
             </div>
             <p class="brief">
                 
-                    病情使用idea工具，测试没有问题，使用maven可以打包，但是运行，错误。
+                    病情
+使用idea工具，测试没有问题，使用maven可以打包，但是运行，错误。
 通过反编译分析，原因就是打包后的文件，没有包配置文件输入，解决办法
-123456789101112131415&amp;lt;resources&amp;gt;    &amp;l...
+123456789101112131415&amp;lt;resources&amp;gt;    &amp;...
                 
             </p>
         </div>
@@ -330,12 +335,15 @@
             <p class="brief">
                 
                     
+
 1.SpringBoot会自动扫描resource下面的application配置文件，
 
-2.然后是config下面当，config有多个配置文件时候，SpringBoot会找不到application文件，
 
-3.当使用
-12@...
+2.然后是config下面
+当，config有多个配置文件时候，SpringBoot会找不到application文件，
+
+
+3.当使用...
                 
             </p>
         </div>
@@ -394,9 +402,11 @@ JobDetail和Trigger和Schedule都是...
             <p class="brief">
                 
                     
-本次使用redis作为数据库，存储定时任务类redis的连接不是重点，重点是解析序列化处理过的任务数组和Quartz如何添加任务
+本次使用redis作为数据库，存储定时任务类
+redis的连接不是重点，重点是解析序列化处理过的任务数组和Quartz如何添加任务
 
-1. JobEntity 用来保存执行任务类123456789101112131415public ...
+1. JobEntity 用来保存执行任务类
+123456789101112131415publi...
                 
             </p>
         </div>
@@ -424,8 +434,12 @@ JobDetail和Trigger和Schedule都是...
             <p class="brief">
                 
                     概念：
+
 当处理一些，简单的，固定时间，重复次数的任务可以使用简单触发器
-当处理一些，负载的任务，可以使用Cron表达式（触发器的name字段一定要写）1.一个jobDetail就是一个业务。也就是准备定时的任务12345@Bean  ...
+当处理一些，负载的任务，可以使用Cron表达式（触发器的name字段一定要写）
+
+¶1.一个jobDetail就是一个业务。也就是准备定时的任务
+12345@B...
                 
             </p>
         </div>
@@ -436,7 +450,7 @@ JobDetail和Trigger和Schedule都是...
         <div class="post-content">
             <div class="post-head home-post-head">
                 <h1 class="post-title">
-                    <a href="/2017/04/12/SpringBoot项目调试之热加载/">SpringBoot项目调试之热加载</a>
+                    <a href="/2017/04/12/SpringBoot项目中整合dubbo实战/">SpringBoot项目中整合dubbo实战</a>
                 </h1>
                 <div class="post-meta">  &bull;
                     <time class="post-date" datetime="" title="">
@@ -453,7 +467,9 @@ JobDetail和Trigger和Schedule都是...
             <p class="brief">
                 
                     
-现代IDE（Eclipse，IDEA等）都支持热交换的字节码，所以如果你做一个不影响类或方法签名的更改，它应该重新加载干净没有副作用。Spring Loaded有点进一步，它可以重新加载类定义与方法签名中的更改。有一些自定义它可以强...
+“看看星空，会觉得自己很渺小，可能我们在宇宙中从来就是一个偶然。所以，无论什么事情，仔细想一想，都没有什么大不了的。这能帮助自己在遇到挫折时稳定心态，想得更开。”– 《腾讯传》
+
+摘要: 原创出处:www.bysocket.com ...
                 
             </p>
         </div>

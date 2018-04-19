@@ -213,24 +213,30 @@
     </div>
     
     <div class="post-body post-content">
-        <h3 id="Ribbon实现负载均衡"><a href="#Ribbon实现负载均衡" class="headerlink" title="Ribbon实现负载均衡"></a>Ribbon实现负载均衡</h3><blockquote>
+        <h3 id="ribbon实现负载均衡"><a class="header-anchor" href="#ribbon实现负载均衡">¶</a>Ribbon实现负载均衡</h3>
+<blockquote>
 <p>关键字：Feign、Ribbon、eureka、负载均衡</p>
 </blockquote>
 <ol>
-<li><p>大致：步骤，启动eureka服务(注册中心)</p>
+<li>
+<p>大致：步骤，启动eureka服务(注册中心)</p>
 <ul>
 <li>使用Spring Cloud Netflix中的Eureka实现服务注册中心，以及服务注册发现；</li>
 </ul>
 </li>
-<li><p>将service(port:2222,port:2223)注册到eureka服务中</p>
+<li>
+<p>将service(port:2222,port:2223)注册到eureka服务中</p>
 </li>
-<li><p>使用Ribbon代理去访问service</p>
+<li>
+<p>使用Ribbon代理去访问service</p>
 <ul>
 <li><font color="red">会实现负载均衡</font></li>
 <li>服务间通过Ribbon或Feign实现服务的消费以及均衡负载</li>
 </ul>
 </li>
-<li>通过Spring Cloud Config实现应用多环境的外部化配置及版本管理<ul>
+<li>
+<p>通过Spring Cloud Config实现应用多环境的外部化配置及版本管理</p>
+<ul>
 <li>使得服务集群更为健壮，使用Hystrix熔断机制避免微服务架构中个别服务出现异常引起的故障蔓延</li>
 </ul>
 </li>
@@ -239,7 +245,8 @@
 <p>引入断路器 Rabbion中引入Hystrix</p>
 </blockquote>
 <pre><code><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputeService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    RestTemplate restTemplate;</span><br><span class="line">    <span class="meta">@HystrixCommand(fallbackMethod = <span class="meta-string">"addServiceFallback"</span>)</span></span><br><span class="line">    <span class="keyword">public</span> String addService() &#123;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.getForEntity(<span class="string">"http://COMPUTE-SERVICE/add?a=10&amp;b=20"</span>, String.<span class="keyword">class</span>).getBody();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String addServiceFallback() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"error"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/4279695-00840cf246604c16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="架构图"></p>
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/4279695-00840cf246604c16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="架构图"></p>
 
         <!--打赏模块-->
           
@@ -298,9 +305,9 @@
         </a>
     
     
-        <a href="/2017/04/12/Spring整合Quartz2-1-1/" class="next-post btn btn-default" title='Spring整合Quartz2.1.1'>
+        <a href="/2017/04/12/SpringBoot整合Quartz-动态读取任务执行/" class="next-post btn btn-default" title='SpringBoot整合Quartz-动态读取任务执行'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">Spring整合Quartz2.1.1</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">SpringBoot整合Quartz-动态读取任务执行</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>

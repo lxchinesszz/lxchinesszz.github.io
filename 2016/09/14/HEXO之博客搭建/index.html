@@ -216,30 +216,43 @@
         <blockquote>
 <p>HEXO</p>
 </blockquote>
-<h4 id="安装hexo博客工具"><a href="#安装hexo博客工具" class="headerlink" title="安装hexo博客工具"></a>安装hexo博客工具</h4><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-<span class="keyword">cli</span></span><br></pre></td></tr></table></figure>
-<h4 id="初始化目录"><a href="#初始化目录" class="headerlink" title="初始化目录"></a>初始化目录</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo init</span></span><br></pre></td></tr></table></figure>
-<h4 id="生成静态页面"><a href="#生成静态页面" class="headerlink" title="生成静态页面"></a>生成静态页面</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo g</span></span><br></pre></td></tr></table></figure>
-<h4 id="清理缓存"><a href="#清理缓存" class="headerlink" title="清理缓存"></a>清理缓存</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo clean</span></span><br></pre></td></tr></table></figure>
-<h4 id="推送到服务器"><a href="#推送到服务器" class="headerlink" title="推送到服务器"></a>推送到服务器</h4><p>推送时候要先: npm install hexo-deployer-git –save<br>安装依赖</p>
+<h4 id="安装hexo博客工具"><a class="header-anchor" href="#安装hexo博客工具">¶</a>安装hexo博客工具</h4>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-<span class="keyword">cli</span></span><br></pre></td></tr></table></figure>
+<h4 id="初始化目录"><a class="header-anchor" href="#初始化目录">¶</a>初始化目录</h4>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo init</span></span><br></pre></td></tr></table></figure>
+<h4 id="生成静态页面"><a class="header-anchor" href="#生成静态页面">¶</a>生成静态页面</h4>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo g</span></span><br></pre></td></tr></table></figure>
+<h4 id="清理缓存"><a class="header-anchor" href="#清理缓存">¶</a>清理缓存</h4>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo clean</span></span><br></pre></td></tr></table></figure>
+<h4 id="推送到服务器"><a class="header-anchor" href="#推送到服务器">¶</a>推送到服务器</h4>
+<p>推送时候要先: npm install hexo-deployer-git --save<br>
+安装依赖</p>
 <p>修改</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## If your site <span class="keyword">is</span> <span class="keyword">put</span> in <span class="keyword">a</span> subdirectory, <span class="keyword">set</span> url <span class="keyword">as</span> <span class="string">'http://yoursite.com/child'</span> <span class="built_in">and</span> root <span class="keyword">as</span> <span class="string">'/child/'</span></span><br><span class="line">ur<span class="variable">l:</span> http://lxchinesszz.gitee.io/chinesszz/ 访问地址</span><br><span class="line">roo<span class="variable">t:</span> /chinesszz  访问项目</span><br><span class="line">permalink: :year/:month/:day/:title/</span><br><span class="line">permalink_default<span class="variable">s:</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo d</span></span><br></pre></td></tr></table></figure>
-<h4 id="本地服务预览"><a href="#本地服务预览" class="headerlink" title="本地服务预览"></a>本地服务预览</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo s</span></span><br></pre></td></tr></table></figure>
-<h4 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h4><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">浏览器: <span class="string">http:</span><span class="comment">//127.0.0.1:4000/</span></span><br></pre></td></tr></table></figure>
-<h4 id="绑定码云"><a href="#绑定码云" class="headerlink" title="绑定码云"></a>绑定码云</h4><ol>
+<h4 id="本地服务预览"><a class="header-anchor" href="#本地服务预览">¶</a>本地服务预览</h4>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo s</span></span><br></pre></td></tr></table></figure>
+<h4 id="查看"><a class="header-anchor" href="#查看">¶</a>查看</h4>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">浏览器: <span class="string">http:</span><span class="comment">//127.0.0.1:4000/</span></span><br></pre></td></tr></table></figure>
+<h4 id="绑定码云"><a class="header-anchor" href="#绑定码云">¶</a>绑定码云</h4>
+<ol>
 <li>修改配置项目根目录_config.yml 文件，修改deploy的值然后保存</li>
 </ol>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">    <span class="attribute">type</span>: git</span><br><span class="line">    <span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//gitee.com/lxchinesszz/chinesszz.git</span></span><br><span class="line">    <span class="attribute">branch</span>: 分支</span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li>在oschina中点击服务,启动pages静态访问</li>
 </ol>
-<h4 id="绑定到GITHUB"><a href="#绑定到GITHUB" class="headerlink" title="绑定到GITHUB"></a>绑定到GITHUB</h4><ol>
-<li>当绑定到github上需要常见仓库为 用户名.github.io</li>
+<h4 id="绑定到github"><a class="header-anchor" href="#绑定到github">¶</a>绑定到GITHUB</h4>
+<ol>
+<li>当绑定到github上需要常见仓库为 <a href="http://xn--eqr924avxo.github.io" target="_blank" rel="noopener">用户名.github.io</a></li>
 </ol>
-<h4 id="购买域名并转发到github"><a href="#购买域名并转发到github" class="headerlink" title="购买域名并转发到github"></a>购买域名并转发到github</h4><ol>
-<li><p>购买域名,并备案</p>
+<h4 id="购买域名并转发到github"><a class="header-anchor" href="#购买域名并转发到github">¶</a>购买域名并转发到github</h4>
+<ol>
+<li>
+<p>购买域名,并备案</p>
 </li>
-<li><p>配置域名转发</p>
+<li>
+<p>配置域名转发</p>
 </li>
 </ol>
 <p><img src="http://otjenik28.bkt.clouddn.com/image.png" alt=""></p>

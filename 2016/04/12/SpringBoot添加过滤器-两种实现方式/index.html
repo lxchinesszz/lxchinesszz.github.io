@@ -236,31 +236,35 @@ public class ApplicationConfig {
         return registrationBean;
     }
 }
-</code></pre><p>使用注解</p>
+</code></pre>
+<p>使用注解</p>
 <ul>
-<li>@WebFilter(filterName=”AppCodeInsertServletFilter”,urlPatterns={“/*”})</li>
+<li>@WebFilter(filterName=“AppCodeInsertServletFilter”,urlPatterns={&quot;/*&quot;})</li>
 <li>@ServletComponentScan</li>
 </ul>
 <ol>
-<li><p>在启动类添加注解 @ServletComponentScan 扫描Servlet注解</p>
-<pre><code>@ServletComponentScan
-@SpringBootApplication
-public class OtoSaasApplication  {
-
-    public static void main(String[] args) {
+<li>
+<p>在启动类添加注解 @ServletComponentScan 扫描Servlet注解<br>
+@ServletComponentScan<br>
+@SpringBootApplication<br>
+public class OtoSaasApplication  {</p>
+<pre><code>    public static void main(String[] args) {
       SpringApplication.run(OtoSaasApplication.class, args);
     }
  }
-</code></pre></li>
+</code></pre>
+</li>
 </ol>
 <p>2.继承Filter 并添加 @WebFilter</p>
 <pre><code>@WebFilter(filterName=&quot;HttpServletRequestReplacedFilter&quot;,urlPatterns={&quot;/*&quot;})
 public class HttpServletRequestReplacedFilter implements Filter {
   ...
 }
-</code></pre><p>验证是否添加成功</p>
-<pre><code>2017-11-15T14:05:14.144 INFO oto_saas__pay o.s.boot.web.servlet.FilterRegistrationBean [line:271 Mapping filter: &apos;HttpServletRequestReplacedFilter&apos; to urls: [/*]]
 </code></pre>
+<p>验证是否添加成功</p>
+<pre><code>2017-11-15T14:05:14.144 INFO oto_saas__pay o.s.boot.web.servlet.FilterRegistrationBean [line:271 Mapping filter: 'HttpServletRequestReplacedFilter' to urls: [/*]]
+</code></pre>
+
         <!--打赏模块-->
           
                <! -- 添加捐赠图标 -->

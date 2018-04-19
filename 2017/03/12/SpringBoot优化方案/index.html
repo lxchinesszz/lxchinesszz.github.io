@@ -213,41 +213,48 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="Bean优化"><a href="#Bean优化" class="headerlink" title="Bean优化"></a>Bean优化</h1><p>1.当使用@SpringBootApplication会默认注册pom文件中拥有的为bean</p>
+        <h1>Bean优化</h1>
+<p>1.当使用@SpringBootApplication会默认注册pom文件中拥有的为bean</p>
 <pre><code>默认情况下自动获取应用配置信息，会加载一些不需要的beans
 增加cpu消耗
 
-beanNames个数：261    
+beanNames个数：261	
 堆内存：150-220M
-</code></pre><p>2.使用@Configuration和@EnableAutoConfiguration</p>
+</code></pre>
+<p>2.使用@Configuration和@EnableAutoConfiguration</p>
 <pre><code>beanNames个数：158
-</code></pre><p>3.使用【不建议使用】</p>
-<pre><code>使用mvn spring-boot:run -Ddebug 只用装配30个左右组件就能启动        
+</code></pre>
+<p>3.使用【不建议使用】</p>
+<pre><code>使用mvn spring-boot:run -Ddebug 只用装配30个左右组件就能启动		
 注解解释：
 
 @EnableAutoConfiguration会自动加载可能需要的配置信息
 在知道需要的beans的情况下，可以使用@Import方式去配置
-</code></pre><p>4.生产环境下禁止xml校验</p>
+</code></pre>
+<p>4.生产环境下禁止xml校验</p>
 <pre><code>继承XmlWebApplicationContext复写init
 
 在web.xml文件中配置
-    &lt;context-param&gt;
-          &lt;param-name&gt;contextClass&lt;/param-name&gt;
-          &lt;param-value&gt;com.example.CustomXmlWebApplicationContext&lt;/param-value&gt;
-    &lt;/context-param&gt;
-</code></pre><p>5.减少自动扫描，尽量使用配置形式，减少初始化扫描时间</p>
+	&lt;context-param&gt;
+		&lt;param-name&gt;contextClass&lt;/param-name&gt;
+		&lt;param-value&gt;com.example.CustomXmlWebApplicationContext&lt;/param-value&gt;
+	&lt;/context-param&gt;
+</code></pre>
+<p>5.减少自动扫描，尽量使用配置形式，减少初始化扫描时间</p>
 <p>6.使用延迟初始化的bean 【Using Lazy-Initialized Beans】</p>
-<pre><code>lazy-init属性为true
-spring初始化bean就能立即发现其错误，并进行错误处理，造成的负面效应增加了应用程序的加    载时间
-</code></pre><p>优化方案：</p>
-<pre><code>【jvisualvm】        
+<pre><code>	lazy-init属性为true
+	spring初始化bean就能立即发现其错误，并进行错误处理，造成的负面效应增加了应用程序的加	载时间
+</code></pre>
+<p>优化方案：</p>
+<pre><code>【jvisualvm】		
 1.不适用默认方式，采用第二种减少注册bean数量，项目中需要
-    的bean，采用注解方式在配置类中注册。
+	的bean，采用注解方式在配置类中注册。
 2.tomcat8，新特性8.5.6
-      Servlet 3.1、JSP 2.3、EL 3.0
-      Servlet 3.1实现了非阻塞式的I/O通信，性能得到
-      巨大的改进
-</code></pre><p>参考资料：</p>
+	  Servlet 3.1、JSP 2.3、EL 3.0
+	  Servlet 3.1实现了非阻塞式的I/O通信，性能得到
+	  巨大的改进
+</code></pre>
+<p>参考资料：</p>
 <p>阿里云栖社区<a href="https://yq.aliyun.com/articles/2360" target="_blank" rel="noopener">link</a></p>
 <p>51CTO开发频道<a href="http://developer.51cto.com/art/201404/435983.htm" target="_blank" rel="noopener">link</a></p>
 <p>Spring Boot性能优化<a href="https://segmentfault.com/a/1190000004252885" target="_blank" rel="noopener">link</a></p>

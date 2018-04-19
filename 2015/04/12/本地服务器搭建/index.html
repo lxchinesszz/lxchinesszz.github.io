@@ -211,7 +211,7 @@
             
             
             <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>1102</strong>天之前发表，文中内容可能已经过时。
+                本文于<strong>1103</strong>天之前发表，文中内容可能已经过时。
             </p>
         
     </div>
@@ -224,62 +224,76 @@
 </ul>
 <p>1.服务器创建用户</p>
 <ul>
-<li><p>首先创建一个组</p>
-<pre><code>groupadd -g 1500 maclink //g参数就是组id 如果不加默认是1000 开始
-</code></pre></li>
-<li><p>添加一个用户</p>
-<pre><code>useradd macuser -g maclink //添加一个用户名为macuser的用户在macgroup组中
-</code></pre></li>
-<li>如果你忘记你创建的组，那么使用下面的命令查看所有的组<pre><code>cat /etc/group
-</code></pre></li>
+<li>
+<p>首先创建一个组<br>
+groupadd -g 1500 maclink //g参数就是组id 如果不加默认是1000 开始</p>
+</li>
+<li>
+<p>添加一个用户<br>
+useradd macuser -g maclink //添加一个用户名为macuser的用户在macgroup组中</p>
+</li>
+<li>
+<p>如果你忘记你创建的组，那么使用下面的命令查看所有的组<br>
+cat /etc/group</p>
+</li>
 </ul>
 <p>2.查看互相的ip</p>
 <ul>
-<li><p>mac系统和centOS中查看ip地址是</p>
-<pre><code>ifconfig 
-# 这里我的mac地址是 192.168.1.107
-# centOS中地址是设置和主机共享同一个网段 使用桥接方式，不要使用NAT方式，否则不是在一个网段
-# centOS 中ip是   192.168.1.109
-
-# 本篇文章最重要的地方就是这里，虚拟机中的服务器必须要和将要连接的电脑共处一个网段
+<li>
+<p>mac系统和centOS中查看ip地址是<br>
+ifconfig<br>
+# 这里我的mac地址是 192.168.1.107<br>
+# centOS中地址是设置和主机共享同一个网段 使用桥接方式，不要使用NAT方式，否则不是在一个网段<br>
+# centOS 中ip是   192.168.1.109</p>
+<pre><code># 本篇文章最重要的地方就是这里，虚拟机中的服务器必须要和将要连接的电脑共处一个网段
 # 所以必须使用桥接。
-</code></pre></li>
-<li><p>window系统中命令</p>
-<pre><code>ipconfig
-#windows下ip地址是 192.168.1.104
-</code></pre></li>
-<li>互相ping查看一下是否可以互相访问到<pre><code>Last login: Sun Feb 19 13:46:15 on ttys000
- mac@MacBook-Air  ~  ping 192.168.1.109
-PING 192.168.1.109 (192.168.1.109): 56 data bytes
-64 bytes from 192.168.1.109: icmp_seq=0 ttl=64 time=139.139 ms
-64 bytes from 192.168.1.109: icmp_seq=1 ttl=64 time=14.407 ms
-64 bytes from 192.168.1.109: icmp_seq=2 ttl=64 time=173.413 ms
-64 bytes from 192.168.1.109: icmp_seq=3 ttl=64 time=205.352 ms
-# 如果看到这里，那么已经成功一大半了
-</code></pre></li>
+</code></pre>
+</li>
+<li>
+<p>window系统中命令<br>
+ipconfig<br>
+#windows下ip地址是 192.168.1.104</p>
+</li>
+<li>
+<p>互相ping查看一下是否可以互相访问到<br>
+Last login: Sun Feb 19 13:46:15 on ttys000<br>
+mac@MacBook-Air  ~  ping 192.168.1.109<br>
+PING 192.168.1.109 (192.168.1.109): 56 data bytes<br>
+64 bytes from 192.168.1.109: icmp_seq=0 ttl=64 time=139.139 ms<br>
+64 bytes from 192.168.1.109: icmp_seq=1 ttl=64 time=14.407 ms<br>
+64 bytes from 192.168.1.109: icmp_seq=2 ttl=64 time=173.413 ms<br>
+64 bytes from 192.168.1.109: icmp_seq=3 ttl=64 time=205.352 ms<br>
+# 如果看到这里，那么已经成功一大半了</p>
+</li>
 </ul>
 <p>3.centOS中开方端口</p>
 <ul>
-<li>ssl <a href="mailto:mac@192.168.1.109" target="_blank" rel="noopener">mac@192.168.1.109</a>  //默认使用的22端口 ，因为没有使用安全连接，他会让你选择yes和no<pre><code> ✘ ⚙ mac@MacBook-Air  ~  ssh mac@192.168.1.109
-The authenticity of host &apos;192.168.1.109 (192.168.1.109)&apos; can&apos;t be established.
-RSA key fingerprint is SHA256:8GcRL3cDzo3UHBCOTq5ExwKJ37VfTwJLBxZU0xWHBPY.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added &apos;192.168.1.109&apos; (RSA) to the list of known hosts.
-mac@192.168.1.109&apos;s password:
-[mac@localhost ~]$ ls
-Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
-[mac@localhost ~]$ ls
-</code></pre></li>
+<li>ssl <a href="mailto:mac@192.168.1.109" target="_blank" rel="noopener">mac@192.168.1.109</a>  //默认使用的22端口 ，因为没有使用安全连接，他会让你选择yes和no<br>
+✘ ⚙ mac@MacBook-Air  ~  ssh <a href="mailto:mac@192.168.1.109" target="_blank" rel="noopener">mac@192.168.1.109</a><br>
+The authenticity of host ‘192.168.1.109 (192.168.1.109)’ can’t be established.<br>
+RSA key fingerprint is SHA256:8GcRL3cDzo3UHBCOTq5ExwKJ37VfTwJLBxZU0xWHBPY.<br>
+Are you sure you want to continue connecting (yes/no)? yes<br>
+Warning: Permanently added ‘192.168.1.109’ (RSA) to the list of known hosts.<br>
+<a href="mailto:mac@192.168.1.109" target="_blank" rel="noopener">mac@192.168.1.109</a>’s password:<br>
+[mac@localhost ~]$ ls<br>
+Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos<br>
+[mac@localhost ~]$ ls</li>
 </ul>
 <p>这篇的内容就是这样，下一篇，使用安全连接</p>
 <p>主要内容：</p>
 <ul>
-<li><p>服务器生成安全密钥</p>
+<li>
+<p>服务器生成安全密钥</p>
 </li>
-<li><p>服务器开放一个供访问的安全端口</p>
+<li>
+<p>服务器开放一个供访问的安全端口</p>
 </li>
-<li>使用ssl 公钥 安全连接</li>
-<li>最后终级目标是将局域网地址映射到公网</li>
+<li>
+<p>使用ssl 公钥 安全连接</p>
+</li>
+<li>
+<p>最后终级目标是将局域网地址映射到公网</p>
+</li>
 </ul>
 
         <!--打赏模块-->

@@ -213,33 +213,45 @@
     </div>
     
     <div class="post-body post-content">
-        <h2 id="Netty-扩展"><a href="#Netty-扩展" class="headerlink" title="Netty 扩展"></a>Netty 扩展</h2><p>TCP是无感知的虚拟连接，中间断开两端不会立刻得到通知。一般在使用长连接的环境下，需要心跳保活机制可以勉强感知其存活。业务层面有心跳机制，TCP协议也提供了心跳保活机制。</p>
-<h4 id="TCP-活性探测理解"><a href="#TCP-活性探测理解" class="headerlink" title="TCP 活性探测理解"></a>TCP 活性探测理解</h4><p>因为TCP是无感知的虚拟连接，所以在设计底层编程的时候，如果客户端和服务端互相不知道是否中断，那么服务端可能会一直等下去，==默认情况下使用keepalive周期为2个小时，如不选择更改，属于误用范畴，造成资源浪费==</p>
-<h4 id="Java-netty服务器如何使用"><a href="#Java-netty服务器如何使用" class="headerlink" title="Java/netty服务器如何使用"></a>Java/netty服务器如何使用</h4><p>只需要在服务器端一方设置即可，客户端完全不用设置，比如基于netty 4服务器程序：</p>
+        <h2 id="netty-扩展"><a class="header-anchor" href="#netty-扩展">¶</a>Netty 扩展</h2>
+<p>TCP是无感知的虚拟连接，中间断开两端不会立刻得到通知。一般在使用长连接的环境下，需要心跳保活机制可以勉强感知其存活。业务层面有心跳机制，TCP协议也提供了心跳保活机制。</p>
+<h4 id="tcp-活性探测理解"><a class="header-anchor" href="#tcp-活性探测理解">¶</a>TCP 活性探测理解</h4>
+<p>因为TCP是无感知的虚拟连接，所以在设计底层编程的时候，如果客户端和服务端互相不知道是否中断，那么服务端可能会一直等下去，==默认情况下使用keepalive周期为2个小时，如不选择更改，属于误用范畴，造成资源浪费==</p>
+<h4 id="java-netty服务器如何使用"><a class="header-anchor" href="#java-netty服务器如何使用">¶</a>Java/netty服务器如何使用</h4>
+<p>只需要在服务器端一方设置即可，客户端完全不用设置，比如基于netty 4服务器程序：</p>
 <figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ServerBootstrap</span> b = <span class="function"><span class="keyword">new</span> <span class="title">ServerBootstrap</span>();</span></span><br><span class="line"><span class="function">            <span class="title">b</span>.<span class="title">group</span>(bossGroup, workerGroup)</span></span><br><span class="line"><span class="function">             .<span class="title">channel</span>(<span class="type">NioServerSocketChannel</span>.class)</span></span><br><span class="line"><span class="function">             .<span class="title">option</span>(<span class="type">ChannelOption</span>.<span class="type">SO_BACKLOG</span>, <span class="number">100</span>)</span></span><br><span class="line"><span class="function">             .<span class="title">childOption</span>(<span class="type">ChannelOption</span>.<span class="type">SO_KEEPALIVE</span>, true)</span></span><br><span class="line"><span class="function">             .<span class="title">handler</span>(new <span class="type">LoggingHandler</span>(<span class="type">LogLevel</span>.<span class="type">INFO</span>))</span></span><br><span class="line"><span class="function">             .<span class="title">childHandler</span>(new <span class="type">ChannelInitializer</span>&lt;<span class="type">SocketChannel</span>&gt;() &#123;</span></span><br><span class="line"><span class="function">                 @<span class="title">Override</span></span></span><br><span class="line"><span class="function">                 <span class="title">public</span> <span class="title">void</span> <span class="title">initChannel</span>(<span class="type">SocketChannel</span> ch) <span class="title">throws</span> <span class="title">Exception</span> &#123;</span></span><br><span class="line"><span class="function">                     <span class="title">ch</span>.<span class="title">pipeline</span>().<span class="title">addLast</span>(</span></span><br><span class="line"><span class="function">                             new <span class="type">EchoServerHandler</span>());</span></span><br><span class="line"><span class="function">                 &#125;</span></span><br><span class="line"><span class="function">             &#125;);</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">            <span class="comment">// Start the server.</span></span></span><br><span class="line"><span class="function">            <span class="title">ChannelFuture</span> <span class="title">f</span> = <span class="title">b</span>.<span class="title">bind</span>(port).<span class="title">sync</span>();</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">            <span class="comment">// Wait until the server socket is closed.</span></span></span><br><span class="line"><span class="function">            <span class="title">f</span>.<span class="title">channel</span>().<span class="title">closeFuture</span>().<span class="title">sync</span>();</span></span><br></pre></td></tr></table></figure>
 <p>Java程序只能做到设置SO_KEEPALIVE选项，至于TCP_KEEPCNT，TCP_KEEPIDLE，TCP_KEEPINTVL等参数配置，只能依赖于sysctl配置，系统进行读取。</p>
 <p>具体为：</p>
 <ul>
-<li><p>ChannelOption.SO_BACKLOG, 1024<br>BACKLOG用于构造服务端套接字ServerSocket对象，标识当服务器请求处理线程全满时，用于临时存放已完成三次握手的请求的队列的最大长度。如果未设置或所设置的值小于1，Java将使用默认值50。</p>
+<li>
+<p>ChannelOption.SO_BACKLOG, 1024<br>
+BACKLOG用于构造服务端套接字ServerSocket对象，标识当服务器请求处理线程全满时，用于临时存放已完成三次握手的请求的队列的最大长度。如果未设置或所设置的值小于1，Java将使用默认值50。</p>
 </li>
-<li><p>ChannelOption.SO_KEEPALIVE, true<br>是否启用心跳保活机制。在双方TCP套接字建立连接后（即都进入ESTABLISHED状态）并且在两个小时左右上层没有任何数据传输的情况下，这套机制才会被激活。</p>
+<li>
+<p>ChannelOption.SO_KEEPALIVE, true<br>
+是否启用心跳保活机制。在双方TCP套接字建立连接后（即都进入ESTABLISHED状态）并且在两个小时左右上层没有任何数据传输的情况下，这套机制才会被激活。</p>
 </li>
-<li><p>ChannelOption.TCP_NODELAY, true<br>在TCP/IP协议中，无论发送多少数据，总是要在数据前面加上协议头，同时，对方接收到数据，也需要发送ACK表示确认。为了尽可能的利用网络带宽，TCP总是希望尽可能的发送足够大的数据。这里就涉及到一个名为Nagle的算法，该算法的目的就是为了尽可能发送大块数据，避免网络中充斥着许多小数据块。</p>
-<ul>
-<li>TCP_NODELAY就是用于启用或关于Nagle算法。如果要求高实时性，有数据发送时就马上发送，就将该选项设置为true关闭Nagle算法；如果要减少发送次数减少网络交互，就设置为false等累积一定大小后再发送。默认为false。</li>
+<li>
+<p>ChannelOption.TCP_NODELAY, true<br>
+在TCP/IP协议中，无论发送多少数据，总是要在数据前面加上协议头，同时，对方接收到数据，也需要发送ACK表示确认。为了尽可能的利用网络带宽，TCP总是希望尽可能的发送足够大的数据。这里就涉及到一个名为Nagle的算法，该算法的目的就是为了尽可能发送大块数据，避免网络中充斥着许多小数据块。</p>
+</li>
+<li>
+<p>TCP_NODELAY就是用于启用或关于Nagle算法。如果要求高实时性，有数据发送时就马上发送，就将该选项设置为true关闭Nagle算法；如果要减少发送次数减少网络交互，就设置为false等累积一定大小后再发送。默认为false。</p>
+</li>
 </ul>
-</li>
-</ul>
-<h4 id="系统内核参数配置"><a href="#系统内核参数配置" class="headerlink" title="系统内核参数配置"></a>系统内核参数配置</h4><p>以下环境是在Linux服务器上进行。应用程序若想使用，需要设置SO_KEEPALIVE套接口选项才能够生效。</p>
+<h4 id="系统内核参数配置"><a class="header-anchor" href="#系统内核参数配置">¶</a>系统内核参数配置</h4>
+<p>以下环境是在Linux服务器上进行。应用程序若想使用，需要设置SO_KEEPALIVE套接口选项才能够生效。</p>
 <ul>
 <li>tcp_keepalive_time，在TCP保活打开的情况下，最后一次数据交换到TCP发送第一个保活探测包的间隔，即允许的持续空闲时长，或者说每次正常发送心跳的周期，默认值为7200s（2h）。</li>
 <li>tcp_keepalive_probes 在tcp_keepalive_time之后，没有接收到对方确认，继续发送保活探测包次数，默认值为9（次）</li>
-<li>tcp_keepalive_intvl，在tcp_keepalive_time之后，没有接收到对方确认，继续发送保活探测包的发送频率，默认值为75s。<br>发送频率tcp_keepalive_intvl乘以发送次数tcp_keepalive_probes，就得到了从开始探测到放弃探测确定连接断开的时间</li>
+<li>tcp_keepalive_intvl，在tcp_keepalive_time之后，没有接收到对方确认，继续发送保活探测包的发送频率，默认值为75s。<br>
+发送频率tcp_keepalive_intvl乘以发送次数tcp_keepalive_probes，就得到了从开始探测到放弃探测确定连接断开的时间</li>
 </ul>
 <p>若设置，服务器在客户端连接空闲的时候，每90秒发送一次保活探测包到客户端，若没有及时收到客户端的TCP Keepalive ACK确认，将继续等待15秒*2=30秒。总之可以在90s+30s=120秒（两分钟）时间内可检测到连接失效与否。</p>
 <p>以下改动，需要写入到/etc/sysctl.conf文件：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.<span class="attribute">tcp_keepalive_time</span>=90</span><br><span class="line">net.ipv4.<span class="attribute">tcp_keepalive_intvl</span>=15</span><br><span class="line">net.ipv4.<span class="attribute">tcp_keepalive_probes</span>=2</span><br><span class="line">保存退出，然后执行sysctl -p生效。可通过 sysctl -a | grep keepalive 命令检测一下是否已经生效。</span><br><span class="line"></span><br><span class="line">针对已经设置SO_KEEPALIVE的套接字，应用程序不用重启，内核直接生效。</span><br></pre></td></tr></table></figure>
-<h6 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h6><p><a href="http://www.blogjava.net/yongboy/archive/2015/04/14/424413.html" target="_blank" rel="noopener">TCP Keepalive笔记</a></p>
+<h6 id="引用"><a class="header-anchor" href="#引用">¶</a>引用</h6>
+<p><a href="http://www.blogjava.net/yongboy/archive/2015/04/14/424413.html" target="_blank" rel="noopener">TCP Keepalive笔记</a></p>
 
         <!--打赏模块-->
           
