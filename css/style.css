@@ -505,7 +505,7 @@ pre {
 }
 .post-content h1 {
   font-family: "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", "SimSun", sans-serif;
-  color: #333;
+  color: #159962;
   font-size: 1.8em;
   margin: 0.67em 0;
 }
@@ -635,6 +635,8 @@ pre {
   margin-bottom: 0;
   margin-left: 14px;
   list-style-type: disc;
+  /*后期添加*/
+  color: lightseagreen;
 }
 .post-content li ul ul {
   list-style-type: circle;
