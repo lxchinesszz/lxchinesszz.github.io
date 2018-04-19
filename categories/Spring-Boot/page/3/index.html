@@ -181,9 +181,7 @@
             <p class="brief">
                 
                     
-首先定义一个异常
-
-12345public class MyException extends Exception &amp;#123;    public MyException(String message) &amp;#123;       ...
+首先定义一个异常12345public class MyException extends Exception &amp;#123;    public MyException(String message) &amp;#123;        s...
                 
             </p>
         </div>
@@ -213,10 +211,9 @@
                     
 生产中会经历，开发，测试，到上线。三个阶段
 
- 这个三个阶段，都有各自的配置文件，如果只是一个配置文件来回改
- 会很容易出现错误的，那么springboot提供了很简答的解决办法
-
-使用spring.profiles.active=...
+这个三个阶段，都有各自的配置文件，如果只是一个配置文件来回改
+会很容易出现错误的，那么springboot提供了很简答的解决办法
+使用spring.profiles.active=tes...
                 
             </p>
         </div>
@@ -275,8 +272,7 @@
 
 
 首先因为aop包
-
- 123456 &amp;lt;!--a...
+123456 &amp;lt;!--aop...
                 
             </p>
         </div>
@@ -303,10 +299,9 @@
             </div>
             <p class="brief">
                 
-                    病情
-使用idea工具，测试没有问题，使用maven可以打包，但是运行，错误。
+                    病情使用idea工具，测试没有问题，使用maven可以打包，但是运行，错误。
 通过反编译分析，原因就是打包后的文件，没有包配置文件输入，解决办法
-123456789101112131415&amp;lt;resources&amp;gt;    &amp;...
+123456789101112131415&amp;lt;resources&amp;gt;    &amp;l...
                 
             </p>
         </div>
@@ -334,15 +329,12 @@
             <p class="brief">
                 
                     
-
 1.SpringBoot会自动扫描resource下面的application配置文件，
 
+2.然后是config下面当，config有多个配置文件时候，SpringBoot会找不到application文件，
 
-2.然后是config下面
-当，config有多个配置文件时候，SpringBoot会找不到application文件，
-
-
-3.当使用...
+3.当使用
+12@...
                 
             </p>
         </div>
@@ -432,11 +424,9 @@ JobDetail和Trigger和Schedule都是...
             <p class="brief">
                 
                     
-本次使用redis作为数据库，存储定时任务类
-redis的连接不是重点，重点是解析序列化处理过的任务数组和Quartz如何添加任务
+本次使用redis作为数据库，存储定时任务类redis的连接不是重点，重点是解析序列化处理过的任务数组和Quartz如何添加任务
 
-1. JobEntity 用来保存执行任务类
-123456789101112131415publi...
+1. JobEntity 用来保存执行任务类123456789101112131415public ...
                 
             </p>
         </div>
@@ -464,12 +454,8 @@ redis的连接不是重点，重点是解析序列化处理过的任务数组和
             <p class="brief">
                 
                     概念：
-
 当处理一些，简单的，固定时间，重复次数的任务可以使用简单触发器
-当处理一些，负载的任务，可以使用Cron表达式（触发器的name字段一定要写）
-
-¶1.一个jobDetail就是一个业务。也就是准备定时的任务
-12345@B...
+当处理一些，负载的任务，可以使用Cron表达式（触发器的name字段一定要写）1.一个jobDetail就是一个业务。也就是准备定时的任务12345@Bean  ...
                 
             </p>
         </div>

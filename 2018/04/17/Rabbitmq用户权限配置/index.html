@@ -254,7 +254,7 @@
 <li>用户权限</li>
 </ol>
 <p>用户权限指的是用户对exchange，queue的操作权限，包括配置权限，读写权限。配置权限会影响到exchange，queue的声明和删除。读写权限影响到从queue里取消息，向exchange发送消息以及queue和exchange的绑定(bind)操作。</p>
-<p>例如： 将queue绑定到某exchange上，需要具有queue的可写权限，以及exchange的可读权限；向exchange发送消息需要具有exchange的可写权限；从queue里取数据需要具有queue的可读权限。详细请参考官方文档中&quot;How permissions work&quot;部分。</p>
+<p>例如： 将queue绑定到某exchange上，需要具有queue的可写权限，以及exchange的可读权限；向exchange发送消息需要具有exchange的可写权限；从queue里取数据需要具有queue的可读权限。详细请参考官方文档中”How permissions work”部分。</p>
 <p>相关命令为：</p>
 <p>(1) 设置用户权限</p>
 <p>rabbitmqctl  set_permissions  -p  VHostPath  User  ConfP  WriteP  ReadP</p>
@@ -265,26 +265,15 @@
 <p>(4)  清除用户的权限信息</p>
 <p>rabbitmqctl  clear_permissions  [-p VHostPath]  User</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">liuxin@MacBook-Pro  ~  rabbitmqctl add_user liuxin 950914lx</span><br><span class="line">Creating<span class="built_in"> user </span><span class="string">"liuxin"</span> <span class="built_in">..</span>.</span><br><span class="line"> liuxin@MacBook-Pro  ~  rabbitmqctl  list_users</span><br><span class="line">Listing<span class="built_in"> users </span><span class="built_in">..</span>.</span><br><span class="line">liuxin	[]</span><br><span class="line">guest	[administrator]</span><br><span class="line"> liuxin@MacBook-Pro  ~  rabbitmqctl  set_user_tags  liuxin administrator</span><br><span class="line">Setting tags <span class="keyword">for</span><span class="built_in"> user </span><span class="string">"liuxin"</span> <span class="keyword">to</span> [administrator] <span class="built_in">..</span>.</span><br><span class="line"> liuxin@MacBook-Pro  ~  rabbitmqctl  list_users</span><br><span class="line">Listing<span class="built_in"> users </span><span class="built_in">..</span>.</span><br><span class="line">liuxin	[administrator]</span><br><span class="line">guest	[administrator]</span><br></pre></td></tr></table></figure>
-<p>2.删除用户<br>
-rabbitmqctl delete_user username</p>
-<p>3.修改密码<br>
-rabbitmqctl change_password usernamenewpassword</p>
-<p>4.列出所有用户<br>
-rabbitmqctl list_users<br>
-权限控制1.创建虚拟主机<br>
-rabbitmqctl add_vhost vhostpath</p>
-<p>2.删除虚拟主机<br>
-rabbitmqctl delete_vhost vhostpath</p>
-<p>3.列出所有虚拟主机<br>
-rabbitmqctl list_vhosts</p>
-<p>4.设置用户权限<br>
-rabbitmqctl set_permissions [-pvhostpath] username regexp regexp regexp</p>
-<p>5.清除用户权限<br>
-rabbitmqctl clear_permissions [-pvhostpath] username</p>
-<p>6.列出虚拟主机上的所有权限<br>
-rabbitmqctl list_permissions [-pvhostpath]</p>
-<p>7.列出用户权限<br>
-rabbitmqctl list_user_permissionsusername</p>
+<p>2.删除用户<br>rabbitmqctl delete_user username</p>
+<p>3.修改密码<br>rabbitmqctl change_password usernamenewpassword</p>
+<p>4.列出所有用户<br>rabbitmqctl list_users<br>权限控制1.创建虚拟主机<br>rabbitmqctl add_vhost vhostpath</p>
+<p>2.删除虚拟主机<br>rabbitmqctl delete_vhost vhostpath</p>
+<p>3.列出所有虚拟主机<br>rabbitmqctl list_vhosts</p>
+<p>4.设置用户权限<br> rabbitmqctl set_permissions [-pvhostpath] username regexp regexp regexp</p>
+<p>5.清除用户权限<br> rabbitmqctl clear_permissions [-pvhostpath] username</p>
+<p>6.列出虚拟主机上的所有权限<br> rabbitmqctl list_permissions [-pvhostpath]</p>
+<p>7.列出用户权限<br> rabbitmqctl list_user_permissionsusername</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#添加虚拟端口</span></span><br><span class="line"> liuxin@MacBook-Pro  ~  rabbitmqctl add_vhost az</span><br><span class="line">Creating vhost <span class="string">"az"</span> <span class="built_in">..</span>.</span><br><span class="line"> liuxin@MacBook-Pro  ~  rabbitmqctl add_user liuxin liuxin</span><br><span class="line">Creating<span class="built_in"> user </span><span class="string">"liuxin"</span> <span class="built_in">..</span>.</span><br><span class="line">Error: user_already_exists: liuxin</span><br><span class="line"><span class="comment">#为用户设置权限策略</span></span><br><span class="line"> ✘ liuxin@MacBook-Pro  ~  rabbitmqctl set_user_tags<span class="built_in"> User </span>administrator</span><br><span class="line">Setting tags <span class="keyword">for</span><span class="built_in"> user </span><span class="string">"User"</span> <span class="keyword">to</span> [administrator] <span class="built_in">..</span>.</span><br><span class="line">Error: no_such_user: User</span><br><span class="line"> ✘ liuxin@MacBook-Pro  ~  rabbitmqctl set_user_tags liuxin administrator</span><br><span class="line">Setting tags <span class="keyword">for</span><span class="built_in"> user </span><span class="string">"liuxin"</span> <span class="keyword">to</span> [administrator] <span class="built_in">..</span>.</span><br><span class="line"> liuxin@MacBook-Pro  ~  rabbitmqctl set_permissions -p az<span class="built_in"> User </span>ConfP WriteP ReadP</span><br><span class="line">Setting permissions <span class="keyword">for</span><span class="built_in"> user </span><span class="string">"User"</span> <span class="keyword">in</span> vhost <span class="string">"az"</span> <span class="built_in">..</span>.</span><br><span class="line">Error: no_such_user: User</span><br><span class="line"><span class="comment">#为用户设置虚拟端口</span></span><br><span class="line"> ✘ liuxin@MacBook-Pro  ~  rabbitmqctl set_permissions -p az liuxin ConfP WriteP ReadP</span><br><span class="line">Setting permissions <span class="keyword">for</span><span class="built_in"> user </span><span class="string">"liuxin"</span> <span class="keyword">in</span> vhost <span class="string">"az"</span> <span class="built_in">..</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment">#匹配所有的队列和交换机</span></span><br><span class="line"><span class="comment">#若果是liuxin-.* ,就是指匹配liuxin-开头的交换机或者队列</span></span><br><span class="line">rabbitmqctl set_permissions -p az  liuxin <span class="string">".*"</span> <span class="string">".*"</span> <span class="string">".*"</span></span><br><span class="line"></span><br><span class="line">然后重新登录</span><br></pre></td></tr></table></figure>
 
         <!--打赏模块-->

@@ -213,15 +213,13 @@
     </div>
     
     <div class="post-body post-content">
-        <h2 id="rabbitmq中绑定"><a class="header-anchor" href="#rabbitmq中绑定">¶</a>Rabbitmq中绑定</h2>
-<p>exchange:flow</p>
+        <h2 id="Rabbitmq中绑定"><a href="#Rabbitmq中绑定" class="headerlink" title="Rabbitmq中绑定"></a>Rabbitmq中绑定</h2><p>exchange:flow</p>
 <p>routing-key:user</p>
 <p>bind-queue:flow_user</p>
 <p>白话文就是,把user绑定到flow_user序列</p>
 <p>发送方使用routing-key推送：</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//把routing-key发送给名为flow的exchenge，然后exchenge负责向绑定的这个Queue推送</span></span><br><span class="line"> <span class="selector-tag">amqpTemplate</span><span class="selector-class">.convertAndSend</span>(<span class="string">"flow"</span>,<span class="string">"user"</span>, context);</span><br></pre></td></tr></table></figure>
-<h4 id="rabbit配置"><a class="header-anchor" href="#rabbit配置">¶</a>Rabbit配置</h4>
-<ul>
+<h4 id="Rabbit配置"><a href="#Rabbit配置" class="headerlink" title="Rabbit配置"></a>Rabbit配置</h4><ul>
 <li>添加exchange（这里类型type应该是topic,截图时候没有注意）</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/lxchinesszz/design/master/src/main/resources/%E5%88%9B%E5%BB%BAexchange.png" alt="添加exchange"></p>
@@ -233,8 +231,7 @@
 <li>添加这个User 到exchange(注意routing-key)</li>
 </ul>
 <p><img src="https://github.com/lxchinesszz/design/blob/master/src/main/resources/%E7%82%B9%E5%87%BBflow%E8%BF%9B%E5%8E%BB%E6%B7%BB%E5%8A%A0rout-key.png?raw=true" alt=""></p>
-<h4 id="springboot集成rabbitmq"><a class="header-anchor" href="#springboot集成rabbitmq">¶</a>SpringBoot集成Rabbitmq</h4>
-<ul>
+<h4 id="SpringBoot集成Rabbitmq"><a href="#SpringBoot集成Rabbitmq" class="headerlink" title="SpringBoot集成Rabbitmq"></a>SpringBoot集成Rabbitmq</h4><ul>
 <li>注册配置bean</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configurable</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TopicRabbitConfig</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String FLOW = <span class="string">"flow"</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String USER = <span class="string">"user"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String USER_QUEUE = <span class="string">"flow_user"</span>;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Queue <span class="title">queueMessages3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Queue(USER_QUEUE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">TopicExchange <span class="title">exchange</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> TopicExchange(FLOW);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">Binding <span class="title">bindingExchangeMessages3</span><span class="params">(Queue queueMessages3, TopicExchange exchange)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> BindingBuilder.bind(queueMessages3).to(exchange).with(FLOW);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

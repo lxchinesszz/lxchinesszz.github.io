@@ -218,23 +218,16 @@
 <ul>
 <li>rpc协议</li>
 <li>rmi 远程方法调用</li>
-<li>JMX</li>
+<li>JMX </li>
 <li>Jndi</li>
 </ul>
-<h3 id="rpc-remote-procedure-call-protocol"><a class="header-anchor" href="#rpc-remote-procedure-call-protocol">¶</a>rpc（Remote Procedure Call Protocol</h3>
-<p>RPC（Remote Procedure Call Protocol）——远程过程调用协议</p>
-<h3 id="rmi-remote-method-invocation"><a class="header-anchor" href="#rmi-remote-method-invocation">¶</a>rmi (Remote Method Invocation)</h3>
-<p>RMI:远程方法调用(Remote Method Invocation)。能够让在某个java虚拟机上的对象像调用本地对象一样调用另一个java 虚拟机中的对象上的方法。</p>
-<h3 id="jmx-java-management"><a class="header-anchor" href="#jmx-java-management">¶</a>JMX （Java Management）</h3>
-<p>JMX是“Java管理扩展的（Java Management Extensions）”的缩写，是一种类似J2EE的规范，这样就可以灵活的扩展系统的监控、管理功能。实时监控RPC服务器线程池任务的执行情况，具体JMX监控度量线程池关键指标代码</p>
-<h3 id="比如jndi-java-naming-and-directory-interface"><a class="header-anchor" href="#比如jndi-java-naming-and-directory-interface">¶</a>比如jndi (Java Naming and Directory Interface）</h3>
-<p>JNDI(Java Naming and Directory Interface,Java命名和目录接口)是SUN公司提供的一种标准的Java命名系统接口，JNDI提供统一的客户端API，通过不同的访问提供者接口</p>
-<p>通过目录，定义到接口<br>
-比如，<code>com.mysql.jdbc.Driver</code><br>
-这个是一个约束性的</p>
+<h3 id="rpc（Remote-Procedure-Call-Protocol"><a href="#rpc（Remote-Procedure-Call-Protocol" class="headerlink" title="rpc（Remote Procedure Call Protocol"></a>rpc（Remote Procedure Call Protocol</h3><p>RPC（Remote Procedure Call Protocol）——远程过程调用协议</p>
+<h3 id="rmi-Remote-Method-Invocation"><a href="#rmi-Remote-Method-Invocation" class="headerlink" title="rmi (Remote Method Invocation)"></a>rmi (Remote Method Invocation)</h3><p>RMI:远程方法调用(Remote Method Invocation)。能够让在某个java虚拟机上的对象像调用本地对象一样调用另一个java 虚拟机中的对象上的方法。</p>
+<h3 id="JMX-（Java-Management）"><a href="#JMX-（Java-Management）" class="headerlink" title="JMX （Java Management）"></a>JMX （Java Management）</h3><p>JMX是“Java管理扩展的（Java Management Extensions）”的缩写，是一种类似J2EE的规范，这样就可以灵活的扩展系统的监控、管理功能。实时监控RPC服务器线程池任务的执行情况，具体JMX监控度量线程池关键指标代码</p>
+<h3 id="比如jndi-Java-Naming-and-Directory-Interface）"><a href="#比如jndi-Java-Naming-and-Directory-Interface）" class="headerlink" title="比如jndi (Java Naming and Directory Interface）"></a>比如jndi (Java Naming and Directory Interface）</h3><p>JNDI(Java Naming and Directory Interface,Java命名和目录接口)是SUN公司提供的一种标准的Java命名系统接口，JNDI提供统一的客户端API，通过不同的访问提供者接口</p>
+<p>通过目录，定义到接口<br>比如，<code>com.mysql.jdbc.Driver</code><br>这个是一个约束性的</p>
 <p>在JBoss的 D:/jboss420GA/docs/examples/jca 文件夹下面，有很多不同数据库引用的数据源定义模板</p>
-<h3 id="get-ready"><a class="header-anchor" href="#get-ready">¶</a>Get Ready</h3>
-<p>在BookPub应用的pom文件中添加jolokia-core依赖</p>
+<h3 id="Get-Ready"><a href="#Get-Ready" class="headerlink" title="Get Ready"></a>Get Ready</h3><p>在BookPub应用的pom文件中添加jolokia-core依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- JMX monitor --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.jolokia<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jolokia-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
         <!--打赏模块-->

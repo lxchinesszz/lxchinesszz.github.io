@@ -216,38 +216,31 @@
         <blockquote>
 <p>SpringBoot我是从1.2开始用的，我仿佛停留在1.5刚出来,支持了动态修改日志级别的时候,可突然之间2.0就出来了，貌似只有短短一年半的时间，突然感觉到了危机感，仿佛自己马上就要被淘汰了,在经过学习之后，将自己的项目demo和我对SpringBoot2.0的理解，分享给大家！ 如果有错误的地方,欢迎留言指出，最后谢谢各位，观看！</p>
 </blockquote>
-<p>小编学习的途径是先直接到官网看看，于是看到了最明显的区别就是下图<br>
-<img src="http://p3.pstatp.com/large/pgc-image/1523978300020d10534ee70" alt=""><br>
-图先放这里,先不着急，先看下，有一个印象，后面会说到。</p>
+<p>小编学习的途径是先直接到官网看看，于是看到了最明显的区别就是下图<br><img src="http://p3.pstatp.com/large/pgc-image/1523978300020d10534ee70" alt=""><br>图先放这里,先不着急，先看下，有一个印象，后面会说到。</p>
 <hr>
 <blockquote>
 <p>先说一下官方的SpringBoot2.0新特性描述</p>
 </blockquote>
-<h3 id="springboot2-0新特性"><a class="header-anchor" href="#springboot2-0新特性">¶</a>SpringBoot2.0新特性</h3>
-<ol>
+<h3 id="SpringBoot2-0新特性"><a href="#SpringBoot2-0新特性" class="headerlink" title="SpringBoot2.0新特性"></a>SpringBoot2.0新特性</h3><ol>
 <li>编程语言Java8+,和当前火爆的Kotlin</li>
 <li>底层框架Spring Framwork 5.0.x</li>
 <li>全新特性Web Flux（小编认为我们学习SpringBoot2.0就是学习这个）</li>
 </ol>
-<h4 id="我们分析下2-0的新特性为什么编程语言要从java8开始呢？"><a class="header-anchor" href="#我们分析下2-0的新特性为什么编程语言要从java8开始呢？">¶</a>我们分析下2.0的新特性为什么编程语言要从Java8开始呢？</h4>
-<ul>
+<h4 id="我们分析下2-0的新特性为什么编程语言要从Java8开始呢？"><a href="#我们分析下2-0的新特性为什么编程语言要从Java8开始呢？" class="headerlink" title="我们分析下2.0的新特性为什么编程语言要从Java8开始呢？"></a>我们分析下2.0的新特性为什么编程语言要从Java8开始呢？</h4><ul>
 <li>一个重要的原因就是使用Java8的Lambda表达式和Stream流处理</li>
 <li>包括Spring Framwork 5.0.x也是要用到Java8的新特性.</li>
 </ul>
-<p><em>当我们对SpringBoot2.0的新特性有一个认识的时候，再来看开头的第一张图片</em><br>
-上面开篇截取Spring.io官网的图片。我们就能对SpringBoot1.0和2.0在心里有一个判断</p>
+<p><em>当我们对SpringBoot2.0的新特性有一个认识的时候，再来看开头的第一张图片</em><br>上面开篇截取Spring.io官网的图片。我们就能对SpringBoot1.0和2.0在心里有一个判断</p>
 <ul>
 <li>SpringBoot1.0是仅支持Servlet Containers-&gt;Servlet API属于传统方式</li>
 <li>SpringBoot2.0在支持1.0的特性上,同时添加了一个新特性就是WebFlux,可以使用Netty及Servlet3.1作为容器,基于 Reactive Streams 流处理。</li>
 </ul>
 <p><strong>当读到这里可能就有点懵了,Netty和Servlet3.1是一个什么鬼？ Netty是什么先不介绍，先说Servlet3.1在举例的时候，会提到Netty。</strong></p>
-<h4 id="那么我们在分析servlet3-0之前和3-0的区别？"><a class="header-anchor" href="#那么我们在分析servlet3-0之前和3-0的区别？">¶</a>那么我们在分析Servlet3.0之前和3.0的区别？</h4>
-<ul>
+<h4 id="那么我们在分析Servlet3-0之前和3-0的区别？"><a href="#那么我们在分析Servlet3-0之前和3-0的区别？" class="headerlink" title="那么我们在分析Servlet3.0之前和3.0的区别？"></a>那么我们在分析Servlet3.0之前和3.0的区别？</h4><ul>
 <li>3.0之前Servlet 线程会一直阻塞，只有当业务处理完成并返回后时结束 Servlet线程。</li>
 <li>3.0规范其中一个新特性是异步处理支持,即是在接收到请求之后，Servlet 线程可以将耗时的操作委派给另一个线程来完成，在不生成响应的情况下返回至容器</li>
 </ul>
-<h4 id="这样说可能大家还不太容易理解-我们来举一个例子"><a class="header-anchor" href="#这样说可能大家还不太容易理解-我们来举一个例子">¶</a>这样说可能大家还不太容易理解，我们来举一个例子</h4>
-<blockquote>
+<h4 id="这样说可能大家还不太容易理解，我们来举一个例子"><a href="#这样说可能大家还不太容易理解，我们来举一个例子" class="headerlink" title="这样说可能大家还不太容易理解，我们来举一个例子"></a>这样说可能大家还不太容易理解，我们来举一个例子</h4><blockquote>
 <p>eg： 我们假设,设置tomcat最大线程为200,遇到200个非常耗时的请求</p>
 </blockquote>
 <ol>
@@ -257,29 +250,24 @@
 <blockquote>
 <p>好了，当你已经读到这里，相信已经对SpringBoot1.0和SpringBoot2.0有一个比较清晰的认识了(当用过Netty通信框架类的童鞋一定是非常清晰的,如果还不清晰,就要补补课了)，所以我们不得不说SpringBoot2.0的性能一定是比1.0有所提升的。不过各有所爱，企业具体技术选型还要看业务需求，不能盲目追求新技术，毕竟新技术还不太稳定，没有被大规模的实践。好了，理论的知识就先讲到这里，开始实战编码吧。</p>
 </blockquote>
-<h3 id="项目实战"><a class="header-anchor" href="#项目实战">¶</a>项目实战</h3>
-<p>通过上面的讲解，我们对其有了一个简单的认识，现在开始跟着我实战吧 ！<br>
-<img src="http://p9.pstatp.com/large/pgc-image/1523979659159998c8b7155" alt=""><br>
-SpringBoot2.0之WebFlux解析及实战请点击此处输入图片描述</p>
+<h3 id="项目实战"><a href="#项目实战" class="headerlink" title="项目实战"></a>项目实战</h3><p>通过上面的讲解，我们对其有了一个简单的认识，现在开始跟着我实战吧 ！<br><img src="http://p9.pstatp.com/large/pgc-image/1523979659159998c8b7155" alt=""><br>SpringBoot2.0之WebFlux解析及实战请点击此处输入图片描述</p>
 <p>在做项目实战的时候，我们要对下面两个问题有所了解！当这两个问题清楚后，实战就异常简单了</p>
-<p><font color="red">1. 我们知道SpringMVC是通过@Controller和@RequestMapping来定义路由的那么WebFlux是怎么定义路由的？</font></p>
+<font color="red">1. 我们知道SpringMVC是通过@Controller和@RequestMapping来定义路由的那么WebFlux是怎么定义路由的？</font>
+
 <p>我们看上图(下面的这两个区别要注意，项目中会遇到)</p>
 <ul>
 <li>基于 Spring MVC 注解 @Controller 等</li>
 <li>基于 Functional 函数式路由是 RouterFunctions</li>
 </ul>
-<p><font color="red">2. Flux和Mono分别是什么，在小编看来Flux和Mono都是一个数据的载体,不同的是</font></p>
+<font color="red">2. Flux和Mono分别是什么，在小编看来Flux和Mono都是一个数据的载体,不同的是</font> 
+
 <ul>
 <li>Flux 一种集合(0,n)</li>
 <li>Mono 一个实体包装(0,1)</li>
 </ul>
-<h5 id="为了代码的美观-小编在这里直接上图-因为头条不支持markdown-所以就直接看图吧"><a class="header-anchor" href="#为了代码的美观-小编在这里直接上图-因为头条不支持markdown-所以就直接看图吧">¶</a>为了代码的美观，小编在这里直接上图,因为头条不支持markdown，所以就直接看图吧</h5>
-<p>启动时候添加测试数据<br>
-<img src="http://p3.pstatp.com/large/pgc-image/152397975421954092e872b" alt=""></p>
-<p>编写业务处理层<br>
-<img src="http://p3.pstatp.com/large/pgc-image/15239797545420a2269e7bd" alt=""></p>
-<p>编写路由层<br>
-<img src="http://p3.pstatp.com/large/pgc-image/152397975493348c639c3b9" alt=""></p>
+<h5 id="为了代码的美观，小编在这里直接上图-因为头条不支持markdown，所以就直接看图吧"><a href="#为了代码的美观，小编在这里直接上图-因为头条不支持markdown，所以就直接看图吧" class="headerlink" title="为了代码的美观，小编在这里直接上图,因为头条不支持markdown，所以就直接看图吧"></a>为了代码的美观，小编在这里直接上图,因为头条不支持markdown，所以就直接看图吧</h5><p>启动时候添加测试数据<br><img src="http://p3.pstatp.com/large/pgc-image/152397975421954092e872b" alt=""></p>
+<p>编写业务处理层<br><img src="http://p3.pstatp.com/large/pgc-image/15239797545420a2269e7bd" alt=""></p>
+<p>编写路由层<br><img src="http://p3.pstatp.com/large/pgc-image/152397975493348c639c3b9" alt=""></p>
 <blockquote>
 <p>如果想获取源码的同学，请点击关注小编，并私信发送 SpringBoot2.0 获取项目地址，最后再次谢谢您的阅读，小编会每天分享一点小知识，及项目实战笔记，欢迎您的关注 ！</p>
 </blockquote>

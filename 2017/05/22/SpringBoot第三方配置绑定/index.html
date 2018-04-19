@@ -222,12 +222,10 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-configuration-processor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>要从属性配置bean Environment</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties</span>（prefix =“person.info”）</span><br><span class="line"> <span class="keyword">public</span>  <span class="class"><span class="keyword">class</span> <span class="title">OwnerProperties</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String firstName;<span class="comment">//会自动从配置中绑定</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String getFirstName（）&#123;</span><br><span class="line">         <span class="keyword">return</span>  <span class="keyword">this</span> .firstName;</span><br><span class="line">    &#125;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span>  void setFirstName（String firstName）&#123;</span><br><span class="line">         <span class="keyword">this</span> .firstName = firstName;</span><br><span class="line">    &#125;&#125;</span><br><span class="line"></span><br><span class="line">&#125;&#125;</span><br></pre></td></tr></table></figure>
-<p>application.properties</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">person<span class="selector-class">.info</span><span class="selector-class">.firstName</span>=name</span><br></pre></td></tr></table></figure>
+<p>application.properties<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">person<span class="selector-class">.info</span><span class="selector-class">.firstName</span>=name</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>
-<p>Spring Boot使用一些放松的规则来绑定</p>
-<p>eg:</p>
+<li><p>Spring Boot使用一些放松的规则来绑定</p>
+<p>  eg:</p>
 <ul>
 <li>例如context-path绑定到contextPath）</li>
 <li>大写（例如PORT绑定到port</li>
@@ -238,10 +236,9 @@
 <li>ConfigurationProperties验证</li>
 </ul>
 <p>为了验证嵌套属性的值，必须注释相关字段@Validated以触发其验证</p>
-<pre><code> - @NotNull
- - @NotEmpty
+<pre><code>- @NotNull
+- @NotEmpty
 </code></pre>
-
         <!--打赏模块-->
           
                <! -- 添加捐赠图标 -->

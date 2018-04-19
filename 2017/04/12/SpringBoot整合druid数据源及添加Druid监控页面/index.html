@@ -286,13 +286,14 @@
 <p>2：testOnBorrow ,testOnReturn 默认为关闭，可以设置为不配置。</p>
 <p>3：testWhileIdle(在获取连接后，确定是否要进行连接空闲时间的检查)。默认为true。配置里面不再进行设置。</p>
 <ul>
-<li>流程说明：</li>
-</ul>
+<li><p>流程说明：</p>
 <p>1：在第一次调用connection的时候，才会进行 initialSize的初始化。</p>
 <p>2：心跳检测时间线程，会休眠timeBetweenEvictionRunsMillis时间，然后只对(没有borrow的线程 减去 minIdle)的线程进行检查，如果空闲时间大于minEvictableIdleTimeMillis则进行close。</p>
 <p>3：testWhileIdle必须设置为true，在获取到连接后，先检查testOnBorrow，然后再判定testwhileIdle，如果连接空闲时间大于timeBetweenEvictionRunsMillis，则会进行心跳检测。</p>
 <p>4：不需要配置validationQuery，如果不配置的情况下会走ping命令，性能更高。</p>
 <p>5：连接保存在数组里面，获取连接的时候，获取数组的最后一位。在imeBetweenEvictionRunsMillis时是从前往后进行检查连接的有效性。</p>
+</li>
+</ul>
 <p>在applicatioin.properties中添加配置</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">druid.<span class="attribute">url</span>=jdbc:postgresql://139.198.1.168:11020/account</span><br><span class="line">druid.<span class="attribute">driver-class</span>=org.postgresql.Driver</span><br><span class="line">druid.<span class="attribute">username</span>=root</span><br><span class="line">druid.<span class="attribute">password</span>=Boluome123</span><br><span class="line">druid.<span class="attribute">initial-size</span>=1</span><br><span class="line">druid.<span class="attribute">min-idle</span>=1</span><br><span class="line">druid.<span class="attribute">max-active</span>=20</span><br><span class="line">druid.<span class="attribute">test-on-borrow</span>=<span class="literal">true</span></span><br><span class="line">druid.<span class="attribute">timeBetweenEvictionRunsMillis</span>=9000</span><br></pre></td></tr></table></figure>
 <ul>

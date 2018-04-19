@@ -217,26 +217,21 @@
     </div>
     
     <div class="post-body post-content">
-        <p>作者：<a href="https://lxchinesszz.github.io/">@lxchinesszz</a><br>
-本文为作者原创，转载请注明出处</p>
+        <p>作者：<a href="https://lxchinesszz.github.io/">@lxchinesszz</a><br>本文为作者原创，转载请注明出处</p>
 <blockquote>
 <p>紧接上文，上文的重点不是连接，而是如何在局域网中用废弃的电脑搭建，是不是感觉很easy，那么这篇文章我们的重点就放在了安全上了，因为毕竟服务器是我们放应用或者数据库的地方，安全性一定要可靠。小编是做Java开发的，一只热爱技术的小菜鸟，因为工作中常常要一条龙服务，即，自己写需求文档，自己码代码，自己测试，自己部署，自己维护。虽然很累，但是很充实，很能提高自己。我也希望把自己的工作经验分享出来，对那些想小编一样热爱技术的小伙，有所帮助。说半天废话，下面开始。</p>
 </blockquote>
 <ul>
-<li>密钥登录原理：
-<ul>
+<li>密钥登录原理：<ul>
 <li>密钥常是一对的，即公钥和私钥，将公钥添加到服务器上的某个账户，然后客户端连接的时候，使用私钥完成认证就可以登录</li>
 </ul>
 </li>
 </ul>
-<h1>A.使用私钥登录</h1>
-<h2 id="1-制作密钥对"><a class="header-anchor" href="#1-制作密钥对">¶</a>1.制作密钥对</h2>
-<ul>
+<h1 id="A-使用私钥登录"><a href="#A-使用私钥登录" class="headerlink" title="A.使用私钥登录"></a>A.使用私钥登录</h1><h2 id="1-制作密钥对"><a href="#1-制作密钥对" class="headerlink" title="1.制作密钥对"></a>1.制作密钥对</h2><ul>
 <li>首先在服务器制作，需要的登录账户，然后执行以下命令</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@host ~]$ ssh-keygen   #建立密钥对</span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/root/.ssh/id_rsa): #按 Enter</span><br><span class="line">Created directory '/root/.ssh'.</span><br><span class="line">Enter passphrase (empty for no passphrase):  # 输入密钥锁码，或直接按 Enter 留空</span><br><span class="line">Enter same passphrase again: # 再输入一遍密钥锁码</span><br><span class="line">Your identification has been saved in /root/.ssh/id_rsa. # 私钥</span><br><span class="line">Your public key has been saved in /root/.ssh/id_rsa.pub. # 公钥</span><br><span class="line">The key fingerprint is:</span><br><span class="line">0f:d3:e7:1a:1c:bd:5c:03:f1:19:f1:22:df:9b:cc:08 root@host</span><br></pre></td></tr></table></figure>
-<h2 id="2-安装公钥到服务端"><a class="header-anchor" href="#2-安装公钥到服务端">¶</a>2.安装公钥到服务端</h2>
-<ul>
+<h2 id="2-安装公钥到服务端"><a href="#2-安装公钥到服务端" class="headerlink" title="2.安装公钥到服务端"></a>2.安装公钥到服务端</h2><ul>
 <li>讲公钥安装到服务器</li>
 </ul>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@host ~]$ cd .ssh</span><br><span class="line">[root@host .ssh]$ cat id_rsa.pub <span class="meta">&gt;&gt; </span>authorized_keys</span><br></pre></td></tr></table></figure>
@@ -245,21 +240,17 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@host .ssh]$ chmod 600 authorized_keys  #不让其他用户写入 600 权限</span><br><span class="line">[root@host .ssh]$ chmod 700 ~/.ssh           #读写执行的权限 700</span><br></pre></td></tr></table></figure>
 <ul>
-<li>
-<p>ssh的配置文件都在<code>/etc/ssh/</code> 里面</p>
+<li><p>ssh的配置文件都在<code>/etc/ssh/</code> 里面</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[centos@localhost ~]$ cd /etc/ssh/</span><br><span class="line">[centos@localhost ssh]$ ls</span><br><span class="line"> ssh_config #是客户单配置的</span><br><span class="line"> sshd_config #是服务端配置的</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>在<code>sshd_config</code>中配置使用RSA登录</p>
+<li><p>在<code>sshd_config</code>中配置使用RSA登录</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RSAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">PermitRootLogin yes # 允许root用户通过ssh登录</span><br><span class="line">PasswordAuthentication no #不允许密码登录，只用使用私钥登录[一般我也用yes]</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>最后服务端重启 ssh</p>
+<li><p>最后服务端重启 ssh</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@host .ssh]$<span class="built_in"> service </span>sshd restart</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="3-操作客户端"><a class="header-anchor" href="#3-操作客户端">¶</a>3.操作客户端</h2>
-<ul>
+<h2 id="3-操作客户端"><a href="#3-操作客户端" class="headerlink" title="3.操作客户端"></a>3.操作客户端</h2><ul>
 <li>3.1把服务端私钥复制到客户端，cat id_rsa，就是一下内容</li>
 </ul>
 <figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">Proc-Type: 4,ENCRYPTED</span><br><span class="line">DEK-Info: DES-EDE3-CBC,A757691CABE05419</span><br><span class="line"></span><br><span class="line">yvEX5nQY3+OeZ56kTt8i41YChrQgL9OwglA3SIU2ymrWvY+5IxXMOQbjJmoSFtRz</span><br><span class="line">Or0lB1eWZx8ZimGdG+y9KoN4AkUzX+HqzaC8/eMczrv2KXP6DpOvV6MTdHoBrTb8</span><br><span class="line">pJOSVzw1K1jmGPaCdWg3XJ7iNSdYr+FVHC6gmJhCCvSHjXLHYBseTSJNXzs4DpQr</span><br><span class="line">rTAnU1NXVt0ce3R7DCO/hGClS5zeQ7j7fpQ48cwBgNJumCcr5eU/TWlUMKm7Q8Za</span><br><span class="line">zLaugTg387qKaieFY6v8CvpqT4Oqt+j1+6B05sr2S4XiiWHdlcieG4fgSRc5I7kp</span><br><span class="line">EhzZWM2LdK6NtxkbWVzd0ZOu5dZDIaMykC2KJJwT+NW3yKZvN1iebm7jzLC3Pv1B</span><br><span class="line">dAqnzxMuwBVNbkvrmVWzi8+OvSfH3ttCoRVnshAAvPylBazAZpWn5k6f0QC8MkUQ</span><br><span class="line">AIEFex80xBPJTT+L6HuijrO2Z1K6qeWe+ptUAqX3FrcuneH1Nn3MnOhNVb4HZvk0</span><br><span class="line">xoy3/+2xe3sYKOUsMqjpWlI3DzGnZ81R8z1sTquRQy3hHDZ8cA6k1wUWoVTpJArb</span><br><span class="line">CLphYurek+YN3kFGLhvKnd6YjnH3d2sq/qSIMp4m3T8iBkex5raf4iNpFwKzb3S9</span><br><span class="line">D6QSWl9Nfnd2tAWkApXU4TPOcbX7XtX1P5yexyNxAZaUHuDsPStO/53WHfu8G2BP</span><br><span class="line">nM2Pefaj1sUcODLK+4JR+edmtA9rjHXVx7Kd3OKRmpocmzYWgEOQJtklr+cL7SJJ</span><br><span class="line">HzoKBjx0NB5/iW23KxSnj7gJhnrDbcD9wY5g63DuMsNnreMfk6trTbXe5ck/mfYN</span><br><span class="line">6bTCXkVczm5Q8BKY0cJF2n/2dJyow9RFJtxDTzm11SvqdXtZoanC5mttePViu3J8</span><br><span class="line">8dbNETFw0DwutyY3KPq3taX40Ps76Ahh6BTb5QD8ctxpYx63MOfQG/BrPFD9M6Al</span><br><span class="line">l5YLzi1In3hc0s6GN2yvx/fdjNZpYFgxA0GH66evtlo3HMr/Id8zgZ+ZSikHMXpv</span><br><span class="line">piXS4uBIgeCZeRaTbq/Bd2V2sN3ENQgV7UTVrnHDc5IWH+qpg8AZxnvmP6BBATNQ</span><br><span class="line">2WAc6I10JqkrtfwjKuSYGyJmg6fY5uSKkZo9JQ1uviWEyhdKDhtYgStxyoIznrbJ</span><br><span class="line">E7PQ3iE3VanB0zmhJHdFJ9xsy5yggMSnRfLCmLsXrczJX0ALwtCDGrrAR3wAg1fn</span><br><span class="line">7WmdUfyfnAugJGOBMx25vOLASL3q5zKoxEr7ayln51uuWRE2oK63low68lcWt42a</span><br><span class="line">S/ozMsev6Wg7QQjg7HRYEavYZGmCv9OBAblOmneUQjajT2F6zY1R4Cajkk3XmBO2</span><br><span class="line">GHXJ685hTiBMQsGf81NMtGd2Zkd5jbcHYhfOe1TKRhgp9cxtzKuyzD2Hj5Bltw8P</span><br><span class="line">q26JVqhLAXZpy73kVsCpU8KplyvZM349kM+VwzOwvvuoWuS+pi9iYYv2f4CjDWZ4</span><br><span class="line">dfzg30+ekEc2QTwsZrYbG8SyIOn4oZSE+ygFNge/o2ftqwpRSwJhV8sUlrhBHQb/</span><br><span class="line">plePpQQfRQlnifiqR/z2JQ4y28purVt5GKPuwsK4SpHCQTpXW3OkdA==</span><br><span class="line">-----END RSA PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
@@ -267,26 +258,21 @@
 <li>把里面的内容复制（这个是我的）自己的文件下</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.你也可以把服务端的id_rsa 下载到你的客户端，放在当前用户的.ssh目录下</span><br><span class="line">2.也可以复制里面的内容然后再.ssh目录下，重新创建一个id_rsa</span><br><span class="line"></span><br><span class="line">vi ~/.ssh/id_rsa # 创建私钥</span><br></pre></td></tr></table></figure>
-<h2 id="4-直接可以登录了-然后就会发现问题"><a class="header-anchor" href="#4-直接可以登录了-然后就会发现问题">¶</a>4.直接可以登录了【然后就会发现问题】</h2>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">✘ ⚙ mac@MacBook-Air  ~/.ssh  ssh centos@192.168.1.112</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">Permissions 0644 for '/Users/mac/.ssh/id_rsa' are too open.</span><br><span class="line">It is required that your private key files are NOT accessible by others.</span><br><span class="line">This private key will be ignored.</span><br><span class="line">Load key "/Users/mac/.ssh/id_rsa": bad permissions</span><br><span class="line">centos@192.168.1.112's password:</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 遇到这个问题一般就是权限问题 赋权700 ，然后就ok了</span></span><br><span class="line">⚙ mac@MacBook-Air  ~/.ssh  chmod 700 id_rsa</span><br><span class="line">⚙ mac@MacBook-Air  ~/.ssh  ssh centos@192.168.1.112</span><br><span class="line">Enter passphrase for key '/Users/mac/.ssh/id_rsa':</span><br><span class="line">Last login: Sun Feb 19 12:56:05 2017 from 192.168.1.113</span><br></pre></td></tr></table></figure>
-<h1>B.设置安全端口</h1>
-<ul>
+<h2 id="4-直接可以登录了【然后就会发现问题】"><a href="#4-直接可以登录了【然后就会发现问题】" class="headerlink" title="4.直接可以登录了【然后就会发现问题】"></a>4.直接可以登录了【然后就会发现问题】</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">✘ ⚙ mac@MacBook-Air  ~/.ssh  ssh centos@192.168.1.112</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">Permissions 0644 for '/Users/mac/.ssh/id_rsa' are too open.</span><br><span class="line">It is required that your private key files are NOT accessible by others.</span><br><span class="line">This private key will be ignored.</span><br><span class="line">Load key "/Users/mac/.ssh/id_rsa": bad permissions</span><br><span class="line">centos@192.168.1.112's password:</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 遇到这个问题一般就是权限问题 赋权700 ，然后就ok了</span></span><br><span class="line">⚙ mac@MacBook-Air  ~/.ssh  chmod 700 id_rsa</span><br><span class="line">⚙ mac@MacBook-Air  ~/.ssh  ssh centos@192.168.1.112</span><br><span class="line">Enter passphrase for key '/Users/mac/.ssh/id_rsa':</span><br><span class="line">Last login: Sun Feb 19 12:56:05 2017 from 192.168.1.113</span><br></pre></td></tr></table></figure>
+<h1 id="B-设置安全端口"><a href="#B-设置安全端口" class="headerlink" title="B.设置安全端口"></a>B.设置安全端口</h1><ul>
 <li>默认使用22端口，这个在<code>etc/ssh/ssh_config</code> 就可以看到</li>
 </ul>
 <p>我们可以不使用22端口，此时我们可以在服务器重新创建一个端口，然后使用防火墙屏蔽其他端口</p>
 <ul>
-<li>
-<p>开启端口</p>
+<li><p>开启端口</p>
 <ul>
-<li>
-<p><strong>开启一个10222端口</strong></p>
+<li><p><strong>开启一个10222端口</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT   #写入修改</span><br><span class="line"> </span><br><span class="line">/etc/init.d/iptables save   #保存修改</span><br><span class="line"> </span><br><span class="line">service iptables restart    #重启防火墙，修改生效</span><br></pre></td></tr></table></figure>
 <p>​</p>
 </li>
 </ul>
 </li>
-<li>
-<p>然后可以查看一下端口状态</p>
+<li><p>然后可以查看一下端口状态</p>
 <ul>
 <li>查看的时候一定要用root用户，否则查看不到的，所以我切换了10222 端口连接</li>
 <li>端口的知识属于计算机的基础知识，如果你能看到这里，说明你的基础已经够了，不过下面我会专门写一篇关于底层的计算机的文章。</li>

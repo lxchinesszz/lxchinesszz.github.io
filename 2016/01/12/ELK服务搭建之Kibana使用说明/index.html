@@ -213,25 +213,20 @@
     </div>
     
     <div class="post-body post-content">
-        <h1>前言</h1>
-<p><code>logstash</code> 通过配置文件把收集到的日志文件，通过正则匹配分析，发送到<code>es</code>服务器构建索引，并通过<code>Kibana</code>展示</p>
-<h1>目录</h1>
-<ul>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>logstash</code> 通过配置文件把收集到的日志文件，通过正则匹配分析，发送到<code>es</code>服务器构建索引，并通过<code>Kibana</code>展示</p>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
 <li>Logstash正则构建</li>
 <li>查询语句</li>
 <li>量化分析 <code>Visualize</code></li>
 <li>仪表盘   <code>Dashboard</code></li>
 </ul>
-<h3 id="logstash正则"><a class="header-anchor" href="#logstash正则">¶</a>Logstash正则</h3>
-<p><a href="http://grokdebug.herokuapp.com/" target="_blank" rel="noopener">匹配正则工具</a><br>
-<a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html" target="_blank" rel="noopener">官方文档</a></p>
+<h3 id="Logstash正则"><a href="#Logstash正则" class="headerlink" title="Logstash正则"></a>Logstash正则</h3><p><a href="http://grokdebug.herokuapp.com/" target="_blank" rel="noopener">匹配正则工具</a><br><a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html" target="_blank" rel="noopener">官方文档</a></p>
 <p>在<code>logstash</code>目录 mkdir patterns</p>
 <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># contents <span class="keyword">of</span> ./patterns/postfix:</span><br><span class="line">STR [a-zA-Z]&#123;<span class="number">1</span>,&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">  file &#123;</span><br><span class="line">       <span class="built_in"> type </span>=&gt; <span class="string">"order_shenghuojiaofei"</span></span><br><span class="line">truepath =&gt; <span class="string">"/Users/liuxin/rabbitmql_pro.log"</span></span><br><span class="line">        &#125;</span><br><span class="line"> &#125;</span><br><span class="line">filter &#123;</span><br><span class="line">  grok &#123;</span><br><span class="line">  		patterns_dir =&gt; [<span class="string">"./patterns"</span>]</span><br><span class="line">        match =&gt; &#123; <span class="string">"message"</span> =&gt; <span class="string">"%&#123;STR:logLevel&#125; %&#123;STR:packName&#125;.%&#123;STR:thread&#125;.%&#123;STR:className&#125; %&#123;STR:date&#125;"</span> &#125;</span><br><span class="line">true&#125;</span><br><span class="line">       &#125;</span><br><span class="line">output &#123;</span><br><span class="line">trueelasticsearch &#123;</span><br><span class="line">truetruehosts =&gt; <span class="string">"127.0.0.1:9200"</span></span><br><span class="line">truetrueindex =&gt; <span class="string">"order_shenghuojiaofei-%&#123;type&#125;-%&#123;+YYYY.MM.dd&#125;"</span></span><br><span class="line">truetruetemplate_overwrite =&gt; <span class="literal">true</span></span><br><span class="line">truetrue      &#125;</span><br><span class="line">true &#125;</span><br></pre></td></tr></table></figure>
 <p>启动</p>
 <p><code>logstash -f pro.conf</code></p>
-<h3 id="查询语句"><a class="header-anchor" href="#查询语句">¶</a>查询语句</h3>
-<p>I. 字段查询(可以使用通配符*或?)</p>
+<h3 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h3><p>I. 字段查询(可以使用通配符*或?)</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">field</span><span class="selector-pseudo">:value</span>   例：<span class="selector-tag">city</span><span class="selector-pseudo">:Keyport</span>*， <span class="selector-tag">age</span><span class="selector-pseudo">:26</span></span><br></pre></td></tr></table></figure>
 <p>II. 范围查询</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">age</span>:[<span class="number">20</span> TO <span class="number">30</span>]        <span class="attribute">age</span>:&#123;<span class="number">20</span> TO <span class="number">30</span>&#125;</span><br><span class="line">注：<span class="selector-attr">[ ]</span> 表示端点数值包含在范围内，&#123; &#125; 表示端点数值不包含在范围内</span><br></pre></td></tr></table></figure>
@@ -239,11 +234,9 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">AND</span>     <span class="selector-tag">OR</span>       例子：<span class="selector-tag">firstname</span><span class="selector-pseudo">:H</span>* <span class="selector-tag">AND</span> <span class="selector-tag">age</span><span class="selector-pseudo">:20</span>          <span class="selector-tag">firstname</span><span class="selector-pseudo">:H</span>* <span class="selector-tag">OR</span> <span class="selector-tag">age</span><span class="selector-pseudo">:20</span></span><br><span class="line">+ ：搜索结果中必须包含此项</span><br><span class="line"><span class="selector-tag">-</span> ：不能含有此项</span><br><span class="line">例： +<span class="selector-tag">firstname</span><span class="selector-pseudo">:H</span>* <span class="selector-tag">-age</span><span class="selector-pseudo">:20</span> <span class="selector-tag">city</span><span class="selector-pseudo">:H</span>*    <span class="selector-tag">firstname</span>字段结果中必须存在<span class="selector-tag">H</span>开头的，不能有年龄是20的，<span class="selector-tag">city</span>字段<span class="selector-tag">H</span>开头的可有可无</span><br></pre></td></tr></table></figure>
 <p>VI. 分组查询</p>
 <figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">分组</span><br><span class="line">(firstname:H* OR age:<span class="number">20</span>) AND <span class="keyword">state</span>:KS      先查询名字H开头年龄或者是<span class="number">20</span>的结果，然后再与国家是KS的结合</span><br><span class="line">字段分组</span><br><span class="line">firstname:(+H* -He*)        搜索firstname字段里H开头的结果，并且排除firstname里He开头的结果</span><br></pre></td></tr></table></figure>
-<h3 id="量化分析"><a class="header-anchor" href="#量化分析">¶</a>量化分析</h3>
-<p>点击发现 <code>Discover</code> 输入查询条件 鼠标放置在字段上会添加展示改字段</p>
+<h3 id="量化分析"><a href="#量化分析" class="headerlink" title="量化分析"></a>量化分析</h3><p>点击发现 <code>Discover</code> 输入查询条件 鼠标放置在字段上会添加展示改字段</p>
 <p><a href="http://blog.csdn.net/u010859707/article/details/70164557" target="_blank" rel="noopener">Kibana参考文档</a></p>
-<h3 id="仪表盘"><a class="header-anchor" href="#仪表盘">¶</a>仪表盘</h3>
-<p><code>Visualize</code> 生成的报表信息，可以保存，放置在仪表盘里面展示</p>
+<h3 id="仪表盘"><a href="#仪表盘" class="headerlink" title="仪表盘"></a>仪表盘</h3><p><code>Visualize</code> 生成的报表信息，可以保存，放置在仪表盘里面展示</p>
 <p><img src="http://otjenik28.bkt.clouddn.com/Kibana.png" alt=""></p>
 
         <!--打赏模块-->

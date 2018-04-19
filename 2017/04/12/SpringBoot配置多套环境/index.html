@@ -216,34 +216,26 @@
         <blockquote>
 <p>生产中会经历，开发，测试，到上线。三个阶段</p>
 </blockquote>
-<pre><code> 这个三个阶段，都有各自的配置文件，如果只是一个配置文件来回改
- 会很容易出现错误的，那么springboot提供了很简答的解决办法
-</code></pre>
-<p>使用spring.profiles.active=test</p>
+<pre><code>这个三个阶段，都有各自的配置文件，如果只是一个配置文件来回改
+会很容易出现错误的，那么springboot提供了很简答的解决办法
+</code></pre><p>使用spring.profiles.active=test</p>
 <ul>
-<li>
-<p>定义一个application.properties 里面写上</p>
+<li><p>定义一个application.properties 里面写上</p>
 <ul>
 <li>spring.profiles.active=test 默认启动test文件</li>
 </ul>
 </li>
-<li>
-<p>定义application-dev.properties</p>
+<li><p>定义application-dev.properties</p>
 </li>
-<li>
-<p>定义application-test.properties</p>
-</li>
-<li>
-<p>定义application-prod.properties</p>
-</li>
+<li>定义application-test.properties</li>
+<li>定义application-prod.properties</li>
 </ul>
 <blockquote>
-<p>使用java -jar mm.jar --spring.profiles.active=dev 运行启动dev环境</p>
+<p>使用java -jar mm.jar –spring.profiles.active=dev 运行启动dev环境</p>
 </blockquote>
 <blockquote>
-<p>可以看到启动的是dev</p>
+<p>可以看到启动的是dev<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2017</span><span class="bullet">-01</span><span class="bullet">-04</span> <span class="number">18</span><span class="string">:54:11.095</span>  <span class="string">INFO</span> <span class="number">43026</span> <span class="meta">---</span> <span class="string">[</span>  <span class="string">restartedMain]</span> <span class="string">dragonfly.DragonflyApplication</span>           <span class="string">:</span> <span class="string">Starting</span> <span class="string">DragonflyApplication</span> <span class="string">on</span> <span class="string">KK-MINI.local</span> <span class="string">with</span> <span class="string">PID</span> <span class="number">43026</span> <span class="string">(/Users/liuxin/git/oto_saas_mybosc_pay/target/classes</span> <span class="string">started</span> <span class="string">by</span> <span class="string">liuxin</span> <span class="string">in</span> <span class="string">/Users/liuxin/git/oto_saas_mybosc_pay)</span></span><br><span class="line"><span class="number">2017</span><span class="bullet">-01</span><span class="bullet">-04</span> <span class="number">18</span><span class="string">:54:11.100</span>  <span class="string">INFO</span> <span class="number">43026</span> <span class="meta">---</span> <span class="string">[</span>  <span class="string">restartedMain]</span> <span class="string">dragonfly.DragonflyApplication</span>           <span class="string">:</span> <span class="string">The</span> <span class="string">following</span> <span class="string">profiles</span> <span class="string">are</span> <span class="attr">active:</span> <span class="string">dev</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2017</span><span class="bullet">-01</span><span class="bullet">-04</span> <span class="number">18</span><span class="string">:54:11.095</span>  <span class="string">INFO</span> <span class="number">43026</span> <span class="meta">---</span> <span class="string">[</span>  <span class="string">restartedMain]</span> <span class="string">dragonfly.DragonflyApplication</span>           <span class="string">:</span> <span class="string">Starting</span> <span class="string">DragonflyApplication</span> <span class="string">on</span> <span class="string">KK-MINI.local</span> <span class="string">with</span> <span class="string">PID</span> <span class="number">43026</span> <span class="string">(/Users/liuxin/git/oto_saas_mybosc_pay/target/classes</span> <span class="string">started</span> <span class="string">by</span> <span class="string">liuxin</span> <span class="string">in</span> <span class="string">/Users/liuxin/git/oto_saas_mybosc_pay)</span></span><br><span class="line"><span class="number">2017</span><span class="bullet">-01</span><span class="bullet">-04</span> <span class="number">18</span><span class="string">:54:11.100</span>  <span class="string">INFO</span> <span class="number">43026</span> <span class="meta">---</span> <span class="string">[</span>  <span class="string">restartedMain]</span> <span class="string">dragonfly.DragonflyApplication</span>           <span class="string">:</span> <span class="string">The</span> <span class="string">following</span> <span class="string">profiles</span> <span class="string">are</span> <span class="attr">active:</span> <span class="string">dev</span></span><br></pre></td></tr></table></figure>
 
         <!--打赏模块-->
           
