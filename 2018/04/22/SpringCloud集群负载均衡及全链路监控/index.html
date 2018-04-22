@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>本地服务器搭建之秘钥登录 | 程序猿升级课</title>
+<title>SpringCloud集群负载均衡及全链路监控 | 程序猿升级课</title>
 
 
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
@@ -152,9 +152,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="本地服务器搭建之秘钥登录">
+        <h1 id="SpringCloud集群负载均衡及全链路监控">
             
-	            本地服务器搭建之秘钥登录
+	            SpringCloud集群负载均衡及全链路监控
             
         </h1>
         <div class="post-meta">
@@ -162,8 +162,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/杂记">
-            杂记
+        <a href="/categories/Spring Cloud">
+            Spring Cloud
         </a>
     </span>
     
@@ -173,8 +173,8 @@
         <span class="tags-meta">
             
                 
-                    <a href="/tags/服务器" title='服务器'>
-                        服务器
+                    <a href="/tags/Spring Cloud" title='Spring Cloud'>
+                        Spring Cloud
                     </a>
                 
             
@@ -196,7 +196,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2015/04/12</span>
+            <span class="date-meta">2018/04/22</span>
         </span>
          <span id="busuanzi_container_page_pv">
                               被围观:<span id="busuanzi_value_page_pv" ></span>次
@@ -206,80 +206,184 @@
 
             
             
-            <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>1106</strong>天之前发表，文中内容可能已经过时。
-            </p>
-        
     </div>
     
     <div class="post-body post-content">
-        <p>作者：<a href="https://lxchinesszz.github.io/">@lxchinesszz</a><br>本文为作者原创，转载请注明出处</p>
+        <p>SpringCloud集群负载均衡及全链路监控</p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/1524386131941ad98fd6d92" alt=""></p>
 <blockquote>
-<p>紧接上文，上文的重点不是连接，而是如何在局域网中用废弃的电脑搭建，是不是感觉很easy，那么这篇文章我们的重点就放在了安全上了，因为毕竟服务器是我们放应用或者数据库的地方，安全性一定要可靠。小编是做Java开发的，一只热爱技术的小菜鸟，因为工作中常常要一条龙服务，即，自己写需求文档，自己码代码，自己测试，自己部署，自己维护。虽然很累，但是很充实，很能提高自己。我也希望把自己的工作经验分享出来，对那些想小编一样热爱技术的小伙，有所帮助。说半天废话，下面开始。</p>
+<p>东方既白是小编我的头条号，想获取到源码地主的童鞋，可以关注小编，私信发送，[SpringCloud架构]即可获取到GITHUB源码地址，最后谢谢您的阅读，小编会每天为你分享一点小知识，谢谢您的关注。</p>
 </blockquote>
-<ul>
-<li>密钥登录原理：<ul>
-<li>密钥常是一对的，即公钥和私钥，将公钥添加到服务器上的某个账户，然后客户端连接的时候，使用私钥完成认证就可以登录</li>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="我们要从那些解读去考虑技术选型"><a href="#我们要从那些解读去考虑技术选型" class="headerlink" title="我们要从那些解读去考虑技术选型?"></a>我们要从那些解读去考虑技术选型?</h3><ul>
+<li>服务器(云服务提供商是否稳定)</li>
+<li>代码层面(技术选型+代码质检Sonarqube) <a href="https://www.toutiao.com/i6501805549015794189/" target="_blank" rel="noopener">https://www.toutiao.com/i6501805549015794189/</a></li>
+<li>数据库(是否面临高并发或大数据问题)</li>
 </ul>
+<hr>
+<h3 id="解决的问题是什么"><a href="#解决的问题是什么" class="headerlink" title="解决的问题是什么?"></a>解决的问题是什么?</h3><p><strong>微服务错误及耗时定位分析困难</strong></p>
+<ul>
+<li>具体解决方案: 引入ZipKin进行抽样监控</li>
+</ul>
+<p><strong>微服务错误引发雪崩现象</strong></p>
+<ul>
+<li>具体解决方案: hystrix及时熔断</li>
+<li>具体解决方案 : hystrix流量洪峰监控</li>
+</ul>
+<p><strong>微服务日志拆分导致查看异常困难</strong></p>
+<ul>
+<li>具体解决方案: ELK日志分析</li>
+<li>具体解决方案: Sentry 日志异常通知</li>
+</ul>
+<p><strong>微服务配置变更</strong></p>
+<ul>
+<li>具体解决方案: eureka注册中心/ consul</li>
+</ul>
+<p><strong>紧急备用方案</strong></p>
+<ul>
+<li>快速部署 docker技术</li>
+</ul>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><p>以集群的方式启动Eureka</p>
 </li>
-</ul>
-<h1 id="A-使用私钥登录"><a href="#A-使用私钥登录" class="headerlink" title="A.使用私钥登录"></a>A.使用私钥登录</h1><h2 id="1-制作密钥对"><a href="#1-制作密钥对" class="headerlink" title="1.制作密钥对"></a>1.制作密钥对</h2><ul>
-<li>首先在服务器制作，需要的登录账户，然后执行以下命令</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@host ~]$ ssh-keygen   #建立密钥对</span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/root/.ssh/id_rsa): #按 Enter</span><br><span class="line">Created directory '/root/.ssh'.</span><br><span class="line">Enter passphrase (empty for no passphrase):  # 输入密钥锁码，或直接按 Enter 留空</span><br><span class="line">Enter same passphrase again: # 再输入一遍密钥锁码</span><br><span class="line">Your identification has been saved in /root/.ssh/id_rsa. # 私钥</span><br><span class="line">Your public key has been saved in /root/.ssh/id_rsa.pub. # 公钥</span><br><span class="line">The key fingerprint is:</span><br><span class="line">0f:d3:e7:1a:1c:bd:5c:03:f1:19:f1:22:df:9b:cc:08 root@host</span><br></pre></td></tr></table></figure>
-<h2 id="2-安装公钥到服务端"><a href="#2-安装公钥到服务端" class="headerlink" title="2.安装公钥到服务端"></a>2.安装公钥到服务端</h2><ul>
-<li>讲公钥安装到服务器</li>
-</ul>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@host ~]$ cd .ssh</span><br><span class="line">[root@host .ssh]$ cat id_rsa.pub <span class="meta">&gt;&gt; </span>authorized_keys</span><br></pre></td></tr></table></figure>
-<ul>
-<li>设置权限</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@host .ssh]$ chmod 600 authorized_keys  #不让其他用户写入 600 权限</span><br><span class="line">[root@host .ssh]$ chmod 700 ~/.ssh           #读写执行的权限 700</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>ssh的配置文件都在<code>/etc/ssh/</code> 里面</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[centos@localhost ~]$ cd /etc/ssh/</span><br><span class="line">[centos@localhost ssh]$ ls</span><br><span class="line"> ssh_config #是客户单配置的</span><br><span class="line"> sshd_config #是服务端配置的</span><br></pre></td></tr></table></figure>
+<li><p>注册服务</p>
 </li>
-<li><p>在<code>sshd_config</code>中配置使用RSA登录</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RSAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">PermitRootLogin yes # 允许root用户通过ssh登录</span><br><span class="line">PasswordAuthentication no #不允许密码登录，只用使用私钥登录[一般我也用yes]</span><br></pre></td></tr></table></figure>
+<li><p>Ribbon目录做负载均衡,及熔断错误</p>
 </li>
-<li><p>最后服务端重启 ssh</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@host .ssh]$<span class="built_in"> service </span>sshd restart</span><br></pre></td></tr></table></figure>
+<li><p>提供测试DTO</p>
 </li>
-</ul>
-<h2 id="3-操作客户端"><a href="#3-操作客户端" class="headerlink" title="3.操作客户端"></a>3.操作客户端</h2><ul>
-<li>3.1把服务端私钥复制到客户端，cat id_rsa，就是一下内容</li>
-</ul>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">Proc-Type: 4,ENCRYPTED</span><br><span class="line">DEK-Info: DES-EDE3-CBC,A757691CABE05419</span><br><span class="line"></span><br><span class="line">yvEX5nQY3+OeZ56kTt8i41YChrQgL9OwglA3SIU2ymrWvY+5IxXMOQbjJmoSFtRz</span><br><span class="line">Or0lB1eWZx8ZimGdG+y9KoN4AkUzX+HqzaC8/eMczrv2KXP6DpOvV6MTdHoBrTb8</span><br><span class="line">pJOSVzw1K1jmGPaCdWg3XJ7iNSdYr+FVHC6gmJhCCvSHjXLHYBseTSJNXzs4DpQr</span><br><span class="line">rTAnU1NXVt0ce3R7DCO/hGClS5zeQ7j7fpQ48cwBgNJumCcr5eU/TWlUMKm7Q8Za</span><br><span class="line">zLaugTg387qKaieFY6v8CvpqT4Oqt+j1+6B05sr2S4XiiWHdlcieG4fgSRc5I7kp</span><br><span class="line">EhzZWM2LdK6NtxkbWVzd0ZOu5dZDIaMykC2KJJwT+NW3yKZvN1iebm7jzLC3Pv1B</span><br><span class="line">dAqnzxMuwBVNbkvrmVWzi8+OvSfH3ttCoRVnshAAvPylBazAZpWn5k6f0QC8MkUQ</span><br><span class="line">AIEFex80xBPJTT+L6HuijrO2Z1K6qeWe+ptUAqX3FrcuneH1Nn3MnOhNVb4HZvk0</span><br><span class="line">xoy3/+2xe3sYKOUsMqjpWlI3DzGnZ81R8z1sTquRQy3hHDZ8cA6k1wUWoVTpJArb</span><br><span class="line">CLphYurek+YN3kFGLhvKnd6YjnH3d2sq/qSIMp4m3T8iBkex5raf4iNpFwKzb3S9</span><br><span class="line">D6QSWl9Nfnd2tAWkApXU4TPOcbX7XtX1P5yexyNxAZaUHuDsPStO/53WHfu8G2BP</span><br><span class="line">nM2Pefaj1sUcODLK+4JR+edmtA9rjHXVx7Kd3OKRmpocmzYWgEOQJtklr+cL7SJJ</span><br><span class="line">HzoKBjx0NB5/iW23KxSnj7gJhnrDbcD9wY5g63DuMsNnreMfk6trTbXe5ck/mfYN</span><br><span class="line">6bTCXkVczm5Q8BKY0cJF2n/2dJyow9RFJtxDTzm11SvqdXtZoanC5mttePViu3J8</span><br><span class="line">8dbNETFw0DwutyY3KPq3taX40Ps76Ahh6BTb5QD8ctxpYx63MOfQG/BrPFD9M6Al</span><br><span class="line">l5YLzi1In3hc0s6GN2yvx/fdjNZpYFgxA0GH66evtlo3HMr/Id8zgZ+ZSikHMXpv</span><br><span class="line">piXS4uBIgeCZeRaTbq/Bd2V2sN3ENQgV7UTVrnHDc5IWH+qpg8AZxnvmP6BBATNQ</span><br><span class="line">2WAc6I10JqkrtfwjKuSYGyJmg6fY5uSKkZo9JQ1uviWEyhdKDhtYgStxyoIznrbJ</span><br><span class="line">E7PQ3iE3VanB0zmhJHdFJ9xsy5yggMSnRfLCmLsXrczJX0ALwtCDGrrAR3wAg1fn</span><br><span class="line">7WmdUfyfnAugJGOBMx25vOLASL3q5zKoxEr7ayln51uuWRE2oK63low68lcWt42a</span><br><span class="line">S/ozMsev6Wg7QQjg7HRYEavYZGmCv9OBAblOmneUQjajT2F6zY1R4Cajkk3XmBO2</span><br><span class="line">GHXJ685hTiBMQsGf81NMtGd2Zkd5jbcHYhfOe1TKRhgp9cxtzKuyzD2Hj5Bltw8P</span><br><span class="line">q26JVqhLAXZpy73kVsCpU8KplyvZM349kM+VwzOwvvuoWuS+pi9iYYv2f4CjDWZ4</span><br><span class="line">dfzg30+ekEc2QTwsZrYbG8SyIOn4oZSE+ygFNge/o2ftqwpRSwJhV8sUlrhBHQb/</span><br><span class="line">plePpQQfRQlnifiqR/z2JQ4y28purVt5GKPuwsK4SpHCQTpXW3OkdA==</span><br><span class="line">-----END RSA PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
-<ul>
-<li>把里面的内容复制（这个是我的）自己的文件下</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.你也可以把服务端的id_rsa 下载到你的客户端，放在当前用户的.ssh目录下</span><br><span class="line">2.也可以复制里面的内容然后再.ssh目录下，重新创建一个id_rsa</span><br><span class="line"></span><br><span class="line">vi ~/.ssh/id_rsa # 创建私钥</span><br></pre></td></tr></table></figure>
-<h2 id="4-直接可以登录了【然后就会发现问题】"><a href="#4-直接可以登录了【然后就会发现问题】" class="headerlink" title="4.直接可以登录了【然后就会发现问题】"></a>4.直接可以登录了【然后就会发现问题】</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">✘ ⚙ mac@MacBook-Air  ~/.ssh  ssh centos@192.168.1.112</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">Permissions 0644 for '/Users/mac/.ssh/id_rsa' are too open.</span><br><span class="line">It is required that your private key files are NOT accessible by others.</span><br><span class="line">This private key will be ignored.</span><br><span class="line">Load key "/Users/mac/.ssh/id_rsa": bad permissions</span><br><span class="line">centos@192.168.1.112's password:</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 遇到这个问题一般就是权限问题 赋权700 ，然后就ok了</span></span><br><span class="line">⚙ mac@MacBook-Air  ~/.ssh  chmod 700 id_rsa</span><br><span class="line">⚙ mac@MacBook-Air  ~/.ssh  ssh centos@192.168.1.112</span><br><span class="line">Enter passphrase for key '/Users/mac/.ssh/id_rsa':</span><br><span class="line">Last login: Sun Feb 19 12:56:05 2017 from 192.168.1.113</span><br></pre></td></tr></table></figure>
-<h1 id="B-设置安全端口"><a href="#B-设置安全端口" class="headerlink" title="B.设置安全端口"></a>B.设置安全端口</h1><ul>
-<li>默认使用22端口，这个在<code>etc/ssh/ssh_config</code> 就可以看到</li>
-</ul>
-<p>我们可以不使用22端口，此时我们可以在服务器重新创建一个端口，然后使用防火墙屏蔽其他端口</p>
-<ul>
-<li><p>开启端口</p>
-<ul>
-<li><p><strong>开启一个10222端口</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT   #写入修改</span><br><span class="line"> </span><br><span class="line">/etc/init.d/iptables save   #保存修改</span><br><span class="line"> </span><br><span class="line">service iptables restart    #重启防火墙，修改生效</span><br></pre></td></tr></table></figure>
-<p>​</p>
+<li><p>Hystrix演示</p>
 </li>
-</ul>
+</ol>
+<p>5.1 熔断聚合及监控</p>
+<ol start="6">
+<li>全链路追踪</li>
+</ol>
+<p>6.1 如何在保证链路监控有效的情况下,对其进行监控!</p>
+<ol start="7">
+<li>注册中心比较及Consul使用</li>
+</ol>
+<p>7.1 mac安装Consul</p>
+<ol start="8">
+<li><p>消息总线 Spring Cloud Bus</p>
 </li>
-<li><p>然后可以查看一下端口状态</p>
-<ul>
-<li>查看的时候一定要用root用户，否则查看不到的，所以我切换了10222 端口连接</li>
-<li>端口的知识属于计算机的基础知识，如果你能看到这里，说明你的基础已经够了，不过下面我会专门写一篇关于底层的计算机的文章。</li>
-</ul>
+<li><p>高可用分布式配置中心Spring Cloud Config</p>
 </li>
-</ul>
-<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[centos@localhost ssh]$ su root</span><br><span class="line">密码：</span><br><span class="line">[root@localhost ssh]# /etc/init.d/iptables status</span><br><span class="line">表格：filter</span><br><span class="line">Chain INPUT (policy ACCEPT)</span><br><span class="line">num  target     prot opt source               destination</span><br><span class="line"><span class="number">1</span>    ACCEPT     tcp  --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           tcp dpt:<span class="number">10222</span></span><br><span class="line"><span class="number">2</span>    ACCEPT     tcp  --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           tcp dpt:<span class="number">10222</span></span><br><span class="line"><span class="number">3</span>    ACCEPT     all  --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           state RELATED,ESTABLISHED</span><br><span class="line"><span class="number">4</span>    ACCEPT     icmp --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span></span><br><span class="line"><span class="number">5</span>    ACCEPT     all  --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span></span><br><span class="line"><span class="number">6</span>    ACCEPT     tcp  --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           state NEW tcp dpt:<span class="number">22</span></span><br><span class="line"><span class="number">7</span>    REJECT     all  --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           reject-with icmp-host-prohibited</span><br><span class="line"></span><br><span class="line">Chain FORWARD (policy ACCEPT)</span><br><span class="line">num  target     prot opt source               destination</span><br><span class="line"><span class="number">1</span>    REJECT     all  --  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>            <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>/<span class="number">0</span>           reject-with icmp-host-prohibited</span><br><span class="line"></span><br><span class="line">Chain OUTPUT (policy ACCEPT)</span><br><span class="line">num  target     prot opt source               destination</span><br></pre></td></tr></table></figure>
+<li><p>负载均衡策略</p>
+</li>
+</ol>
+<p>10.1 阿里云基础架构</p>
+<h3 id="框架目录"><a href="#框架目录" class="headerlink" title="框架目录"></a>框架目录</h3><p><img src="http://p3.pstatp.com/large/pgc-image/1524386268001fa3d7ed585" alt=""></p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/15243862797652a230b534a" alt=""></p>
+<h4 id="1-以集群的方式启动Eureka"><a href="#1-以集群的方式启动Eureka" class="headerlink" title="1.以集群的方式启动Eureka"></a>1.以集群的方式启动Eureka</h4><p>登录账号: blm 密码: blm123</p>
+<p>Spring-learning-eureka-01 端口: 10001 注册实例名: eureka-service-01 应用名:eureka-service</p>
+<p>Spring-learning-eureka-01 端口: 10002 注册实例名: eureka-service-02 应用名:eureka-service</p>
+<p><img src="http://p1.pstatp.com/large/pgc-image/1524386394795aad7dc74df" alt=""></p>
+<h4 id="2-注册服务"><a href="#2-注册服务" class="headerlink" title="2.注册服务"></a>2.注册服务</h4><p>Spring-learning-service-01 端口: 20001 注册实例名: eureka-provider-service-01 应用名:eureka-provider-service</p>
+<p>Spring-learning-service-02 端口: 20002 注册实例名: eureka-provider-service-02 应用名:eureka-provider-service</p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/15243864272609cd459f95f" alt=""></p>
+<p>注意:</p>
+<p>当注册实例名都为eureka-provider-service时候就启动了负载均衡,从注册中查询服务</p>
+<p><img src="http://p1.pstatp.com/large/pgc-image/15243864628828a76f9a333" alt=""></p>
+<h4 id="3-Ribbon目录做负载均衡-及熔断错误"><a href="#3-Ribbon目录做负载均衡-及熔断错误" class="headerlink" title="3.Ribbon目录做负载均衡,及熔断错误"></a>3.Ribbon目录做负载均衡,及熔断错误</h4><p>Spring-learning-ribbon-consume 端口: 30000 注册实例: eureka-ribbon 应用名: eureka-ribbon</p>
+<p>建议注册名和应用名统一命名,ribbon会根据spring.application.name知道服务地址,也就是应用名</p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/152438651819504b350bdf0" alt=""></p>
+<h4 id="提供测试DTO"><a href="#提供测试DTO" class="headerlink" title="提供测试DTO"></a>提供测试DTO</h4><p>Spring-learning-model</p>
+<p>如果用idea导入,service-01和02依赖改模块,需要添加该模块</p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/1524386542273ac5ca9705a" alt=""></p>
+<h4 id="5-Hystrix演示"><a href="#5-Hystrix演示" class="headerlink" title="5.Hystrix演示"></a>5.Hystrix演示</h4><p><img src="http://p1.pstatp.com/large/pgc-image/15243865663296e1931549b" alt=""></p>
 <ul>
-<li>服务端在/etc/ssh/sshd_config 中监听10222端口，然后就可以使用</li>
+<li>负载均衡操作<br>均匀分散在 eureka-provider-service 暴路的地址</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -p 10222 centos@192.168.1.112</span><br></pre></td></tr></table></figure>
+<p><img src="http://p3.pstatp.com/large/pgc-image/1524386605198e4354cd70d" alt=""><br><img src="http://p9.pstatp.com/large/pgc-image/15243866192259109714f84" alt=""></p>
+<h4 id="5-1-熔断聚合及监控"><a href="#5-1-熔断聚合及监控" class="headerlink" title="5.1 熔断聚合及监控"></a>5.1 熔断聚合及监控</h4><p>Spring-learning-ribbon-consume加入熔断依赖,</p>
+<p><img src="http://p9.pstatp.com/large/pgc-image/1524386700526ee3e2f2091" alt=""><br>启动类添加@EnableCircuitBreaker就可访问<br><img src="http://p3.pstatp.com/large/pgc-image/1524386724034e018479979" alt=""></p>
+<p>如果要访问页面,要新添加依赖,并在启动类,添加@EnableHystrixDashboard</p>
+<p><img src="http://p1.pstatp.com/large/pgc-image/15243867454942f435a14b9" alt=""></p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/1524386772171a667d3460c" alt=""></p>
+<p>即可访问</p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/1524386789721531186f07e" alt=""></p>
+<p>关闭Spring-learning-service-01和-02然后调动<a href="http://blm:blm123@lxchinesszz:30000/ribbon/user,进行熔断" target="_blank" rel="noopener">http://blm:blm123@lxchinesszz:30000/ribbon/user,进行熔断</a></p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/152438681222500eb1c9fb0" alt=""></p>
+<h4 id="6-全链路追踪"><a href="#6-全链路追踪" class="headerlink" title="6. 全链路追踪"></a>6. 全链路追踪</h4><p>Zipkin为分布式链路调用监控系统，聚合各业务系统调用延迟数据，达到链路调用监控跟踪。</p>
+<p>追踪一次请求</p>
+<p>基于微服务的链路追踪,当遇到请求第三方服务时候就无法,实现,</p>
+<p>所以还有一种方法,就是给http请求做代理,拦截请求加上span,然后http发送给Zipkin服务器进行统计</p>
+<p>spring-cloud-sleuth收集信息是有一定的比率的，默认的采样率是0.1，配置此值的方式在配置文件中增加spring.sleuth.sampler.percentage参数配置（如果不配置默认0.1），如果我们调大此值为1</p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/15243869161368d51493079" alt=""></p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/152438694650901cc38c368" alt=""><br><img src="http://p1.pstatp.com/large/pgc-image/15243869557101a0d067a24" alt=""><br><img src="http://p3.pstatp.com/large/pgc-image/15243869562045a0098c3a2" alt=""></p>
+<p><strong>参考文档:</strong> <a href="https://yq.aliyun.com/articles/78128?spm=5176.100239.blogcont78144.18.a7IIwu" target="_blank" rel="noopener">https://yq.aliyun.com/articles/78128?spm=5176.100239.blogcont78144.18.a7IIwu</a></p>
+<p>其实，我们仔细想想也可以总结出这种方式的几种缺陷</p>
+<p><strong>缺陷1：</strong>zipkin客户端向zipkin-server程序发送数据使用的是http的方式通信，每次发送的时候涉及到连接和发送过程。</p>
+<p><strong>缺陷2：</strong>当我们的zipkin-server程序关闭或者重启过程中，因为客户端收集信息的发送采用http的方式会被丢失。</p>
+<h5 id="针对以上两个明显的缺陷，改进的办法是"><a href="#针对以上两个明显的缺陷，改进的办法是" class="headerlink" title="针对以上两个明显的缺陷，改进的办法是"></a>针对以上两个明显的缺陷，改进的办法是</h5><p>1、通信采用socket或者其他效率更高的通信方式。</p>
+<p>2、客户端数据的发送尽量减少业务线程的时间消耗，采用异步等方式发送收集信息。</p>
+<p>3、客户端与zipkin-server之间增加缓存类的中间件，例如redis、MQ等，在zipkin-server程序挂掉或重启过程中，客户端依旧可以正常的发送自己收集的信息。</p>
+<p>相信采用以上三种方式会很大的提高我们的效率和可靠性。其实spring-cloud以及为我们提供采用MQ或redis等其他的采用socket方式通信，利用消息中间件或数据库缓存的实现方式。下一次我们再来测试spring-cloud-sleuth-zipkin-stream方式的实现。</p>
+<h4 id="6-1-如何在保证链路监控有效的情况下-对其进行监控"><a href="#6-1-如何在保证链路监控有效的情况下-对其进行监控" class="headerlink" title="6.1 如何在保证链路监控有效的情况下,对其进行监控!"></a>6.1 如何在保证链路监控有效的情况下,对其进行监控!</h4><ol>
+<li>引入spring-cloud-sleuth-zipkin-stream &amp; spring-cloud-starter-stream-rabbit</li>
+</ol>
+<p><img src="http://p1.pstatp.com/large/pgc-image/1524387040312fbee86f0fc" alt=""></p>
+<p><img src="http://p1.pstatp.com/large/pgc-image/1524387048811d35b7465f8" alt=""></p>
+<h4 id="7-网关转发模块Zuul"><a href="#7-网关转发模块Zuul" class="headerlink" title="7. 网关转发模块Zuul"></a>7. 网关转发模块Zuul</h4><p>正在完善，敬请期待，会有专篇，讲述！</p>
+<ol start="8">
+<li>注册中心比较及Consul使用<br>参考文档： <a href="https://www.consul.io/intro/vs/eureka.html" target="_blank" rel="noopener">https://www.consul.io/intro/vs/eureka.html</a></li>
+</ol>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB4a51d027813a11cf02afd3a2f3d97b3a?method=download&amp;shareKey=19007eee98bdcb7da062f21bab44b57b" alt=""></p>
+<h4 id="8-1-mac安装Consul"><a href="#8-1-mac安装Consul" class="headerlink" title="8.1 mac安装Consul"></a>8.1 mac安装Consul</h4><p>brew install consul<br><img src="http://p3.pstatp.com/large/pgc-image/15243871323925c79bdd844" alt=""></p>
+<p><a href="http://127.0.0.1:8500/ui/#/dc1/services" target="_blank" rel="noopener">http://127.0.0.1:8500/ui/#/dc1/services</a></p>
+<p><img src="http://p1.pstatp.com/large/pgc-image/152438714379582d43eb212" alt=""></p>
+<h4 id="9-消息总线-Spring-Cloud-Bus"><a href="#9-消息总线-Spring-Cloud-Bus" class="headerlink" title="9. 消息总线 Spring Cloud Bus"></a>9. 消息总线 Spring Cloud Bus</h4><p>在前面我们学习的文章中,我们学习了EventBus,从设计模式上来讲,是事件模式,原理即: 当服务引入bus组件,会将自动订阅,config-server-bus在rabbit或者kafka的队列,当向config-server-bus发起/bus/refresh更新事件的时候,会想所有订阅的服务,发起更新命令,即从新从config-server-bus中拉去配置信息。 这点可以参考小编之前的文章</p>
+<h4 id="10-高可用分布式配置中心Spring-Cloud-Config"><a href="#10-高可用分布式配置中心Spring-Cloud-Config" class="headerlink" title="10. 高可用分布式配置中心Spring Cloud Config"></a>10. 高可用分布式配置中心Spring Cloud Config</h4><p>参考文档：<a href="https://yq.aliyun.com/articles/169879?spm=5176.100239.blogcont173263.25.MgI7lF" target="_blank" rel="noopener">https://yq.aliyun.com/articles/169879?spm=5176.100239.blogcont173263.25.MgI7lF</a></p>
+<p><img src="http://p9.pstatp.com/large/pgc-image/15243872721003f346346ce" alt=""></p>
+<p>创建config-server,和config-client并引入响应依赖,注意config-client一定要引入web模块,否则启动时候会自动注销</p>
+<p><strong>流程:</strong></p>
+<p>config-server注册到eureka-1/2, config-client注册到eureka-1/2,并获取到config-server地址,从中读取配置信息,其中配置信息从git上面读取,可以配置用户信息</p>
+<p><img src="http://p9.pstatp.com/large/pgc-image/15243873034076f254a50f7" alt=""></p>
+<p><img src="http://p1.pstatp.com/large/pgc-image/152438732584122df15b8c7" alt=""></p>
+<p>验证配置</p>
+<p>启动config-server(端口号10003,启动顺序eureka-1 eureka-2 zipkin config-server config-client) 并</p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/1524387364893bd7d1201a5" alt=""></p>
+<p>配置文件命名规则:<br><img src="http://p3.pstatp.com/large/pgc-image/15243873790049a9c79ed91" alt=""></p>
+<p><strong>如何从config-server服务器,验证配置文件</strong></p>
+<p><a href="http://localhost:10003/{applicationName}/{profile环境}/{lable分支}" target="_blank" rel="noopener">http://localhost:10003/{applicationName}/{profile环境}/{lable分支}</a></p>
+<ol start="11">
+<li>负载均衡策略<br>负载均衡（Server Load Balancer）是对多台云服务器进行流量分发的负载均衡服务。负载均衡可以通过流量分发扩展应用系统对外的服务能力，通过消除单点故障提升应用系统的可用性。</li>
+</ol>
+<p>SLB通过购买云服务提供商的负载均衡服务(服务器根据供应商购买),然后配置</p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/1524387429420b24038fc10" alt=""></p>
+<p>性能保障型实例的三个关键指标如下：</p>
+<p>最大连接数-Max Connection</p>
+<p>最大连接数定义了一个负载均衡实例能够承载的最大连接数量。当实例上的连接超过规格定义的最大连接数时，新建连接请求将被丢弃。</p>
+<p>每秒新建连接数-Connection Per Second (CPS)</p>
+<p>每秒新建连接数定义了新建连接的速率。当新建连接的速率超过规格定义的每秒新建连接数时，新建连接请求将被丢弃。</p>
+<p>每秒查询数-Query Per Second (QPS)</p>
+<p>每秒请求数是七层监听特有的概念，指的是每秒可以完成的HTTP/HTTPS的查询（请求）的数量。当请求速率超过规格所定义的每秒查询数时，新建连接请求将被丢弃。</p>
+<h4 id="11-1-阿里云基础架构"><a href="#11-1-阿里云基础架构" class="headerlink" title="11.1 阿里云基础架构"></a>11.1 阿里云基础架构</h4><p>负载均衡采用集群部署，可实现会话同步，以消除服务器单点故障，提升冗余，保证服务的稳定性。阿里云当前提供四层（TCP协议和UDP协议）和七层（HTTP和HTTPS协议）的负载均衡服务。</p>
+<p>四层采用开源软件LVS（Linux Virtual Server）+ keepalived的方式实现负载均衡，并根据云计算需求对其进行了个性化定制。四层负载均衡实际上是由多台LVS机器部署成一个LVS集群来运行的。采用集群部署模式极大地保证了异常情况下负载均衡服务的可用性、稳定性与可扩展性。工作在TCP/IP协议的四层，其转发是依赖于四层协议的特征进行转发的，由于其转发要依赖于协议的特征进行转发，因此需要在内核的TCP/IP协议栈进行过滤筛选。</p>
+<p>如果是四层监听，关注的重点是长连接的并发连接数，那么最大（并发）连接数应当作为一个关键指标来参考。根据不同的业务场景，您需要预估一个负载均衡实例需要承载的最大并发连接数，并选择相应的规格。</p>
+<p><img src="http://p1.pstatp.com/large/pgc-image/15243874903253d58a5b826" alt=""></p>
+<p>七层采用Tengine实现负载均衡。Tengine是由淘宝网发起的Web服务器项目，它在Nginx的基础上，针对有大访问量的网站需求，添加了很多高级功能和特性。七层负载均衡工作在OSI模型的应用层，因为它需要解析应用层流量，所以七层负载均衡在接到客户端的流量以后，还需要一个完整的TCP/IP协议栈。七层负载均衡会与客户端建立一条完整的连接并将应用层的请求流量解析出来，再按照调度算法选择一个应用服务器，并与应用服务器建立另外一条连接将请求发送过去，因此七层负载均衡的主要工作就是代理。</p>
+<p>针对7层（HTTP协议和HTTPS协议）服务，负载均衡系统是基于Cookie的会话保持。负载均衡系统提供了两种Cookie处理方式:</p>
+<p>植入Cookie: 此种方法下，您只需要指定cookie的过期时间。客户端第一次访问时，负载均衡服务在返回请求中植入cookie（即在HTTP/HTTPS响应报文中插入SERVERID字串），下次客户端携带此cookie访问，负载均衡服务会将请求定向转发给之前记录到的ECS实例上。</p>
+<p>重写Cookie: 此种方式下，您可以根据需要指定HTTPS/HTTP响应中插入的cookie。您需要在后端ECS上维护该cookie的过期时间和生存时间。负载均衡服务发现用户自定义了cookie，将会对原来的cookie进行重写，下次客户端携带新的cookie访问，负载均衡服务会将请求定向转发给之前记录到的ECS实例上。</p>
+<p>如果是七层监听，关注的重点是QPS的性能，QPS决定了一个七层应用系统的吞吐量。同样，您也需要根据经验对QPS进行预估。在初步选定一个规格后，在业务压测和实测过程中对规格进行微调。</p>
+<h4 id="12-架构设计之高可用"><a href="#12-架构设计之高可用" class="headerlink" title="12 .架构设计之高可用"></a>12 .架构设计之高可用</h4><ul>
+<li>服务层</li>
+</ul>
+<p>nginx活性keepalive检测,域名连接代替ip连接</p>
+<ul>
+<li>UI层到-服务层</li>
+</ul>
+<p>静态资源cdn加速</p>
+<ul>
+<li>服务层到-数据层</li>
+</ul>
+<p>读写分离,连接关闭,数据库集群部署</p>
+<ul>
+<li>多机房冗余</li>
+</ul>
+<p>单机房无论多么冗余，多么牛逼，当施工队靠近，自然灾害发生，还是面临不可用，这时我们需要部署多机房高可用，服务多机房同活很容易，但是对于需要持久化的存储层则需要采用光纤直连，设置保证分布式多机房的情况，至少保证其中两个机房事务已经落盘，才返回给用户成功。当然会牺牲部分速度。</p>
+<p>高可用是架构设计上必须考虑的问题，主要是指减少系统因为某些不可抗拒原因带来的不可用时间。方法论：冗余部署+自动故障转移+自动服务降级+自动服务隔离等</p>
 
         <!--打赏模块-->
           
@@ -332,15 +436,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2015/04/12/本地服务器搭建/" class="pre-post btn btn-default" title='本地服务器搭建'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">本地服务器搭建</span>
-        </a>
     
-    
-        <a href="/2015/04/12/服务器防止ping配置/" class="next-post btn btn-default" title='服务器防止ping配置'>
+        <a href="/2018/04/18/SpringBoot2-0之WebFlux解析及实战/" class="next-post btn btn-default" title='SpringBoot2.0之WebFlux解析及实战'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">服务器防止ping配置</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">SpringBoot2.0之WebFlux解析及实战</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>

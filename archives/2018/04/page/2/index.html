@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>SpringBoot原生定时任务解析 | 程序猿升级课</title>
+<title>归档：2018/4 | 程序猿升级课</title>
 
 
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
@@ -148,159 +148,27 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content m-post">
-                    <p id="process"></p>
-<article class="post">
-    <div class="post-head">
-        <h1 id="SpringBoot原生定时任务解析">
-            
-	            SpringBoot原生定时任务解析
-            
-        </h1>
-        <div class="post-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/Spring-Boot">
-            Spring-Boot
-        </a>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-tags"></i>
-        <span class="tags-meta">
-            
-                
-                    <a href="/tags/Spring定时器" title='Spring定时器'>
-                        Spring定时器
-                    </a>
-                
-            
-        </span>
-    </span>
-    <!-- 添加作者-->
-    <span class="fa-wrap">
-        <i class="fa fa-user" aria-hidden="true"></i>
-        <span>
-            
-                liuxin
-             
-        </span>
-    </span>
-
-    
-
-    
+                <main class="col-md-8 main-content ">
+                    <div id="main">
+  <div id="post-list">
+    <ul class="archives-post-list">
+    	<h1 class="info">2018年 4月</h1>
         
-        <span class="fa-wrap">
-            <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2017/04/11</span>
-        </span>
-         <span id="busuanzi_container_page_pv">
-                              被围观:<span id="busuanzi_value_page_pv" ></span>次
-                            </span>
-    
-</div>
-
-            
-            
-    </div>
-    
-    <div class="post-body post-content">
-        <p>#SpringBoot原生定时任务，不需要引入任何依赖</p>
-<p>==只要了解，几个注解就可以使用==</p>
-<ul>
-<li>1.在启动类上加入@EnableScheduling标签</li>
-<li>2.在定时任务方法上加入@Schedule(fixedDelay=5000)</li>
-<li>3.就是如此简单，简单的不可想象</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> zebra.shjf;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ConfigurableApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.scheduling.annotation.EnableScheduling;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableScheduling</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestQuartzApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(TestQuartzApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScheduledTasks</span></span>&#123;</span><br><span class="line">    <span class="meta">@Scheduled</span>(fixedDelay = <span class="number">5000</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"当前时间："</span> + <span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-        <!--打赏模块-->
-          
-               <! -- 添加捐赠图标 -->
-<div class ="post-donate">
-    <div id="donate_board" class="donate_bar center">
-        <a id="btn_donate_a"  href="javascript:;" onclick="aClick()" title="打赏."></a>
-        <span class="donate_txt">
-           &uarr;<br>
-           如果您觉得文章对你有用,可以赏我一杯咖啡
-        </span>
-        <br>
-      </div>
-    <div id="donate_guide" class="donate_bar" >
-          <!-- 微信打赏图案 -->
-        <img src="http://otjenik28.bkt.clouddn.com/wwx.png"
-    </div>
-    <script type="text/javascript">
-       function aClick(){
-            <!--元素隐藏，但是原由位置不隐藏-->
-                        document.getElementById("donate_board").style.visibility="hidden";
-                         <!--隐藏原由位置-->
-                        document.getElementById("donate_board").style.display="none";
-                        document.getElementById("donate_board").style.marginRight='auto';
-             			document.getElementById("donate_board").style.marginLeft='auto';
-                        document.getElementById("donate_guide").style.visibility="visible";
-                        document.getElementById("donate_guide").style.display="inline";
-                        document.getElementById("donate_guide").style.marginRight='auto';
-             			document.getElementById("donate_guide").style.marginLeft='auto';
-
-        }
-    </script>
-</div>
-<! -- 添加捐赠图标 -->
-
-          
-    </div>
-
-    <div class="post-footer">
-        <div>
-            
-                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
-            
-        </div>
-        <div>
-            
-        </div>
-    </div>
-</article>
-
-<div class="article-nav prev-next-wrap clearfix">
-    
-        <a href="/2017/04/12/TCP-Keepalive解读/" class="pre-post btn btn-default" title='TCP-Keepalive解读'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">TCP-Keepalive解读</span>
-        </a>
-    
-    
-        <a href="/2017/03/12/SpringBoot优化方案/" class="next-post btn btn-default" title='SpringBoot优化方案'>
-            <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">SpringBoot优化方案</span><i class="fa fa-angle-right fa-fw"></i>
-        </a>
-    
-</div>
-
-
-    <div id="comments">
+          <li class="post-items" _href="/2018/04/11/Netty组件介绍/">
+            <h3 class="post-item-title">
+            	<a href="/2018/04/11/Netty组件介绍/"> Netty组件介绍 </a>
+            </h3>  
+          </li>
         
-	
-<div id="lv-container" data-id="city" data-uid="MTAyMC8zNTY3NC8xMjIxMA==">
-  <script type="text/javascript">
-     (function(d, s) {
-         var j, e = d.getElementsByTagName(s)[0];
-         if (typeof LivereTower === 'function') { return; }
-         j = d.createElement(s);
-         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-         j.async = true;
-         e.parentNode.insertBefore(j, e);
-     })(document, 'script');
-  </script>
+    </ul>
+  </div>
 </div>
 
-
-    </div>
+    <nav class="pagination" role="navigation">
+        <div id="page-nav">
+            <a class="extend prev" rel="prev" href="/archives/2018/04/"><i class='fa fa-angle-left'></i></a><a class="page-number" href="/archives/2018/04/">1</a><span class="page-number current">2</span>
+        </div>
+    </nav>
 
 
 
