@@ -36,7 +36,7 @@
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
 
 
-    <link rel="icon" href="http://lxchinesszz.gitee.io/chinesszz/favicon.ico">
+    <link rel="icon" href="https://lxchinesszz.gitee.io/chinesszz/favicon.ico">
 
     
 
@@ -52,7 +52,7 @@
     
 	<div class="hide">
 		<script type="text/javascript">
-			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " https://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
 		</script>
 	</div>
 
@@ -61,7 +61,9 @@
 
 
 
+
     
+
 </head>
 
 <script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
@@ -236,7 +238,7 @@
 <p>若设置，服务器在客户端连接空闲的时候，每90秒发送一次保活探测包到客户端，若没有及时收到客户端的TCP Keepalive ACK确认，将继续等待15秒*2=30秒。总之可以在90s+30s=120秒（两分钟）时间内可检测到连接失效与否。</p>
 <p>以下改动，需要写入到/etc/sysctl.conf文件：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.<span class="attribute">tcp_keepalive_time</span>=90</span><br><span class="line">net.ipv4.<span class="attribute">tcp_keepalive_intvl</span>=15</span><br><span class="line">net.ipv4.<span class="attribute">tcp_keepalive_probes</span>=2</span><br><span class="line">保存退出，然后执行sysctl -p生效。可通过 sysctl -a | grep keepalive 命令检测一下是否已经生效。</span><br><span class="line"></span><br><span class="line">针对已经设置SO_KEEPALIVE的套接字，应用程序不用重启，内核直接生效。</span><br></pre></td></tr></table></figure>
-<h6 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h6><p><a href="http://www.blogjava.net/yongboy/archive/2015/04/14/424413.html" target="_blank" rel="noopener">TCP Keepalive笔记</a></p>
+<h6 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h6><p><a href="https://www.blogjava.net/yongboy/archive/2015/04/14/424413.html" target="_blank" rel="noopener">TCP Keepalive笔记</a></p>
 
         <!--打赏模块-->
           
@@ -252,7 +254,7 @@
       </div>
     <div id="donate_guide" class="donate_bar" >
           <!-- 微信打赏图案 -->
-        <img src="http://otjenik28.bkt.clouddn.com/wwx.png"
+        <img src="https://otjenik28.bkt.clouddn.com/wwx.png"
     </div>
     <script type="text/javascript">
        function aClick(){
@@ -458,7 +460,7 @@
 </a>
 
 
-<!--page counter part统计文章字数,核心代码;来源:http://crescentmoon.info/2014/12/11/popular-widget/-->
+<!--page counter part统计文章字数,核心代码;来源:https://crescentmoon.info/2014/12/11/popular-widget/-->
 <script>
     function addCount (Counter) {
         url=$('.article-date').attr('href').trim();
@@ -527,6 +529,7 @@
         )
     });
 </script>
+
     <div class="copyright">
     <div class="container">
         <div class="row">

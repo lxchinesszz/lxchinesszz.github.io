@@ -36,7 +36,7 @@
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
 
 
-    <link rel="icon" href="http://lxchinesszz.gitee.io/chinesszz/favicon.ico">
+    <link rel="icon" href="https://lxchinesszz.gitee.io/chinesszz/favicon.ico">
 
     
 
@@ -52,7 +52,7 @@
     
 	<div class="hide">
 		<script type="text/javascript">
-			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " https://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
 		</script>
 	</div>
 
@@ -61,7 +61,9 @@
 
 
 
+
     
+
 </head>
 
 <script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
@@ -213,8 +215,8 @@
         <blockquote>
 <p>在学习Netty之前，建议首先学习一个NIO，对关键的NIO组件有一个清醒认识</p>
 </blockquote>
-<p><a href="http://www.jianshu.com/p/2124e919158a" target="_blank" rel="noopener">Buffer</a></p>
-<p><a href="http://blog.csdn.net/suifeng3051/article/details/48441629" target="_blank" rel="noopener">Selector</a></p>
+<p><a href="https://www.jianshu.com/p/2124e919158a" target="_blank" rel="noopener">Buffer</a></p>
+<p><a href="https://blog.csdn.net/suifeng3051/article/details/48441629" target="_blank" rel="noopener">Selector</a></p>
 <h2 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h2><ul>
 <li>Bootstrap or ServerBootstrap</li>
 <li>EventLoop</li>
@@ -241,9 +243,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ChannelPipeline cp = channel.pipeline(); </span><br><span class="line">cp.addLast(<span class="string">"encoder"</span>, <span class="keyword">new</span> HttpResponseEncoder());<span class="comment">//1.负责输出</span></span><br><span class="line">cp.addLast(<span class="string">"decoder"</span>, <span class="keyword">new</span> HttpRequestDecoder());<span class="comment">//2.负责把客户端的数据解码</span></span><br><span class="line">cp.addLast(<span class="string">"handler"</span>, <span class="keyword">new</span> HttpDispatchServerHandler());<span class="comment">//3.自定义的业务处理器</span></span><br></pre></td></tr></table></figure>
 <p>按照我们执行顺序肯定不是根据添加顺序来处理的，应该是:2,把客户端的数据解码-&gt;3.对解码数据处理-&gt;1.加密返回给客户端。</p>
 <p>那么 <code>Netty</code> 是怎么处理的呢？</p>
-<p><img src="http://img.blog.csdn.net/20140606105045406?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc3VpZmVuZzMwNTE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p><img src="https://img.blog.csdn.net/20140606105045406?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc3VpZmVuZzMwNTE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
 <p><em>ChannelHandler有两个子类ChannelInboundHandler和ChannelOutboundHandler，这两个类对应了两个数据流向，如果数据是从外部流入我们的应用程序，我们就看做是inbound，相反便是outbound</em></p>
-<p><img src="http://img.blog.csdn.net/20140606105113171?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc3VpZmVuZzMwNTE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p><img src="https://img.blog.csdn.net/20140606105113171?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc3VpZmVuZzMwNTE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
 <h3 id="ChannelInitializer"><a href="#ChannelInitializer" class="headerlink" title="ChannelInitializer"></a>ChannelInitializer</h3><p><em>顾名思义,这个就是channel初始化的容器，在这个里面设置处理器</em></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">ServerBootstrap bootstrap = <span class="keyword">new</span> ServerBootstrap();</span><br><span class="line">       bossGroup = <span class="keyword">new</span> NioEventLoopGroup();<span class="comment">//负责绑定channel到selector</span></span><br><span class="line">       workerGroup = <span class="keyword">new</span> NioEventLoopGroup();<span class="comment">//负责从selector中读取事件</span></span><br><span class="line">       bootstrap.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)</span><br><span class="line">               .localAddress(<span class="number">6969</span>).option(ChannelOption.CONNECT_TIMEOUT_MILLIS, <span class="number">10000</span>)</span><br><span class="line">               .childOption(ChannelOption.SO_KEEPALIVE, <span class="keyword">true</span>).childHandler(<span class="keyword">new</span> ChannelInitializer&lt;Channel&gt;() &#123;</span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(Channel channel)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">               ChannelPipeline cp = channel.pipeline();</span><br><span class="line">               cp.addLast(<span class="string">"idleStateHandler"</span>, <span class="keyword">new</span> IdleStateHandler(<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, TimeUnit.SECONDS));</span><br><span class="line">               cp.addLast(<span class="string">"decoder"</span>, <span class="keyword">new</span> HttpRequestDecoder());</span><br><span class="line">               cp.addLast(<span class="string">"encoder"</span>, <span class="keyword">new</span> HttpResponseEncoder());</span><br><span class="line">               cp.addLast(<span class="string">"aggregator"</span>, <span class="keyword">new</span> HttpObjectAggregator(<span class="number">1048576</span>));</span><br><span class="line">               cp.addLast(<span class="string">"deflater"</span>, <span class="keyword">new</span> HttpContentCompressor());</span><br><span class="line">               cp.addLast(<span class="string">"handler"</span>, <span class="keyword">new</span> HttpDispatchServerHandler());</span><br><span class="line">               cp.addLast(<span class="string">"out"</span>, <span class="keyword">new</span> AcceptorIdleStateTrigger());</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;).option(ChannelOption.SO_BACKLOG, <span class="number">128</span>);</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           channel = bootstrap.bind().awaitUninterruptibly().channel();</span><br><span class="line">           showBanner(<span class="number">6969</span>);</span><br><span class="line">       &#125; <span class="keyword">catch</span> (Exception ie) &#123;</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(ie);</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
 <p>###ChannelFuture</p>
@@ -284,7 +286,7 @@
       </div>
     <div id="donate_guide" class="donate_bar" >
           <!-- 微信打赏图案 -->
-        <img src="http://otjenik28.bkt.clouddn.com/wwx.png"
+        <img src="https://otjenik28.bkt.clouddn.com/wwx.png"
     </div>
     <script type="text/javascript">
        function aClick(){
@@ -490,7 +492,7 @@
 </a>
 
 
-<!--page counter part统计文章字数,核心代码;来源:http://crescentmoon.info/2014/12/11/popular-widget/-->
+<!--page counter part统计文章字数,核心代码;来源:https://crescentmoon.info/2014/12/11/popular-widget/-->
 <script>
     function addCount (Counter) {
         url=$('.article-date').attr('href').trim();
@@ -559,6 +561,7 @@
         )
     });
 </script>
+
     <div class="copyright">
     <div class="container">
         <div class="row">

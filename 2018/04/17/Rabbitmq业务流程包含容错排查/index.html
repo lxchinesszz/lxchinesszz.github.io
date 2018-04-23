@@ -36,7 +36,7 @@
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
 
 
-    <link rel="icon" href="http://lxchinesszz.gitee.io/chinesszz/favicon.ico">
+    <link rel="icon" href="https://lxchinesszz.gitee.io/chinesszz/favicon.ico">
 
     
 
@@ -52,7 +52,7 @@
     
 	<div class="hide">
 		<script type="text/javascript">
-			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " https://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
 		</script>
 	</div>
 
@@ -61,7 +61,9 @@
 
 
 
+
     
+
 </head>
 
 <script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
@@ -210,7 +212,7 @@
     </div>
     
     <div class="post-body post-content">
-        <p><img src="http://img.blog.csdn.net/20160914121955203" alt=""></p>
+        <p><img src="https://img.blog.csdn.net/20160914121955203" alt=""></p>
 <blockquote>
 <p>流程是这样的，订阅者，发送消息到test交换机，通过route key 分发到绑定的队列，这里涉及到交换机的类型，可以看我上一篇文章。如果没有匹配到这个routeKey就默认发送到AE交换机(fanout模式)，这个交换机要设置<code>internal:true</code>意为内部交换机 。AE交换机再把错误的消息，发送到其绑定的队列中，如果test交换机，发送消息被匹配到的队里中，而处理该队列的订阅者，拒绝了或者超时了处理，test交换机就将该消息发送到就死信交换机，然后到死信队列中</p>
 </blockquote>
@@ -226,12 +228,12 @@
 </ul>
 <figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> FanoutExchange fanoutExchange=<span class="keyword">new</span> <span class="type">FanoutExchange</span>(<span class="string">"alter"</span>);</span><br><span class="line">fanoutExchange.setInternal(<span class="literal">true</span>);<span class="comment">//设置为内部交换机，作为处理了非法的消息,无法匹配到route key的消息</span></span><br></pre></td></tr></table></figure>
 <pre><code>- 为AE交换机绑定队列 `alter_message`
-</code></pre><p><img src="http://otjenik28.bkt.clouddn.com/AE%E4%BA%A4%E6%8D%A2%E6%9C%BA.png" alt=""></p>
+</code></pre><p><img src="https://otjenik28.bkt.clouddn.com/AE%E4%BA%A4%E6%8D%A2%E6%9C%BA.png" alt=""></p>
 <ul>
 <li>2.设置处理正常的交换机 <code>test</code></li>
 </ul>
 <p>绑定参数,设置没有匹配 <code>route key</code> 的消息发送到AE交换机 <code>alternate-exchange</code></p>
-<p><img src="http://otjenik28.bkt.clouddn.com/%E6%AD%A3%E5%B8%B8%E4%BA%A4%E6%8D%A2%E6%9C%BA.png" alt=""></p>
+<p><img src="https://otjenik28.bkt.clouddn.com/%E6%AD%A3%E5%B8%B8%E4%BA%A4%E6%8D%A2%E6%9C%BA.png" alt=""></p>
 <ul>
 <li><p>3.添加正常的队列</p>
 <ul>
@@ -251,13 +253,13 @@
 </ul>
 </li>
 </ul>
-<p><img src="http://otjenik28.bkt.clouddn.com/%E6%AD%BB%E4%BF%A1%E4%BA%A4%E6%8D%A2%E6%9C%BA.png" alt="死信交换机"></p>
-<p><img src="http://otjenik28.bkt.clouddn.com/%E6%A8%A1%E6%8B%9F%E6%8E%A8%E5%90%91%E6%AD%BB%E4%BF%A1%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E9%98%9F%E5%88%97%E8%AE%BE%E7%BD%AE.png" alt="模拟死信队列"></p>
+<p><img src="https://otjenik28.bkt.clouddn.com/%E6%AD%BB%E4%BF%A1%E4%BA%A4%E6%8D%A2%E6%9C%BA.png" alt="死信交换机"></p>
+<p><img src="https://otjenik28.bkt.clouddn.com/%E6%A8%A1%E6%8B%9F%E6%8E%A8%E5%90%91%E6%AD%BB%E4%BF%A1%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E9%98%9F%E5%88%97%E8%AE%BE%E7%BD%AE.png" alt="模拟死信队列"></p>
 <h3 id="代码实例-Python"><a href="#代码实例-Python" class="headerlink" title="代码实例 Python"></a>代码实例 <code>Python</code></h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import pika</span><br><span class="line"></span><br><span class="line"><span class="meta">#认证，生产者</span></span><br><span class="line">credentials = pika.PlainCredentials(<span class="string">'guest'</span>, <span class="string">'guest'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#链接rabbit服务器（localhost是本机，如果是其他服务器请修改为ip地址）</span></span><br><span class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(<span class="string">'127.0.0.1'</span>,<span class="number">5672</span>,<span class="string">'/'</span>,credentials))</span><br><span class="line"></span><br><span class="line"><span class="meta">#通过tcp协议获取一个连接</span></span><br><span class="line">channel = connection.channel()</span><br><span class="line"></span><br><span class="line"><span class="meta">#声明一个对下列和贾环加</span></span><br><span class="line"><span class="meta">#channel.queue_declare(queue='hello')</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#被hello接受了</span></span><br><span class="line">channel.basic_publish(exchange=<span class="string">'test'</span>,</span><br><span class="line">                  routing_key=<span class="string">'hello'</span>,</span><br><span class="line">                  body=<span class="string">'Hello World!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">#发送了一个没有匹配的消息，匹配到了alter_message</span></span><br><span class="line">channel.basic_publish(exchange=<span class="string">'test'</span>,</span><br><span class="line">                  routing_key=<span class="string">'hello12312'</span>,</span><br><span class="line">                  body=<span class="string">'Hello World!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">#模拟一条虽然能被匹配到，但是无法消费的消息，然后被发送到死信队列消息</span></span><br><span class="line">channel.basic_publish(exchange=<span class="string">'test'</span>,</span><br><span class="line">                  routing_key=<span class="string">'task_queue'</span>,</span><br><span class="line">                  body=<span class="string">'Hello World!'</span>)</span><br></pre></td></tr></table></figure>
 <ul>
-<li>正常队列<br><img src="http://otjenik28.bkt.clouddn.com/%E6%AD%A3%E5%B8%B8%E9%98%9F%E5%88%97.png" alt=""></li>
-<li>没有匹配到的到<br><img src="http://otjenik28.bkt.clouddn.com/%E6%8B%92%E7%BB%9D%E9%98%9F%E5%88%97.png" alt=""></li>
-<li>被拒绝或者超时进入私信队列的<br><img src="http://otjenik28.bkt.clouddn.com/%E6%AD%BB%E4%BF%A1%E9%98%9F%E5%88%97.png" alt=""></li>
+<li>正常队列<br><img src="https://otjenik28.bkt.clouddn.com/%E6%AD%A3%E5%B8%B8%E9%98%9F%E5%88%97.png" alt=""></li>
+<li>没有匹配到的到<br><img src="https://otjenik28.bkt.clouddn.com/%E6%8B%92%E7%BB%9D%E9%98%9F%E5%88%97.png" alt=""></li>
+<li>被拒绝或者超时进入私信队列的<br><img src="https://otjenik28.bkt.clouddn.com/%E6%AD%BB%E4%BF%A1%E9%98%9F%E5%88%97.png" alt=""></li>
 </ul>
 <h3 id="使用代码去创建队列和交换机-Java"><a href="#使用代码去创建队列和交换机-Java" class="headerlink" title="使用代码去创建队列和交换机 Java"></a>使用代码去创建队列和交换机 <code>Java</code></h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> ConnectionFactory connectionFactory() throws Exception &#123;</span><br><span class="line">    CachingConnectionFactory connectionFactory = <span class="keyword">new</span> CachingConnectionFactory(<span class="string">"127.0.0.1"</span>, <span class="number">5672</span>);</span><br><span class="line">    connectionFactory.setUsername(<span class="string">"liuxin"</span>);</span><br><span class="line">    connectionFactory.setPassword(<span class="string">"930914lx"</span>);</span><br><span class="line">    connectionFactory.setVirtualHost(<span class="string">"az"</span>);</span><br><span class="line">    connectionFactory.setPublisherConfirms(<span class="literal">true</span>); <span class="comment">// 必须要设置回调</span></span><br><span class="line"></span><br><span class="line">    Channel channel = connectionFactory.createConnection().createChannel(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//String exchange, String type, boolean durable, boolean autoDelete, Map&lt;String, Object&gt; arguments</span></span><br><span class="line">    Map&lt;<span class="built_in">String</span>, <span class="built_in">Object</span>&gt; <span class="built_in">arguments</span> = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="built_in">arguments</span>.put(<span class="string">"internal"</span>,<span class="literal">true</span>);</span><br><span class="line">    <span class="comment">//String queue, boolean durable, boolean exclusive, boolean autoDelete, Map&lt;String, Object&gt; arguments</span></span><br><span class="line">    <span class="comment">//设置AE交换机</span></span><br><span class="line">    channel.exchangeDeclare(<span class="string">"alter"</span>, <span class="string">"fanout"</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="built_in">arguments</span>);</span><br><span class="line">    channel.queueDeclare(<span class="string">"alter_message"</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">null</span>);</span><br><span class="line">    channel.queueBind(<span class="string">"alter_message"</span>, <span class="string">"alter"</span>, <span class="string">""</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//声明死信交换机并绑定</span></span><br><span class="line">    channel.exchangeDeclare(<span class="string">"dead_letter_exchange"</span>, <span class="string">"direct"</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">null</span>);</span><br><span class="line">    channel.queueDeclare(<span class="string">"dead"</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">null</span>);</span><br><span class="line">    channel.queueBind(<span class="string">"dead"</span>, <span class="string">"dead_letter_exchange"</span>, <span class="string">"task_queue.fail"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">arguments</span> = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="built_in">arguments</span>.put(<span class="string">"alternate-exchange"</span>, <span class="string">"alter"</span>);<span class="comment">//指定AE交换机</span></span><br><span class="line">    channel.exchangeDeclare(<span class="string">"test"</span>, <span class="string">"direct"</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="built_in">arguments</span>);</span><br><span class="line">    <span class="comment">//声明接受正式的队列，不需要参数</span></span><br><span class="line">    channel.queueDeclare(<span class="string">"hello"</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">null</span>);</span><br><span class="line">    channel.queueBind(<span class="string">"hello"</span>, <span class="string">"test"</span>, <span class="string">"hello"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">arguments</span> = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="built_in">arguments</span>.put(<span class="string">"x-dead-letter-exchange"</span>, <span class="string">"dead_letter_exchange"</span>);</span><br><span class="line">    <span class="built_in">arguments</span>.put(<span class="string">"x-dead-letter-routing-key"</span>, <span class="string">"task_queue.fail"</span>);</span><br><span class="line">    <span class="built_in">arguments</span>.put(<span class="string">"x-message-ttl"</span>,<span class="number">6000</span>);<span class="comment">//6s没有被处理，就死了</span></span><br><span class="line">    <span class="comment">//设置测试死信队列的task_queue，推送该队列里面，被拒绝会到dead_letter_exchange，并最终到dead，routeKey，task_queue.fail 为并设置死信队列参数</span></span><br><span class="line">    channel.queueDeclare(<span class="string">"task_queue"</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="built_in">arguments</span>);</span><br><span class="line">    channel.queueBind(<span class="string">"task_queue"</span>, <span class="string">"test"</span>, <span class="string">"task_queue"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> connectionFactory;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 接受消息的监听，这个监听客户交易流水的消息</span></span><br><span class="line"><span class="comment"> * 针对消费者配置</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @return</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> SimpleMessageListenerContainer messageContainer1(ConnectionFactory connectionFactory, PayMentConsumeImpl transactionConsume) &#123;</span><br><span class="line">    SimpleMessageListenerContainer container = <span class="keyword">new</span> SimpleMessageListenerContainer(connectionFactory);</span><br><span class="line">    container.addQueueNames(<span class="string">"hello"</span>);</span><br><span class="line">    container.setExposeListenerChannel(<span class="literal">true</span>);</span><br><span class="line">    container.setMaxConcurrentConsumers(<span class="number">8</span>);</span><br><span class="line">    container.setConcurrentConsumers(<span class="number">4</span>);</span><br><span class="line">    container.setAcknowledgeMode(AcknowledgeMode.MANUAL); <span class="comment">//设置确认模式手工确认,当设置了此模式，必须返回ACK，否则会进入死信队列</span></span><br><span class="line">    container.setMessageListener(transactionConsume);</span><br><span class="line">    container.setPrefetchCount(<span class="number">1000</span>);</span><br><span class="line">    <span class="keyword">return</span> container;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -275,7 +277,7 @@
       </div>
     <div id="donate_guide" class="donate_bar" >
           <!-- 微信打赏图案 -->
-        <img src="http://otjenik28.bkt.clouddn.com/wwx.png"
+        <img src="https://otjenik28.bkt.clouddn.com/wwx.png"
     </div>
     <script type="text/javascript">
        function aClick(){
@@ -481,7 +483,7 @@
 </a>
 
 
-<!--page counter part统计文章字数,核心代码;来源:http://crescentmoon.info/2014/12/11/popular-widget/-->
+<!--page counter part统计文章字数,核心代码;来源:https://crescentmoon.info/2014/12/11/popular-widget/-->
 <script>
     function addCount (Counter) {
         url=$('.article-date').attr('href').trim();
@@ -550,6 +552,7 @@
         )
     });
 </script>
+
     <div class="copyright">
     <div class="container">
         <div class="row">

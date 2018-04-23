@@ -36,7 +36,7 @@
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
 
 
-    <link rel="icon" href="http://lxchinesszz.gitee.io/chinesszz/favicon.ico">
+    <link rel="icon" href="https://lxchinesszz.gitee.io/chinesszz/favicon.ico">
 
     
 
@@ -52,7 +52,7 @@
     
 	<div class="hide">
 		<script type="text/javascript">
-			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " https://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
 		</script>
 	</div>
 
@@ -61,7 +61,9 @@
 
 
 
+
     
+
 </head>
 
 <script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
@@ -217,7 +219,7 @@
 <li>量化分析 <code>Visualize</code></li>
 <li>仪表盘   <code>Dashboard</code></li>
 </ul>
-<h3 id="Logstash正则"><a href="#Logstash正则" class="headerlink" title="Logstash正则"></a>Logstash正则</h3><p><a href="http://grokdebug.herokuapp.com/" target="_blank" rel="noopener">匹配正则工具</a><br><a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html" target="_blank" rel="noopener">官方文档</a></p>
+<h3 id="Logstash正则"><a href="#Logstash正则" class="headerlink" title="Logstash正则"></a>Logstash正则</h3><p><a href="https://grokdebug.herokuapp.com/" target="_blank" rel="noopener">匹配正则工具</a><br><a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html" target="_blank" rel="noopener">官方文档</a></p>
 <p>在<code>logstash</code>目录 mkdir patterns</p>
 <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># contents <span class="keyword">of</span> ./patterns/postfix:</span><br><span class="line">STR [a-zA-Z]&#123;<span class="number">1</span>,&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">  file &#123;</span><br><span class="line">       <span class="built_in"> type </span>=&gt; <span class="string">"order_shenghuojiaofei"</span></span><br><span class="line">truepath =&gt; <span class="string">"/Users/liuxin/rabbitmql_pro.log"</span></span><br><span class="line">        &#125;</span><br><span class="line"> &#125;</span><br><span class="line">filter &#123;</span><br><span class="line">  grok &#123;</span><br><span class="line">  		patterns_dir =&gt; [<span class="string">"./patterns"</span>]</span><br><span class="line">        match =&gt; &#123; <span class="string">"message"</span> =&gt; <span class="string">"%&#123;STR:logLevel&#125; %&#123;STR:packName&#125;.%&#123;STR:thread&#125;.%&#123;STR:className&#125; %&#123;STR:date&#125;"</span> &#125;</span><br><span class="line">true&#125;</span><br><span class="line">       &#125;</span><br><span class="line">output &#123;</span><br><span class="line">trueelasticsearch &#123;</span><br><span class="line">truetruehosts =&gt; <span class="string">"127.0.0.1:9200"</span></span><br><span class="line">truetrueindex =&gt; <span class="string">"order_shenghuojiaofei-%&#123;type&#125;-%&#123;+YYYY.MM.dd&#125;"</span></span><br><span class="line">truetruetemplate_overwrite =&gt; <span class="literal">true</span></span><br><span class="line">truetrue      &#125;</span><br><span class="line">true &#125;</span><br></pre></td></tr></table></figure>
@@ -232,9 +234,9 @@
 <p>VI. 分组查询</p>
 <figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">分组</span><br><span class="line">(firstname:H* OR age:<span class="number">20</span>) AND <span class="keyword">state</span>:KS      先查询名字H开头年龄或者是<span class="number">20</span>的结果，然后再与国家是KS的结合</span><br><span class="line">字段分组</span><br><span class="line">firstname:(+H* -He*)        搜索firstname字段里H开头的结果，并且排除firstname里He开头的结果</span><br></pre></td></tr></table></figure>
 <h3 id="量化分析"><a href="#量化分析" class="headerlink" title="量化分析"></a>量化分析</h3><p>点击发现 <code>Discover</code> 输入查询条件 鼠标放置在字段上会添加展示改字段</p>
-<p><a href="http://blog.csdn.net/u010859707/article/details/70164557" target="_blank" rel="noopener">Kibana参考文档</a></p>
+<p><a href="https://blog.csdn.net/u010859707/article/details/70164557" target="_blank" rel="noopener">Kibana参考文档</a></p>
 <h3 id="仪表盘"><a href="#仪表盘" class="headerlink" title="仪表盘"></a>仪表盘</h3><p><code>Visualize</code> 生成的报表信息，可以保存，放置在仪表盘里面展示</p>
-<p><img src="http://otjenik28.bkt.clouddn.com/Kibana.png" alt=""></p>
+<p><img src="https://otjenik28.bkt.clouddn.com/Kibana.png" alt=""></p>
 
         <!--打赏模块-->
           
@@ -250,7 +252,7 @@
       </div>
     <div id="donate_guide" class="donate_bar" >
           <!-- 微信打赏图案 -->
-        <img src="http://otjenik28.bkt.clouddn.com/wwx.png"
+        <img src="https://otjenik28.bkt.clouddn.com/wwx.png"
     </div>
     <script type="text/javascript">
        function aClick(){
@@ -456,7 +458,7 @@
 </a>
 
 
-<!--page counter part统计文章字数,核心代码;来源:http://crescentmoon.info/2014/12/11/popular-widget/-->
+<!--page counter part统计文章字数,核心代码;来源:https://crescentmoon.info/2014/12/11/popular-widget/-->
 <script>
     function addCount (Counter) {
         url=$('.article-date').attr('href').trim();
@@ -525,6 +527,7 @@
         )
     });
 </script>
+
     <div class="copyright">
     <div class="container">
         <div class="row">

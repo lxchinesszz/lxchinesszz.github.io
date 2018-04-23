@@ -36,7 +36,7 @@
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
 
 
-    <link rel="icon" href="http://lxchinesszz.gitee.io/chinesszz/favicon.ico">
+    <link rel="icon" href="https://lxchinesszz.gitee.io/chinesszz/favicon.ico">
 
     
 
@@ -52,7 +52,7 @@
     
 	<div class="hide">
 		<script type="text/javascript">
-			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " https://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
 		</script>
 	</div>
 
@@ -61,7 +61,9 @@
 
 
 
+
     
+
 </head>
 
 <script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
@@ -235,8 +237,8 @@
 <blockquote>
 <p>引入断路器 Rabbion中引入Hystrix</p>
 </blockquote>
-<pre><code><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputeService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    RestTemplate restTemplate;</span><br><span class="line">    <span class="meta">@HystrixCommand(fallbackMethod = <span class="meta-string">"addServiceFallback"</span>)</span></span><br><span class="line">    <span class="keyword">public</span> String addService() &#123;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.getForEntity(<span class="string">"http://COMPUTE-SERVICE/add?a=10&amp;b=20"</span>, String.<span class="keyword">class</span>).getBody();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String addServiceFallback() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"error"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/4279695-00840cf246604c16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="架构图"></p>
+<pre><code><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputeService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    RestTemplate restTemplate;</span><br><span class="line">    <span class="meta">@HystrixCommand(fallbackMethod = <span class="meta-string">"addServiceFallback"</span>)</span></span><br><span class="line">    <span class="keyword">public</span> String addService() &#123;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.getForEntity(<span class="string">"https://COMPUTE-SERVICE/add?a=10&amp;b=20"</span>, String.<span class="keyword">class</span>).getBody();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String addServiceFallback() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"error"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/4279695-00840cf246604c16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="架构图"></p>
 
         <!--打赏模块-->
           
@@ -252,7 +254,7 @@
       </div>
     <div id="donate_guide" class="donate_bar" >
           <!-- 微信打赏图案 -->
-        <img src="http://otjenik28.bkt.clouddn.com/wwx.png"
+        <img src="https://otjenik28.bkt.clouddn.com/wwx.png"
     </div>
     <script type="text/javascript">
        function aClick(){
@@ -289,15 +291,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2017/04/12/Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)/" class="pre-post btn btn-default" title='Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)'>
+        <a href="/2017/04/12/Spring整合Quartz2-1-1/" class="pre-post btn btn-default" title='Spring整合Quartz2.1.1'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">Spring整合Quartz2.1.1(执行中，得到application上下文，执行bean方法)</span>
+            <span class="hidden-xs">Spring整合Quartz2.1.1</span>
         </a>
     
     
-        <a href="/2017/04/12/Spring整合Quartz2-1-1/" class="next-post btn btn-default" title='Spring整合Quartz2.1.1'>
+        <a href="/2017/04/12/SpringBoot整合Quartz-动态读取任务执行/" class="next-post btn btn-default" title='SpringBoot整合Quartz-动态读取任务执行'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">Spring整合Quartz2.1.1</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">SpringBoot整合Quartz-动态读取任务执行</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
@@ -458,7 +460,7 @@
 </a>
 
 
-<!--page counter part统计文章字数,核心代码;来源:http://crescentmoon.info/2014/12/11/popular-widget/-->
+<!--page counter part统计文章字数,核心代码;来源:https://crescentmoon.info/2014/12/11/popular-widget/-->
 <script>
     function addCount (Counter) {
         url=$('.article-date').attr('href').trim();
@@ -527,6 +529,7 @@
         )
     });
 </script>
+
     <div class="copyright">
     <div class="container">
         <div class="row">

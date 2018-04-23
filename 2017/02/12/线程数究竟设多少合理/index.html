@@ -36,7 +36,7 @@
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
 
 
-    <link rel="icon" href="http://lxchinesszz.gitee.io/chinesszz/favicon.ico">
+    <link rel="icon" href="https://lxchinesszz.gitee.io/chinesszz/favicon.ico">
 
     
 
@@ -52,7 +52,7 @@
     
 	<div class="hide">
 		<script type="text/javascript">
-			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " https://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
 		</script>
 	</div>
 
@@ -61,7 +61,9 @@
 
 
 
+
     
+
 </head>
 
 <script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
@@ -228,7 +230,7 @@
 <p>3）通常来说，Worker线程一般不会一直占用CPU进行计算，此时即使CPU是单核，增加Worker线程也能够提高并发，因为这个线程在休息的时候，其他的线程可以继续工作</p>
 <h3 id="三、常见服务线程模型"><a href="#三、常见服务线程模型" class="headerlink" title="三、常见服务线程模型"></a>三、常见服务线程模型</h3><p>了解常见的服务线程模型，有助于理解服务并发的原理，一般来说互联网常见的服务线程模型有如下两种</p>
 <p><strong>IO线程与工作线程通过队列解耦类模型</strong></p>
-<p><img src="http://mmbiz.qpic.cn/mmbiz/YrezxckhYOxxdwicwqAoloPIfAMycKW160iciaY0RV9GHHLbOoMyEhj4kAicViaSMZQYxybjzFFIQfSmbRd3oTpQuIA/640" alt=""></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/YrezxckhYOxxdwicwqAoloPIfAMycKW160iciaY0RV9GHHLbOoMyEhj4kAicViaSMZQYxybjzFFIQfSmbRd3oTpQuIA/640" alt=""></p>
 <p>如上图，大部分Web-Server与服务框架都是使用这样的一种“IO线程与Worker线程通过队列解耦”类线程模型：</p>
 <p>1）<strong>有少数几个IO线程</strong>监听上游发过来的请求，并进行收发包（生产者）</p>
 <p>2）<strong>有一个或者多个任务队列</strong>，作为IO线程与Worker线程异步解耦的数据传输通道（临界资源）</p>
@@ -239,7 +241,7 @@
 <p>2）程序员更习惯写同步代码，callback的方式对代码的可读性有冲击，对程序员的要求也更高</p>
 <p>3）框架更复杂，往往需要server端收发组件，server端队列，client端收发组件，client端队列，上下文管理组件，有限状态机组件，超时管理组件的支持<br>however，这个模型不是今天讨论的重点。</p>
 <h4 id="四、工作线程的工作模式"><a href="#四、工作线程的工作模式" class="headerlink" title="四、工作线程的工作模式"></a>四、工作线程的工作模式</h4><p>了解工作线程的工作模式，对量化分析线程数的设置非常有帮助：</p>
-<p><img src="http://mmbiz.qpic.cn/mmbiz/YrezxckhYOxxdwicwqAoloPIfAMycKW16qTYL2nyXku8PkxicFEuJSQCFmwZtZOoOeTicjx4lBdp2TjvRItJInpNQ/640" alt=""></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/YrezxckhYOxxdwicwqAoloPIfAMycKW16qTYL2nyXku8PkxicFEuJSQCFmwZtZOoOeTicjx4lBdp2TjvRItJInpNQ/640" alt=""></p>
 <p>上图是一个典型的工作线程的处理过程，从开始处理start到结束处理end，该任务的处理共有7个步骤：</p>
 <p>1）从工作队列里拿出任务，进行一些本地初始化计算，例如http协议分析、参数解析、参数校验等</p>
 <p>2）访问<strong>cache</strong>拿一些数据</p>
@@ -271,7 +273,7 @@
 <h3 id="六、结论"><a href="#六、结论" class="headerlink" title="六、结论"></a>六、结论</h3><font color="croci"><b><br>N核服务器，通过执行业务的单线程分析出本地计算时间为x，等待时间为y，<br>则工作线程数（线程池线程数）<br>设置为 <strong>N*(x+y)/x</strong>，<br>能让CPU的利用率最大化。</b></font>
 
 <blockquote>
-<p>开源中国<a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=404369373&amp;idx=1&amp;sn=cab2ac9ec0edf92e744a2329662b16cd&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">原文</a></p>
+<p>开源中国<a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=404369373&amp;idx=1&amp;sn=cab2ac9ec0edf92e744a2329662b16cd&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">原文</a></p>
 </blockquote>
 
         <!--打赏模块-->
@@ -288,7 +290,7 @@
       </div>
     <div id="donate_guide" class="donate_bar" >
           <!-- 微信打赏图案 -->
-        <img src="http://otjenik28.bkt.clouddn.com/wwx.png"
+        <img src="https://otjenik28.bkt.clouddn.com/wwx.png"
     </div>
     <script type="text/javascript">
        function aClick(){
@@ -494,7 +496,7 @@
 </a>
 
 
-<!--page counter part统计文章字数,核心代码;来源:http://crescentmoon.info/2014/12/11/popular-widget/-->
+<!--page counter part统计文章字数,核心代码;来源:https://crescentmoon.info/2014/12/11/popular-widget/-->
 <script>
     function addCount (Counter) {
         url=$('.article-date').attr('href').trim();
@@ -563,6 +565,7 @@
         )
     });
 </script>
+
     <div class="copyright">
     <div class="container">
         <div class="row">

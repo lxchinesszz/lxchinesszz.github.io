@@ -36,7 +36,7 @@
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
 
 
-    <link rel="icon" href="http://lxchinesszz.gitee.io/chinesszz/favicon.ico">
+    <link rel="icon" href="https://lxchinesszz.gitee.io/chinesszz/favicon.ico">
 
     
 
@@ -52,7 +52,7 @@
     
 	<div class="hide">
 		<script type="text/javascript">
-			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " https://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
 		</script>
 	</div>
 
@@ -61,7 +61,9 @@
 
 
 
+
     
+
 </head>
 
 <script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
@@ -211,7 +213,7 @@
     
     <div class="post-body post-content">
         <p>SpringCloud集群负载均衡及全链路监控</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/1524386131941ad98fd6d92" alt=""></p>
+<p><img src="https://p3.pstatp.com/large/pgc-image/1524386131941ad98fd6d92" alt=""></p>
 <blockquote>
 <p>东方既白是小编我的头条号，想获取到源码地主的童鞋，可以关注小编，私信发送，[SpringCloud架构]即可获取到GITHUB源码地址，最后谢谢您的阅读，小编会每天为你分享一点小知识，谢谢您的关注。</p>
 </blockquote>
@@ -273,45 +275,45 @@
 </li>
 </ol>
 <p>10.1 阿里云基础架构</p>
-<h3 id="框架目录"><a href="#框架目录" class="headerlink" title="框架目录"></a>框架目录</h3><p><img src="http://p3.pstatp.com/large/pgc-image/1524386268001fa3d7ed585" alt=""></p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/15243862797652a230b534a" alt=""></p>
+<h3 id="框架目录"><a href="#框架目录" class="headerlink" title="框架目录"></a>框架目录</h3><p><img src="https://p3.pstatp.com/large/pgc-image/1524386268001fa3d7ed585" alt=""></p>
+<p><img src="https://p3.pstatp.com/large/pgc-image/15243862797652a230b534a" alt=""></p>
 <h4 id="1-以集群的方式启动Eureka"><a href="#1-以集群的方式启动Eureka" class="headerlink" title="1.以集群的方式启动Eureka"></a>1.以集群的方式启动Eureka</h4><p>登录账号: blm 密码: blm123</p>
 <p>Spring-learning-eureka-01 端口: 10001 注册实例名: eureka-service-01 应用名:eureka-service</p>
 <p>Spring-learning-eureka-01 端口: 10002 注册实例名: eureka-service-02 应用名:eureka-service</p>
-<p><img src="http://p1.pstatp.com/large/pgc-image/1524386394795aad7dc74df" alt=""></p>
+<p><img src="https://p1.pstatp.com/large/pgc-image/1524386394795aad7dc74df" alt=""></p>
 <h4 id="2-注册服务"><a href="#2-注册服务" class="headerlink" title="2.注册服务"></a>2.注册服务</h4><p>Spring-learning-service-01 端口: 20001 注册实例名: eureka-provider-service-01 应用名:eureka-provider-service</p>
 <p>Spring-learning-service-02 端口: 20002 注册实例名: eureka-provider-service-02 应用名:eureka-provider-service</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/15243864272609cd459f95f" alt=""></p>
+<p><img src="https://p3.pstatp.com/large/pgc-image/15243864272609cd459f95f" alt=""></p>
 <p>注意:</p>
 <p>当注册实例名都为eureka-provider-service时候就启动了负载均衡,从注册中查询服务</p>
-<p><img src="http://p1.pstatp.com/large/pgc-image/15243864628828a76f9a333" alt=""></p>
+<p><img src="https://p1.pstatp.com/large/pgc-image/15243864628828a76f9a333" alt=""></p>
 <h4 id="3-Ribbon目录做负载均衡-及熔断错误"><a href="#3-Ribbon目录做负载均衡-及熔断错误" class="headerlink" title="3.Ribbon目录做负载均衡,及熔断错误"></a>3.Ribbon目录做负载均衡,及熔断错误</h4><p>Spring-learning-ribbon-consume 端口: 30000 注册实例: eureka-ribbon 应用名: eureka-ribbon</p>
 <p>建议注册名和应用名统一命名,ribbon会根据spring.application.name知道服务地址,也就是应用名</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/152438651819504b350bdf0" alt=""></p>
+<p><img src="https://p3.pstatp.com/large/pgc-image/152438651819504b350bdf0" alt=""></p>
 <h4 id="提供测试DTO"><a href="#提供测试DTO" class="headerlink" title="提供测试DTO"></a>提供测试DTO</h4><p>Spring-learning-model</p>
 <p>如果用idea导入,service-01和02依赖改模块,需要添加该模块</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/1524386542273ac5ca9705a" alt=""></p>
-<h4 id="5-Hystrix演示"><a href="#5-Hystrix演示" class="headerlink" title="5.Hystrix演示"></a>5.Hystrix演示</h4><p><img src="http://p1.pstatp.com/large/pgc-image/15243865663296e1931549b" alt=""></p>
+<p><img src="https://p3.pstatp.com/large/pgc-image/1524386542273ac5ca9705a" alt=""></p>
+<h4 id="5-Hystrix演示"><a href="#5-Hystrix演示" class="headerlink" title="5.Hystrix演示"></a>5.Hystrix演示</h4><p><img src="https://p1.pstatp.com/large/pgc-image/15243865663296e1931549b" alt=""></p>
 <ul>
 <li>负载均衡操作<br>均匀分散在 eureka-provider-service 暴路的地址</li>
 </ul>
-<p><img src="http://p3.pstatp.com/large/pgc-image/1524386605198e4354cd70d" alt=""><br><img src="http://p9.pstatp.com/large/pgc-image/15243866192259109714f84" alt=""></p>
+<p><img src="https://p3.pstatp.com/large/pgc-image/1524386605198e4354cd70d" alt=""><br><img src="https://p9.pstatp.com/large/pgc-image/15243866192259109714f84" alt=""></p>
 <h4 id="5-1-熔断聚合及监控"><a href="#5-1-熔断聚合及监控" class="headerlink" title="5.1 熔断聚合及监控"></a>5.1 熔断聚合及监控</h4><p>Spring-learning-ribbon-consume加入熔断依赖,</p>
-<p><img src="http://p9.pstatp.com/large/pgc-image/1524386700526ee3e2f2091" alt=""><br>启动类添加@EnableCircuitBreaker就可访问<br><img src="http://p3.pstatp.com/large/pgc-image/1524386724034e018479979" alt=""></p>
+<p><img src="https://p9.pstatp.com/large/pgc-image/1524386700526ee3e2f2091" alt=""><br>启动类添加@EnableCircuitBreaker就可访问<br><img src="https://p3.pstatp.com/large/pgc-image/1524386724034e018479979" alt=""></p>
 <p>如果要访问页面,要新添加依赖,并在启动类,添加@EnableHystrixDashboard</p>
-<p><img src="http://p1.pstatp.com/large/pgc-image/15243867454942f435a14b9" alt=""></p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/1524386772171a667d3460c" alt=""></p>
+<p><img src="https://p1.pstatp.com/large/pgc-image/15243867454942f435a14b9" alt=""></p>
+<p><img src="https://p3.pstatp.com/large/pgc-image/1524386772171a667d3460c" alt=""></p>
 <p>即可访问</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/1524386789721531186f07e" alt=""></p>
-<p>关闭Spring-learning-service-01和-02然后调动<a href="http://blm:blm123@lxchinesszz:30000/ribbon/user,进行熔断" target="_blank" rel="noopener">http://blm:blm123@lxchinesszz:30000/ribbon/user,进行熔断</a></p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/152438681222500eb1c9fb0" alt=""></p>
+<p><img src="https://p3.pstatp.com/large/pgc-image/1524386789721531186f07e" alt=""></p>
+<p>关闭Spring-learning-service-01和-02然后调动<a href="https://blm:blm123@lxchinesszz:30000/ribbon/user,进行熔断" target="_blank" rel="noopener">https://blm:blm123@lxchinesszz:30000/ribbon/user,进行熔断</a></p>
+<p><img src="https://p3.pstatp.com/large/pgc-image/152438681222500eb1c9fb0" alt=""></p>
 <h4 id="6-全链路追踪"><a href="#6-全链路追踪" class="headerlink" title="6. 全链路追踪"></a>6. 全链路追踪</h4><p>Zipkin为分布式链路调用监控系统，聚合各业务系统调用延迟数据，达到链路调用监控跟踪。</p>
 <p>追踪一次请求</p>
 <p>基于微服务的链路追踪,当遇到请求第三方服务时候就无法,实现,</p>
 <p>所以还有一种方法,就是给http请求做代理,拦截请求加上span,然后http发送给Zipkin服务器进行统计</p>
 <p>spring-cloud-sleuth收集信息是有一定的比率的，默认的采样率是0.1，配置此值的方式在配置文件中增加spring.sleuth.sampler.percentage参数配置（如果不配置默认0.1），如果我们调大此值为1</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/15243869161368d51493079" alt=""></p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/152438694650901cc38c368" alt=""><br><img src="http://p1.pstatp.com/large/pgc-image/15243869557101a0d067a24" alt=""><br><img src="http://p3.pstatp.com/large/pgc-image/15243869562045a0098c3a2" alt=""></p>
+<p><img src="https://p3.pstatp.com/large/pgc-image/15243869161368d51493079" alt=""></p>
+<p><img src="https://p3.pstatp.com/large/pgc-image/152438694650901cc38c368" alt=""><br><img src="https://p1.pstatp.com/large/pgc-image/15243869557101a0d067a24" alt=""><br><img src="https://p3.pstatp.com/large/pgc-image/15243869562045a0098c3a2" alt=""></p>
 <p><strong>参考文档:</strong> <a href="https://yq.aliyun.com/articles/78128?spm=5176.100239.blogcont78144.18.a7IIwu" target="_blank" rel="noopener">https://yq.aliyun.com/articles/78128?spm=5176.100239.blogcont78144.18.a7IIwu</a></p>
 <p>其实，我们仔细想想也可以总结出这种方式的几种缺陷</p>
 <p><strong>缺陷1：</strong>zipkin客户端向zipkin-server程序发送数据使用的是http的方式通信，每次发送的时候涉及到连接和发送过程。</p>
@@ -323,35 +325,35 @@
 <h4 id="6-1-如何在保证链路监控有效的情况下-对其进行监控"><a href="#6-1-如何在保证链路监控有效的情况下-对其进行监控" class="headerlink" title="6.1 如何在保证链路监控有效的情况下,对其进行监控!"></a>6.1 如何在保证链路监控有效的情况下,对其进行监控!</h4><ol>
 <li>引入spring-cloud-sleuth-zipkin-stream &amp; spring-cloud-starter-stream-rabbit</li>
 </ol>
-<p><img src="http://p1.pstatp.com/large/pgc-image/1524387040312fbee86f0fc" alt=""></p>
-<p><img src="http://p1.pstatp.com/large/pgc-image/1524387048811d35b7465f8" alt=""></p>
+<p><img src="https://p1.pstatp.com/large/pgc-image/1524387040312fbee86f0fc" alt=""></p>
+<p><img src="https://p1.pstatp.com/large/pgc-image/1524387048811d35b7465f8" alt=""></p>
 <h4 id="7-网关转发模块Zuul"><a href="#7-网关转发模块Zuul" class="headerlink" title="7. 网关转发模块Zuul"></a>7. 网关转发模块Zuul</h4><p>正在完善，敬请期待，会有专篇，讲述！</p>
 <ol start="8">
 <li>注册中心比较及Consul使用<br>参考文档： <a href="https://www.consul.io/intro/vs/eureka.html" target="_blank" rel="noopener">https://www.consul.io/intro/vs/eureka.html</a></li>
 </ol>
 <p><img src="https://note.youdao.com/yws/api/personal/file/WEB4a51d027813a11cf02afd3a2f3d97b3a?method=download&amp;shareKey=19007eee98bdcb7da062f21bab44b57b" alt=""></p>
-<h4 id="8-1-mac安装Consul"><a href="#8-1-mac安装Consul" class="headerlink" title="8.1 mac安装Consul"></a>8.1 mac安装Consul</h4><p>brew install consul<br><img src="http://p3.pstatp.com/large/pgc-image/15243871323925c79bdd844" alt=""></p>
-<p><a href="http://127.0.0.1:8500/ui/#/dc1/services" target="_blank" rel="noopener">http://127.0.0.1:8500/ui/#/dc1/services</a></p>
-<p><img src="http://p1.pstatp.com/large/pgc-image/152438714379582d43eb212" alt=""></p>
+<h4 id="8-1-mac安装Consul"><a href="#8-1-mac安装Consul" class="headerlink" title="8.1 mac安装Consul"></a>8.1 mac安装Consul</h4><p>brew install consul<br><img src="https://p3.pstatp.com/large/pgc-image/15243871323925c79bdd844" alt=""></p>
+<p><a href="https://127.0.0.1:8500/ui/#/dc1/services" target="_blank" rel="noopener">https://127.0.0.1:8500/ui/#/dc1/services</a></p>
+<p><img src="https://p1.pstatp.com/large/pgc-image/152438714379582d43eb212" alt=""></p>
 <h4 id="9-消息总线-Spring-Cloud-Bus"><a href="#9-消息总线-Spring-Cloud-Bus" class="headerlink" title="9. 消息总线 Spring Cloud Bus"></a>9. 消息总线 Spring Cloud Bus</h4><p>在前面我们学习的文章中,我们学习了EventBus,从设计模式上来讲,是事件模式,原理即: 当服务引入bus组件,会将自动订阅,config-server-bus在rabbit或者kafka的队列,当向config-server-bus发起/bus/refresh更新事件的时候,会想所有订阅的服务,发起更新命令,即从新从config-server-bus中拉去配置信息。 这点可以参考小编之前的文章</p>
 <h4 id="10-高可用分布式配置中心Spring-Cloud-Config"><a href="#10-高可用分布式配置中心Spring-Cloud-Config" class="headerlink" title="10. 高可用分布式配置中心Spring Cloud Config"></a>10. 高可用分布式配置中心Spring Cloud Config</h4><p>参考文档：<a href="https://yq.aliyun.com/articles/169879?spm=5176.100239.blogcont173263.25.MgI7lF" target="_blank" rel="noopener">https://yq.aliyun.com/articles/169879?spm=5176.100239.blogcont173263.25.MgI7lF</a></p>
-<p><img src="http://p9.pstatp.com/large/pgc-image/15243872721003f346346ce" alt=""></p>
+<p><img src="https://p9.pstatp.com/large/pgc-image/15243872721003f346346ce" alt=""></p>
 <p>创建config-server,和config-client并引入响应依赖,注意config-client一定要引入web模块,否则启动时候会自动注销</p>
 <p><strong>流程:</strong></p>
 <p>config-server注册到eureka-1/2, config-client注册到eureka-1/2,并获取到config-server地址,从中读取配置信息,其中配置信息从git上面读取,可以配置用户信息</p>
-<p><img src="http://p9.pstatp.com/large/pgc-image/15243873034076f254a50f7" alt=""></p>
-<p><img src="http://p1.pstatp.com/large/pgc-image/152438732584122df15b8c7" alt=""></p>
+<p><img src="https://p9.pstatp.com/large/pgc-image/15243873034076f254a50f7" alt=""></p>
+<p><img src="https://p1.pstatp.com/large/pgc-image/152438732584122df15b8c7" alt=""></p>
 <p>验证配置</p>
 <p>启动config-server(端口号10003,启动顺序eureka-1 eureka-2 zipkin config-server config-client) 并</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/1524387364893bd7d1201a5" alt=""></p>
-<p>配置文件命名规则:<br><img src="http://p3.pstatp.com/large/pgc-image/15243873790049a9c79ed91" alt=""></p>
+<p><img src="https://p3.pstatp.com/large/pgc-image/1524387364893bd7d1201a5" alt=""></p>
+<p>配置文件命名规则:<br><img src="https://p3.pstatp.com/large/pgc-image/15243873790049a9c79ed91" alt=""></p>
 <p><strong>如何从config-server服务器,验证配置文件</strong></p>
-<p><a href="http://localhost:10003/{applicationName}/{profile环境}/{lable分支}" target="_blank" rel="noopener">http://localhost:10003/{applicationName}/{profile环境}/{lable分支}</a></p>
+<p><a href="https://localhost:10003/{applicationName}/{profile环境}/{lable分支}" target="_blank" rel="noopener">https://localhost:10003/{applicationName}/{profile环境}/{lable分支}</a></p>
 <ol start="11">
 <li>负载均衡策略<br>负载均衡（Server Load Balancer）是对多台云服务器进行流量分发的负载均衡服务。负载均衡可以通过流量分发扩展应用系统对外的服务能力，通过消除单点故障提升应用系统的可用性。</li>
 </ol>
 <p>SLB通过购买云服务提供商的负载均衡服务(服务器根据供应商购买),然后配置</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/1524387429420b24038fc10" alt=""></p>
+<p><img src="https://p3.pstatp.com/large/pgc-image/1524387429420b24038fc10" alt=""></p>
 <p>性能保障型实例的三个关键指标如下：</p>
 <p>最大连接数-Max Connection</p>
 <p>最大连接数定义了一个负载均衡实例能够承载的最大连接数量。当实例上的连接超过规格定义的最大连接数时，新建连接请求将被丢弃。</p>
@@ -362,7 +364,7 @@
 <h4 id="11-1-阿里云基础架构"><a href="#11-1-阿里云基础架构" class="headerlink" title="11.1 阿里云基础架构"></a>11.1 阿里云基础架构</h4><p>负载均衡采用集群部署，可实现会话同步，以消除服务器单点故障，提升冗余，保证服务的稳定性。阿里云当前提供四层（TCP协议和UDP协议）和七层（HTTP和HTTPS协议）的负载均衡服务。</p>
 <p>四层采用开源软件LVS（Linux Virtual Server）+ keepalived的方式实现负载均衡，并根据云计算需求对其进行了个性化定制。四层负载均衡实际上是由多台LVS机器部署成一个LVS集群来运行的。采用集群部署模式极大地保证了异常情况下负载均衡服务的可用性、稳定性与可扩展性。工作在TCP/IP协议的四层，其转发是依赖于四层协议的特征进行转发的，由于其转发要依赖于协议的特征进行转发，因此需要在内核的TCP/IP协议栈进行过滤筛选。</p>
 <p>如果是四层监听，关注的重点是长连接的并发连接数，那么最大（并发）连接数应当作为一个关键指标来参考。根据不同的业务场景，您需要预估一个负载均衡实例需要承载的最大并发连接数，并选择相应的规格。</p>
-<p><img src="http://p1.pstatp.com/large/pgc-image/15243874903253d58a5b826" alt=""></p>
+<p><img src="https://p1.pstatp.com/large/pgc-image/15243874903253d58a5b826" alt=""></p>
 <p>七层采用Tengine实现负载均衡。Tengine是由淘宝网发起的Web服务器项目，它在Nginx的基础上，针对有大访问量的网站需求，添加了很多高级功能和特性。七层负载均衡工作在OSI模型的应用层，因为它需要解析应用层流量，所以七层负载均衡在接到客户端的流量以后，还需要一个完整的TCP/IP协议栈。七层负载均衡会与客户端建立一条完整的连接并将应用层的请求流量解析出来，再按照调度算法选择一个应用服务器，并与应用服务器建立另外一条连接将请求发送过去，因此七层负载均衡的主要工作就是代理。</p>
 <p>针对7层（HTTP协议和HTTPS协议）服务，负载均衡系统是基于Cookie的会话保持。负载均衡系统提供了两种Cookie处理方式:</p>
 <p>植入Cookie: 此种方法下，您只需要指定cookie的过期时间。客户端第一次访问时，负载均衡服务在返回请求中植入cookie（即在HTTP/HTTPS响应报文中插入SERVERID字串），下次客户端携带此cookie访问，负载均衡服务会将请求定向转发给之前记录到的ECS实例上。</p>
@@ -400,7 +402,7 @@
       </div>
     <div id="donate_guide" class="donate_bar" >
           <!-- 微信打赏图案 -->
-        <img src="http://otjenik28.bkt.clouddn.com/wwx.png"
+        <img src="https://otjenik28.bkt.clouddn.com/wwx.png"
     </div>
     <script type="text/javascript">
        function aClick(){
@@ -601,7 +603,7 @@
 </a>
 
 
-<!--page counter part统计文章字数,核心代码;来源:http://crescentmoon.info/2014/12/11/popular-widget/-->
+<!--page counter part统计文章字数,核心代码;来源:https://crescentmoon.info/2014/12/11/popular-widget/-->
 <script>
     function addCount (Counter) {
         url=$('.article-date').attr('href').trim();
@@ -670,6 +672,7 @@
         )
     });
 </script>
+
     <div class="copyright">
     <div class="container">
         <div class="row">

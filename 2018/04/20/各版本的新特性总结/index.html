@@ -36,7 +36,7 @@
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
 
 
-    <link rel="icon" href="http://lxchinesszz.gitee.io/chinesszz/favicon.ico">
+    <link rel="icon" href="https://lxchinesszz.gitee.io/chinesszz/favicon.ico">
 
     
 
@@ -52,7 +52,7 @@
     
 	<div class="hide">
 		<script type="text/javascript">
-			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " https://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
 		</script>
 	</div>
 
@@ -61,7 +61,9 @@
 
 
 
+
     
+
 </head>
 
 <script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
@@ -210,7 +212,7 @@
     </div>
     
     <div class="post-body post-content">
-        <h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p><a href="http://blog.didispace.com/JDK1-5-JDK1-8%E5%90%84%E7%89%88%E6%9C%AC%E6%96%B0%E7%89%B9%E6%80%A7%E7%9A%84%E6%80%BB%E7%BB%93/" target="_blank" rel="noopener">原文地址</a></p>
+        <h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p><a href="https://blog.didispace.com/JDK1-5-JDK1-8%E5%90%84%E7%89%88%E6%9C%AC%E6%96%B0%E7%89%B9%E6%80%A7%E7%9A%84%E6%80%BB%E7%BB%93/" target="_blank" rel="noopener">原文地址</a></p>
 <p>以下介绍一下JDK1.5版本到JDK1.7版本的特性及JDK1.8主要部分特性。仅供参考。</p>
 <h3 id="JDK1-5新特性"><a href="#JDK1-5新特性" class="headerlink" title="JDK1.5新特性"></a>JDK1.5新特性</h3><h4 id="1：自动装箱与拆箱："><a href="#1：自动装箱与拆箱：" class="headerlink" title="1：自动装箱与拆箱："></a>1：自动装箱与拆箱：</h4><p>自动装箱：每当需要一种类型的对象时，这种基本类型就自动地封装到与它相同类型的包装中。</p>
 <p>自动拆箱：每当需要一个值时，被装箱对象中的值就被自动地提取出来，没必要再去调用intValue()和doubleValue()方法。</p>
@@ -348,7 +350,7 @@
 <p>LocalDateTime 同时表示了时间和日期，相当于前两节内容合并到一个对象上了。LocalDateTime和LocalTime还有LocalDate一样，都是不可变的。LocalDateTime提供了一些能访问具体字段的方法。<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">LocalDateTime <span class="built_in">sylvester</span> = LocalDateTime.of(<span class="number">2014</span>, Month.DECEMBER, <span class="number">31</span>, <span class="number">23</span>, <span class="number">59</span>, <span class="number">59</span>);</span><br><span class="line"><span class="built_in">DayOfWeek</span> <span class="built_in">dayOfWeek</span> = <span class="built_in">sylvester</span>.getDayOfWeek();</span><br><span class="line"><span class="keyword">System</span>.out.println(<span class="built_in">dayOfWeek</span>);      <span class="comment">// WEDNESDAY</span></span><br><span class="line"></span><br><span class="line">Month month = <span class="built_in">sylvester</span>.getMonth();</span><br><span class="line"><span class="keyword">System</span>.out.println(month);          <span class="comment">// DECEMBER</span></span><br><span class="line"></span><br><span class="line">long minuteOfDay = <span class="built_in">sylvester</span>.getLong(ChronoField.MINUTE_OF_DAY);</span><br><span class="line"><span class="keyword">System</span>.out.println(minuteOfDay);    <span class="comment">// 1439</span></span><br></pre></td></tr></table></figure></p>
 <p>只要附加上时区信息，就可以将其转换为一个时间点Instant对象，Instant时间点对象可以很容易的转换为老式的java.util.Date。<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Instant instant = <span class="built_in">sylvester</span></span><br><span class="line">        .atZone(ZoneId.systemDefault())</span><br><span class="line">        .toInstant();</span><br><span class="line"><span class="built_in">Date</span> legacyDate = <span class="built_in">Date</span>.from(instant);</span><br><span class="line"><span class="keyword">System</span>.out.println(legacyDate);     <span class="comment">// Wed Dec 31 23:59:59 CET 2014</span></span><br></pre></td></tr></table></figure></p>
 <p>格式化LocalDateTime和格式化时间和日期一样的，除了使用预定义好的格式外，我们也可以自己定义格式：<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DateTimeFormatter formatter =</span><br><span class="line">    DateTimeFormatter</span><br><span class="line">        .ofPattern(<span class="string">"MMM dd, yyyy - HH:mm"</span>);</span><br><span class="line">LocalDateTime parsed = LocalDateTime.<span class="built_in">parse</span>(<span class="string">"Nov 03, 2014 - 07:13"</span>, formatter);</span><br><span class="line"><span class="keyword">String</span> <span class="keyword">string</span> = formatter.<span class="keyword">format</span>(parsed);</span><br><span class="line"><span class="keyword">System</span>.out.println(<span class="keyword">string</span>);     <span class="comment">// Nov 03, 2014 - 07:13</span></span><br></pre></td></tr></table></figure></p>
-<p>和java.text.NumberFormat不一样的是新版的DateTimeFormatter是不可变的，所以它是线程安全的。关于时间日期格式的详细信息：<a href="http://download.java.net/jdk8/docs/api/java/time/format/DateTimeFormatter.html" target="_blank" rel="noopener">http://download.java.net/jdk8/docs/api/java/time/format/DateTimeFormatter.html</a></p>
+<p>和java.text.NumberFormat不一样的是新版的DateTimeFormatter是不可变的，所以它是线程安全的。关于时间日期格式的详细信息：<a href="https://download.java.net/jdk8/docs/api/java/time/format/DateTimeFormatter.html" target="_blank" rel="noopener">https://download.java.net/jdk8/docs/api/java/time/format/DateTimeFormatter.html</a></p>
 <h4 id="10：Annotation-注解"><a href="#10：Annotation-注解" class="headerlink" title="10：Annotation 注解"></a>10：Annotation 注解</h4><p>在Java 8中支持多重注解了，先看个例子来理解一下是什么意思。<br>首先定义一个包装类Hints注解用来放置一组具体的Hint注解：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">interface</span> Hints &#123;</span><br><span class="line">    <span class="selector-tag">Hint</span><span class="selector-attr">[]</span> <span class="selector-tag">value</span>();</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">Repeatable</span>(<span class="keyword">Hints</span>.<span class="keyword">class</span>)</span><br><span class="line">@<span class="keyword">interface</span> Hint &#123;</span><br><span class="line">    <span class="selector-tag">String</span> <span class="selector-tag">value</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>Java 8允许我们把同一个类型的注解使用多次，只需要给该注解标注一下@Repeatable即可。</p>
 <p>例 1: 使用包装类当容器来存多个注解（老方法）</p>
@@ -371,7 +373,7 @@
       </div>
     <div id="donate_guide" class="donate_bar" >
           <!-- 微信打赏图案 -->
-        <img src="http://otjenik28.bkt.clouddn.com/wwx.png"
+        <img src="https://otjenik28.bkt.clouddn.com/wwx.png"
     </div>
     <script type="text/javascript">
        function aClick(){
@@ -577,7 +579,7 @@
 </a>
 
 
-<!--page counter part统计文章字数,核心代码;来源:http://crescentmoon.info/2014/12/11/popular-widget/-->
+<!--page counter part统计文章字数,核心代码;来源:https://crescentmoon.info/2014/12/11/popular-widget/-->
 <script>
     function addCount (Counter) {
         url=$('.article-date').attr('href').trim();
@@ -646,6 +648,7 @@
         )
     });
 </script>
+
     <div class="copyright">
     <div class="container">
         <div class="row">
