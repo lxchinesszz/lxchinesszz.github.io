@@ -1,0 +1,638 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序猿升级课">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="baidu-site-verification" content="VoeZU7FyND" />
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://blog.springlearn.cn">
+    <!--SEO-->
+
+<meta name="description" content="一个关注于程序猿技术提升的博客"/>
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>跟我动手搭框架三之Web容器实现 | 程序猿升级课</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
+
+
+    <link rel="icon" href="https://lxchinesszz.gitee.io/chinesszz/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " https://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+
+    
+
+</head>
+
+<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+<!--统计浏览量-->
+<script>AV.init('IwOl4kKmvkph85YhYWKm26tr-gzGzoHsz', 'N1rlzE7cJFetMehvtgaHnKhB');</script>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='liuxin'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 科技改变生活! </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Spring-Boot/"><i class="fa "></i>SpringBoot</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Spring-Boot2-0/"><i class="fa "></i>SpringBoot2.0</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Spring-Cloud/"><i class="fa "></i>SpringCloud</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/通信/"><i class="fa "></i>通信</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据处理/"><i class="fa "></i>数据处理</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/源码阅读/"><i class="fa "></i>源码阅读</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂记/"><i class="fa "></i>杂记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/2015/03/11/me/"><i class="fa "></i>关于</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="跟我动手搭框架三之Web容器实现">
+            
+	            跟我动手搭框架三之Web容器实现
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/杂记">
+            杂记
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/杂记" title='杂记'>
+                        杂记
+                    </a>
+                
+            
+        </span>
+    </span>
+    <!-- 添加作者-->
+    <span class="fa-wrap">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <span>
+            
+                liuxin
+             
+        </span>
+    </span>
+
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/04/30</span>
+        </span>
+         <span id="busuanzi_container_page_pv">
+                              被围观:<span id="busuanzi_value_page_pv" ></span>次
+                            </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <blockquote>
+<p>本篇主要对Web的实现做说明,在参考文章的同事,可以把code clone下来,看,代码中有很多需要优化的地址,我已经用TODO标记处理啊,小编会不断的进行优化和分析,演示SmileBootDemo也可以git clone,debug学习</p>
+</blockquote>
+<p><a href="https://github.com/lxchinesszz/Smile.git" target="_blank" rel="noopener">Smile源码地址</a></p>
+<p><a href="https://github.com/lxchinesszz/SmileBootDemo.git" target="_blank" rel="noopener">SmileBootDemo</a></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBa33254f6ef655957038c263230e94f41?method=download&amp;shareKey=a9986746fdc02c2452273efe77fed543" alt=""></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><ol>
+<li>核心描述类介绍</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>Smile启动核心实现</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>Http请求多线程异步实现</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>下一篇主要介绍内容</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>扩展</li>
+</ol>
+<p>​</p>
+</li>
+</ul>
+<h3 id="1-核心描述类-主要保存处理方法及参数类型"><a href="#1-核心描述类-主要保存处理方法及参数类型" class="headerlink" title="1. 核心描述类,主要保存处理方法及参数类型"></a>1. 核心描述类,主要保存处理方法及参数类型</h3><p><em>其实所有方法的执行,都离不开ioc的实现,IOC主要将组件(被@SmileComponent标记过的都为组件)保存为BeanDefinition的形式,而组件中的method,主要保存为WebDefinition的形式,而method的参数名称,参数类型,参数位置索引,主要保存在ParamterDefinition,对于请求的处理,就是根据url找到对应的method,然后根据ParamterDefinition将请求参数,转换成参数原本类型,然后处理</em></p>
+<table>
+<thead>
+<tr>
+<th>描述类</th>
+<th>说明</th>
+<th>存放位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BeanDefinition</td>
+<td>保存组件Class字节码及实例化对象</td>
+<td>Map&lt;String(beanName), BeanDefinition&gt; registeredBeans</td>
+</tr>
+<tr>
+<td>WebDefinition</td>
+<td>保存Url及对应的处理方法,及实例化对象,及参数类型</td>
+<td>Map&lt;String(url), WebDefinition&gt; webHandlerMaps = new ConcurrentHashMap&lt;&gt;();</td>
+</tr>
+<tr>
+<td>ParamterDefinition</td>
+<td>保存参数位置索引及参数名称,参数类型,参数注解</td>
+<td>WebDefinition.ParamterDefinition</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-Smile启动核心"><a href="#2-Smile启动核心" class="headerlink" title="2. Smile启动核心"></a>2. Smile启动核心</h3><ul>
+<li><p>2.1 SmileApplicationContext 扫描所有组件,并check 是否需要代理,最终生成IOC容器</p>
+<p><a href="http://www.jianshu.com/p/22863e6c1210" target="_blank" rel="noopener">IOC实现</a></p>
+<p><code>Map&lt;String, BeanDefinition&gt; registeredBeans = new ConcurrentHashMap&lt;&gt;();</code></p>
+</li>
+<li><p>2.2 SmileApplicationContext生成IOC容器之后,加载是否有实现ExtApplicationContext扩展类<code>scanExtContext()</code>方法</p>
+<p>WebApplicationContext此时会执行,并扫描被@ResController注解修饰的路由类,然后</p>
+<p>扫描其Methods,获取方法中有@GetMapping和@PostMapping 的方法生成<code>WebDefinition</code>和<code>ParamterDefinition</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;Map.Entry&lt;String, BeanDefinition&gt;&gt; entryConsumer = entry -&gt; &#123;</span><br><span class="line">            BeanDefinition beanDefinition = entry.getValue();</span><br><span class="line">            Class&lt;?&gt; controllerClass = beanDefinition.getClazz();</span><br><span class="line">            RestController annotation = controllerClass.getAnnotation(RestController.class);</span><br><span class="line">            String oneUrl = annotation.value();</span><br><span class="line">            Method[] methods = controllerClass.getMethods();</span><br><span class="line">            <span class="keyword">for</span> (Method method : methods) &#123;</span><br><span class="line">                <span class="keyword">boolean</span> isGet = method.isAnnotationPresent(GetMapping.class);</span><br><span class="line">                <span class="keyword">if</span> (isGet) &#123;</span><br><span class="line">                    bindGetMethod(oneUrl, method, beanDefinition);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">boolean</span> isPost = method.isAnnotationPresent(PostMapping.class);</span><br><span class="line">                <span class="keyword">if</span> (isPost) &#123;</span><br><span class="line">                    bindPostMethod(oneUrl, method, beanDefinition);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        definitionMap.entrySet().forEach(entryConsumer);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 绑定get请求</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> oneUrl         一级url</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> method         方法</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> beanDefinition bean描述</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bindGetMethod</span><span class="params">(String oneUrl, Method method, BeanDefinition beanDefinition)</span> </span>&#123;</span><br><span class="line">        Object controllerInstance = beanDefinition.getInstance();</span><br><span class="line">        Package aPackage = beanDefinition.getClazz().getPackage();</span><br><span class="line">        GetMapping getMapping = method.getAnnotation(GetMapping.class);</span><br><span class="line">        String twoUrl = getMapping.value();</span><br><span class="line">        String[] parameterNames = WebTools.getParameterNames(method);</span><br><span class="line">        <span class="keyword">if</span> (StringTools.isEmpty(twoUrl)) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> BindUrlHanderException(<span class="string">"[ "</span> + aPackage.getName() + <span class="string">" ]:绑定url异常,请检查,请填写需要绑定的url地址"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        String realUrl = WebTools.checkUrl(oneUrl, twoUrl);</span><br><span class="line">        String methodPath = method.toGenericString();</span><br><span class="line">        logger.info(<span class="string">"Mapped url:[&#123;&#125;],produces:[&#123;&#125;],consumes:[&#123;&#125;],paramter:&#123;&#125;,onto:&#123;&#125;"</span>, realUrl, getMapping.produces(), getMapping.consumes(), parameterNames, methodPath);</span><br><span class="line">        webHandlerMaps.put(realUrl, <span class="keyword">new</span> WebDefinition(realUrl, RequestMethod.GET, getMapping.consumes(), getMapping.produces(), controllerInstance, method, parameterNames));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<h3 id="3-HTTP处理实现核心"><a href="#3-HTTP处理实现核心" class="headerlink" title="3. HTTP处理实现核心"></a>3. HTTP处理实现核心</h3><ul>
+<li><p>3.1将每个请求生成一个MessageRequest及MessageResponse,作为一个任务交给线程池去异步执行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MessageRequest messageRequest = <span class="keyword">new</span> MessageRequest(randomUUID, requestMethod, requestParams, webDefinition, headerMaps);</span><br><span class="line">MessageResponse messageResponse = <span class="keyword">new</span> MessageResponse();</span><br><span class="line">SmileTaskChoice smileTaskChoice = <span class="keyword">new</span> DefaultTaskProcessChoice(messageRequest, messageResponse, <span class="keyword">false</span>);</span><br><span class="line">SmileMessageExecutor.submit(smileTaskChoice.choice(), ctx, req, messageRequest, messageResponse);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3.2 SmileTaskChoice 是执行策略,当为ture时候,为rpc默认,可以定义自己的rpc远程调用的方式实现结果返回</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultTaskProcessChoice</span> <span class="keyword">implements</span> <span class="title">SmileTaskChoice</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isRpc = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">private</span> MessageRequest messageRequest;</span><br><span class="line">    <span class="keyword">private</span> MessageResponse messageResponse;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> response</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> isRpc 本地方法:false rpc调用:true</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DefaultTaskProcessChoice</span><span class="params">(<span class="keyword">final</span> MessageRequest request, <span class="keyword">final</span> MessageResponse response, <span class="keyword">boolean</span> isRpc)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.messageRequest = request;</span><br><span class="line">        <span class="keyword">this</span>.messageResponse = response;</span><br><span class="line">        <span class="keyword">this</span>.isRpc = isRpc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Callable <span class="title">choice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Callable callTask =<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (!isRpc) &#123;</span><br><span class="line">            callTask = <span class="keyword">new</span> LocalMessageTask(messageRequest, messageResponse);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            callTask=<span class="keyword">new</span> RpcProcessTask(messageRequest,messageResponse);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> callTask;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>3.3 SmileTask中</p>
+</li>
+</ul>
+<p>主要利用反射，将请求 <code>URL</code> 获取到 <code>WebDefinition</code> ,拿到执行方法,将请求参数,绑定到方法,作为实参,传递</p>
+<p><code>Object invokeResult = method.invoke(controller, args);</code></p>
+<p>并通过Netty 连接通道Channel把处理结果返回给客户端</p>
+<ul>
+<li><p>3.4 SmileMessageExecutor.submit 方法中监听任务是否成功处理,成功并通过Netty 连接通道Channel把处理结果返回给客户端</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">submit</span><span class="params">(Callable&lt;Boolean&gt; task, <span class="keyword">final</span> ChannelHandlerContext ctx, HttpRequest metaRequest, <span class="keyword">final</span> MessageRequest request, <span class="keyword">final</span> MessageResponse response)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="comment">/**</span></span><br><span class="line"><span class="comment">        * SmileThreadFactory 目的构建自己的线程名,并通过线程组进行统一管理</span></span><br><span class="line"><span class="comment">        * SmileThreadPoolExecutor 构建自己的线程池,对任务进行,细微管理</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       <span class="keyword">if</span> (threadPoolExecutor == <span class="keyword">null</span>) &#123;</span><br><span class="line">           SmileThreadPoolExecutor smileThreadPoolExecutor = <span class="keyword">new</span> SmileThreadPoolExecutor(<span class="keyword">new</span> SmileThreadFactory(<span class="string">"Smile"</span>));</span><br><span class="line">           ThreadPoolExecutor executorService = (ThreadPoolExecutor) smileThreadPoolExecutor.getExecutory();</span><br><span class="line">           threadPoolExecutor = MoreExecutors.listeningDecorator(executorService);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">/**</span></span><br><span class="line"><span class="comment">        * 处理完成任务如果任务完成就,渲染出去</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       ListenableFuture&lt;Boolean&gt; listenableFuture = threadPoolExecutor.submit(task);</span><br><span class="line">       Futures.addCallback(listenableFuture, <span class="keyword">new</span> FutureCallback&lt;Boolean&gt;() &#123;</span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(Boolean result)</span> </span>&#123;</span><br><span class="line">               <span class="keyword">if</span> (result)&#123;</span><br><span class="line">                   NettyResponse.writeResponseAndListener(ctx.channel(), request, response, <span class="keyword">new</span> ChannelFutureListener() &#123;</span><br><span class="line">                       <span class="meta">@Override</span></span><br><span class="line">                       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operationComplete</span><span class="params">(ChannelFuture channelFuture)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                           channelFuture.channel().close();</span><br><span class="line">                           logger.info(<span class="string">"Smile Server Send message-id:&#123;&#125;"</span> , request.getMessageId());</span><br><span class="line">                       &#125;</span><br><span class="line">                   &#125;);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Throwable t)</span> </span>&#123;</span><br><span class="line">               t.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;, threadPoolExecutor);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<h3 id="4-下一篇主要介绍内容"><a href="#4-下一篇主要介绍内容" class="headerlink" title="4. 下一篇主要介绍内容"></a>4. 下一篇主要介绍内容</h3><p>框架的实现方案属于传统的MVC机构,只不过吧视图层V取消掉了,这也是趋势,前后分离,后端只做关心数据处理,</p>
+<p>而传统的MVC架构,核心为Servlet,SpringMVC核心为DispatchServlet,是对原始Java Servlet的一个封装,关于这点可以看小编的另一篇文章<a href="http://www.jianshu.com/p/1a5e75167b08" target="_blank" rel="noopener">手写一个轻量级的网关API</a>,当然使用Netty也是如此,我们的入口就是<code>HttpDispatchServerHandler</code> 核心方法就是<code>messageReceivedDispatch</code></p>
+<p>而只知道,这些是远远不够的,Netty是由<a href="https://baike.baidu.com/item/JBOSS" target="_blank" rel="noopener">JBOSS</a>提供的一个<a href="https://baike.baidu.com/item/java%E5%BC%80%E6%BA%90" target="_blank" rel="noopener">java开源</a>框架。Netty提供异步的、<a href="https://baike.baidu.com/item/%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8" target="_blank" rel="noopener">事件驱动</a>的网络应用程序框架和工具,我会新开二篇,专门介绍IO模型重点介绍<code>IO multiplexing(IO多路复用)</code>和<code>Netty</code>如何工作 ! 包括如何实现,心跳检测</p>
+<p>主要会介绍下面写模块</p>
+<ul>
+<li>Bootstrap or ServerBootstrap</li>
+<li>EventLoop</li>
+<li>EventLoopGroup</li>
+<li>ChannelPipeline</li>
+<li>Future or ChannelFuture</li>
+<li>ChannelInitializer</li>
+<li>ChannelHandler</li>
+<li>ByteToMessageDecoder</li>
+<li>MessageToByteEncoder</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">messageReceivedDispatch</span><span class="params">(ChannelHandlerContext ctx, HttpObject msg)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">       String dispatchUrl = <span class="string">""</span>;</span><br><span class="line">       Map&lt;String, Object&gt; headerMaps = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</span><br><span class="line">       <span class="keyword">if</span> (msg <span class="keyword">instanceof</span> HttpRequest) &#123;</span><br><span class="line">           HttpRequest req = <span class="keyword">this</span>.request = (HttpRequest) msg;</span><br><span class="line">           HttpHeaders headers = req.headers();</span><br><span class="line">           headers.entries().stream().forEach(x -&gt; &#123;</span><br><span class="line">               headerMaps.put(x.getKey(), x.getValue());</span><br><span class="line">           &#125;);</span><br><span class="line">           String contentType = request.headers().get(<span class="string">"Content-Type"</span>);</span><br><span class="line">           String methodName = request.getMethod().name();</span><br><span class="line">           dispatchUrl = req.getUri();</span><br><span class="line">           String randomUUID = UUID.randomUUID().toString().replaceAll(<span class="string">"-"</span>, <span class="string">""</span>);</span><br><span class="line">           Map&lt;String, Object&gt; requestParams = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</span><br><span class="line">           <span class="comment">// 处理get请求</span></span><br><span class="line">           <span class="keyword">if</span> (methodName.equalsIgnoreCase(<span class="string">"GET"</span>)) &#123;</span><br><span class="line">               <span class="keyword">boolean</span> contains = dispatchUrl.contains(<span class="string">"?"</span>);</span><br><span class="line">               <span class="keyword">if</span> (contains)&#123;</span><br><span class="line">                   String queryContent = dispatchUrl.substring(dispatchUrl.indexOf(<span class="string">"?"</span>) + <span class="number">1</span>);</span><br><span class="line">                   Map&lt;String, Object&gt; queryParameterFromContent = URLTools.getQueryParameterFromContent(queryContent);</span><br><span class="line">                   queryParameterFromContent.entrySet().forEach(entry -&gt; &#123;</span><br><span class="line">                       requestParams.put(entry.getKey(), entry.getValue());</span><br><span class="line">                   &#125;);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="comment">// 处理POST请求</span></span><br><span class="line">           <span class="keyword">if</span> (methodName.equalsIgnoreCase(<span class="string">"POST"</span>)) &#123;</span><br><span class="line">               <span class="keyword">if</span> (StringTools.endsWithIgnoreCase(contentType, <span class="string">"application/json"</span>)) &#123;</span><br><span class="line">                   FullHttpRequest request1 = (FullHttpRequest) msg;</span><br><span class="line">                   ByteBuf jsonBuf = request1.content();</span><br><span class="line">                   String jsonStr = jsonBuf.toString(CharsetUtil.UTF_8).replaceAll(<span class="string">"\\\\s*|\\t|\\r|\\n"</span>, <span class="string">""</span>);</span><br><span class="line">                   <span class="keyword">if</span> (!StringTools.isEmpty(jsonStr)) &#123;</span><br><span class="line">                       requestParams.put(<span class="string">"BODY"</span>, jsonStr);</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                   HttpPostRequestDecoder decoder = <span class="keyword">new</span> HttpPostRequestDecoder(</span><br><span class="line">                           <span class="keyword">new</span> DefaultHttpDataFactory(<span class="keyword">false</span>), req);</span><br><span class="line">                   List&lt;InterfaceHttpData&gt; postData = decoder.getBodyHttpDatas(); <span class="comment">//</span></span><br><span class="line">                   <span class="keyword">for</span> (InterfaceHttpData data : postData) &#123;</span><br><span class="line">                       <span class="keyword">if</span> (data.getHttpDataType() == InterfaceHttpData.HttpDataType.Attribute) &#123;</span><br><span class="line">                           MemoryAttribute attribute = (MemoryAttribute) data;</span><br><span class="line">                           requestParams.put(attribute.getName(), attribute.getValue());</span><br><span class="line">                       &#125;</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (StringTools.contains(dispatchUrl,<span class="string">"?"</span>))&#123;</span><br><span class="line">               dispatchUrl = dispatchUrl.substring(<span class="number">0</span>, dispatchUrl.indexOf(<span class="string">"?"</span>));</span><br><span class="line">           &#125;</span><br><span class="line">           RequestMethod requestMethod = WebTools.getRequestMethod(methodName);</span><br><span class="line">           WebDefinition webDefinition = WebContextTools.getWebDefinitionByUrl(dispatchUrl, requestMethod);</span><br><span class="line">           <span class="keyword">if</span> (webDefinition <span class="keyword">instanceof</span> Web404Definition) &#123;</span><br><span class="line">               NettyResponse.writeResponse(ctx.channel(), <span class="string">"Not Found"</span>, HttpResponseStatus.NOT_FOUND);</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (webDefinition <span class="keyword">instanceof</span> Web405Definition) &#123;</span><br><span class="line">               NettyResponse.writeResponse(ctx.channel(), <span class="string">"Method Not Allowed"</span>, HttpResponseStatus.METHOD_NOT_ALLOWED);</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           String consumes = webDefinition.getConsumes();</span><br><span class="line">           <span class="keyword">if</span> (StringTools.isNotEmpty(contentType))&#123;</span><br><span class="line">               <span class="keyword">if</span> (StringTools.isNotEmpty(consumes)&amp;(!contentType.equalsIgnoreCase(consumes)))&#123;</span><br><span class="line">                   NettyResponse.writeResponse(ctx.channel(), <span class="string">"Bad Request (The content-type don't match)"</span>, HttpResponseStatus.BAD_REQUEST);</span><br><span class="line">                   <span class="keyword">return</span>;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="comment">/**</span></span><br><span class="line"><span class="comment">            * //TODO 异步处理url获取处理的 bean</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">           MessageRequest messageRequest = <span class="keyword">new</span> MessageRequest(randomUUID, requestMethod, requestParams, webDefinition, headerMaps);</span><br><span class="line">           MessageResponse messageResponse = <span class="keyword">new</span> MessageResponse();</span><br><span class="line">           <span class="comment">/**</span></span><br><span class="line"><span class="comment">            * //TODO 根据启动配置,当如果是rpc服务就要使用MessageProcessTask</span></span><br><span class="line"><span class="comment">            * 如果是本地服务使用LocalMessageTask</span></span><br><span class="line"><span class="comment">            *</span></span><br><span class="line"><span class="comment">            * 此时MessageRequest和MessageResponse都是final 修饰,目的是保证始终是对当前的MessageResponse</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">           SmileTaskChoice smileTaskChoice = <span class="keyword">new</span> DefaultTaskProcessChoice(messageRequest, messageResponse, <span class="keyword">false</span>);</span><br><span class="line">           <span class="comment">/**</span></span><br><span class="line"><span class="comment">            * //TODO 交给线程处理异步处理响应</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">           SmileMessageExecutor.submit(smileTaskChoice.choice(), ctx, req, messageRequest, messageResponse);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>再次声明小编也是一个菜鸟,是一只具有学习精神,并热爱编程的菜鸟, 所有的文章都是经过参考很多优秀博文,给我带来的进步,小编,希望将学习到的所有知识点,也分享给大家 ! 小编会在这里列出,参考到的优秀博文,尊重每位知识传播者的劳动果实.</p>
+<p>如果您发现小编文章中,有错误,请及时指出,并通知小编改正,小编在此谢过.</p>
+<p>欢迎继续关注小编~ 小编努力coding…</p>
+<p>参考</p>
+<p><a href="https://my.oschina.net/huangyong/blog/158380" target="_blank" rel="noopener">Smart Framework</a> 设计动力来源</p>
+<p><a href="https://segmentfault.com/a/1190000007283053" target="_blank" rel="noopener">segmentfault-Netty 源码分析</a> Netty强化学习</p>
+<p><a href="http://www.cnblogs.com/ITtangtang/p/3978349.html" target="_blank" rel="noopener">SpringIOC源码分析</a> 描述类灵感来源</p>
+<p><a href="http://www.cnblogs.com/jietang/p/5983038.html" target="_blank" rel="noopener">基于Netty打造RPC服务器设计经验谈</a></p>
+
+        <!--打赏模块-->
+          
+               <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate_a"  href="javascript:;" onclick="aClick()" title="打赏."></a>
+        <span class="donate_txt">
+           &uarr;<br>
+           如果您觉得文章对你有用,可以赏我一杯咖啡
+        </span>
+        <br>
+      </div>
+    <div id="donate_guide" class="donate_bar" >
+          <!-- 微信打赏图案 -->
+        <img src="https://otjenik28.bkt.clouddn.com/wwx.png"
+    </div>
+    <script type="text/javascript">
+       function aClick(){
+            <!--元素隐藏，但是原由位置不隐藏-->
+                        document.getElementById("donate_board").style.visibility="hidden";
+                         <!--隐藏原由位置-->
+                        document.getElementById("donate_board").style.display="none";
+                        document.getElementById("donate_board").style.marginRight='auto';
+             			document.getElementById("donate_board").style.marginLeft='auto';
+                        document.getElementById("donate_guide").style.visibility="visible";
+                        document.getElementById("donate_guide").style.display="inline";
+                        document.getElementById("donate_guide").style.marginRight='auto';
+             			document.getElementById("donate_guide").style.marginLeft='auto';
+
+        }
+    </script>
+</div>
+<! -- 添加捐赠图标 -->
+
+          
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
+        </div>
+
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/04/30/跟我动手搭框架二之AOP实现/" class="next-post btn btn-default" title='跟我动手搭框架二之AOP实现'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">跟我动手搭框架二之AOP实现</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNTY3NC8xMjIxMA==">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="https://music.163.com/outchain/player?type=1&id=34930257&auto=0&height=32"></iframe>
+           </div>
+
+
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <p>
+<a href="https://spring4all.com" target="_blank">Spring For All社区</a>
+是关于Spring的纯技术交流社区（涵盖Spring Boot、Spring Cloud等内容），集诸多开源爱好者和技术大牛贡献内容和交流问题。我们不夸大、不装逼、做最纯粹的技术分享！！！
+<hr/>小编GITHUB开源项目,接受贡献,不限于提交问题与需求，修复代码。欢迎Pull Request<br/>支持一下：<a href="https://github.com/lxchinesszz">Star一下</a>
+<hr/>专注于程序猿技术的提升的博客,欢迎投稿 <a href="mailto:lxchinesszz@163.com">投稿邮箱</a>
+</p>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="https://github.com/lxchinesszz" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="github fa fa-github"></i>
+			    </a>
+            
+	            <a href="mailto:lxchinesszz@163.com" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope fa fa-envelope"></i>
+			    </a>
+            
+	            <a href="https://wpa.qq.com/msgrd?v=3&uin=1213327162&site=qq&menu=yes" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Cloud/"><i class="fa" aria-hidden="true">Spring Cloud</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/"><i class="fa" aria-hidden="true">Spring-Boot</i></a><span class="category-list-count">42</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot2-0/"><i class="fa" aria-hidden="true">Spring-Boot2.0</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/about/"><i class="fa" aria-hidden="true">about</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据处理/"><i class="fa" aria-hidden="true">数据处理</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/杂记/"><i class="fa" aria-hidden="true">杂记</i></a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/通信/"><i class="fa" aria-hidden="true">通信</i></a><span class="category-list-count">2</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/GC/" style="font-size: 10px;">GC</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/Linux服务器/" style="font-size: 10px;">Linux服务器</a> <a href="/tags/Netty/" style="font-size: 11.67px;">Netty</a> <a href="/tags/Rabbitmq/" style="font-size: 15px;">Rabbitmq</a> <a href="/tags/Spring-Cloud/" style="font-size: 11.67px;">Spring Cloud</a> <a href="/tags/Spring-Boot/" style="font-size: 20px;">Spring-Boot</a> <a href="/tags/Spring-Boot2-0/" style="font-size: 10px;">Spring-Boot2.0</a> <a href="/tags/Spring定时器/" style="font-size: 10px;">Spring定时器</a> <a href="/tags/Spring整合Quartz/" style="font-size: 10px;">Spring整合Quartz</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/日志/" style="font-size: 13.33px;">日志</a> <a href="/tags/服务器/" style="font-size: 18.33px;">服务器</a> <a href="/tags/杂记/" style="font-size: 16.67px;">杂记</a> <a href="/tags/深浅拷贝/" style="font-size: 10px;">深浅拷贝</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友情链接</h3>
+        <div class="content friends-link">
+        
+            <a href="https://www.jianshu.com/u/e210c8fa704f" class="fa" target="_blank">简书</a>
+        
+            <a href="https://blog.csdn.net/message_lx" class="fa" target="_blank">CSDN</a>
+        
+            <a href="https://www.toutiao.com/c/user/3686495601/#mid=1563737358895105" class="fa" target="_blank">头条</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+        <span id="busuanzi_container_site_pv">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        |
+        <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人次
+        </span>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+<!--page counter part统计文章字数,核心代码;来源:https://crescentmoon.info/2014/12/11/popular-widget/-->
+<script>
+    function addCount (Counter) {
+        url=$('.article-date').attr('href').trim();
+        title = $('.article-title').text().trim();
+        var query=new AV.Query(Counter);
+        //use url as unique idnetfication
+        query.equalTo("url",url);
+        query.find({
+            success: function(results){
+                if(results.length>0)
+                {
+                    var counter=results[0];
+                    counter.fetchWhenSave(true); //get recent result
+                    counter.increment("time");
+                    counter.save();
+                }
+                else
+                {
+                    var newcounter=new Counter();
+                    newcounter.set("title",title);
+                    newcounter.set("url",url);
+                    newcounter.set("time",1);
+                    newcounter.save(null,{
+                        success: function(newcounter){
+                            //alert('New object created');
+                        },
+                        error: function(newcounter,error){
+                            alert('Failed to create');
+                        }
+                    });
+                }
+            },
+            error: function(error){
+                //find null is not a error
+                alert('Error:'+error.code+" "+error.message);
+            }
+        });
+    }
+    $(function(){
+        var Counter=AV.Object.extend("Counter");
+        //only increse visit counting when intering a page
+        if ($('.article-title').length == 1)
+            addCount(Counter);
+        var query=new AV.Query(Counter);
+        query.descending("time");
+        // the sum of popular posts
+        query.limit(10);
+        query.find({
+                success: function(results){
+                    for(var i=0;i<results.length;i++)
+                    {
+                        var counter=results[i];
+                        title=counter.get("title");
+                        url=counter.get("url");
+                        time=counter.get("time");
+                        // add to the popularlist widget
+                        showcontent=title+" ("+time+")";
+                        //notice the "" in href
+                        $('.popularlist').append('<li><a href="'+url+'">'+showcontent+'</a></li>');
+                    }
+                },
+                error: function(error){
+                    alert("Error:"+error.code+" "+error.message);
+                }
+            }
+        )
+    });
+</script>
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> |
+                <span>
+                    The Blog by <a href="个人介绍" class="copyright-links" target="_blank" rel="nofollow">liuxin</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
