@@ -30,7 +30,7 @@
     <!--Title-->
 
 
-<title>CentOs配置防火墙 | 程序猿升级课</title>
+<title>归档：2018/6 | 程序猿升级课</title>
 
 
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
@@ -151,157 +151,21 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content m-post">
-                    <p id="process"></p>
-<article class="post">
-    <div class="post-head">
-        <h1 id="CentOs配置防火墙">
-            
-	            CentOs配置防火墙
-            
-        </h1>
-        <div class="post-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/杂记">
-            杂记
-        </a>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-tags"></i>
-        <span class="tags-meta">
-            
-                
-                    <a href="/tags/服务器" title='服务器'>
-                        服务器
-                    </a>
-                
-            
-        </span>
-    </span>
-    <!-- 添加作者-->
-    <span class="fa-wrap">
-        <i class="fa fa-user" aria-hidden="true"></i>
-        <span>
-            
-                liuxin
-             
-        </span>
-    </span>
-
-    
-
-    
+                <main class="col-md-8 main-content ">
+                    <div id="main">
+  <div id="post-list">
+    <ul class="archives-post-list">
+    	<h1 class="info">2018年 6月</h1>
         
-        <span class="fa-wrap">
-            <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2015/06/12</span>
-        </span>
-         <span id="busuanzi_container_page_pv">
-                              被围观:<span id="busuanzi_value_page_pv" ></span>次
-                            </span>
-    
-</div>
-
-            
-            
-            <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>1085</strong>天之前发表，文中内容可能已经过时。
-            </p>
+          <li class="post-items" _href="/2018/06/02/「涨知识」一篇文章让你了解Java核心线程池/">
+            <h3 class="post-item-title">
+            	<a href="/2018/06/02/「涨知识」一篇文章让你了解Java核心线程池/"> 「涨知识」一篇文章让你了解Java核心线程池 </a>
+            </h3>  
+          </li>
         
-    </div>
-    
-    <div class="post-body post-content">
-        <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">使用命令的方式配置CentOS7防火墙</span><br><span class="line"></span><br><span class="line"><span class="comment">##Add</span></span><br><span class="line">firewall-<span class="keyword">cmd</span><span class="bash"> --permanent --zone=public --add-port=80/tcp</span></span><br><span class="line"><span class="bash"><span class="comment">##Remove</span></span></span><br><span class="line"><span class="bash">firewall-cmd --permanent --zone=public --remove-port=80/tcp</span></span><br><span class="line"><span class="bash"><span class="comment">##Reload</span></span></span><br><span class="line"><span class="bash">firewall-cmd --reload</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">复制代码</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">检查是否生效</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">firewall-cmd --zone=public --query-port=80/tcp</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">列出所有的开放端口</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">firewall-cmd --list-all</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">查看防火墙状态</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">systemctl status firewalld.service</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">启动防火墙</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">systemctl start firewalld.service</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">关闭防火墙</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">systemctl stop firewalld.service</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">重新启动防火墙</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">systemctl restart firewalld.service</span></span><br></pre></td></tr></table></figure>
-
-        <!--打赏模块-->
-          
-               <! -- 添加捐赠图标 -->
-<div class ="post-donate">
-    <div id="donate_board" class="donate_bar center">
-        <a id="btn_donate_a"  href="javascript:;" onclick="aClick()" title="打赏."></a>
-        <span class="donate_txt">
-           &uarr;<br>
-           如果您觉得文章对你有用,可以赏我一杯咖啡
-        </span>
-        <br>
-      </div>
-    <div id="donate_guide" class="donate_bar" >
-          <!-- 微信打赏图案 -->
-        <img src="https://otjenik28.bkt.clouddn.com/wwx.png"
-    </div>
-    <script type="text/javascript">
-       function aClick(){
-            <!--元素隐藏，但是原由位置不隐藏-->
-                        document.getElementById("donate_board").style.visibility="hidden";
-                         <!--隐藏原由位置-->
-                        document.getElementById("donate_board").style.display="none";
-                        document.getElementById("donate_board").style.marginRight='auto';
-             			document.getElementById("donate_board").style.marginLeft='auto';
-                        document.getElementById("donate_guide").style.visibility="visible";
-                        document.getElementById("donate_guide").style.display="inline";
-                        document.getElementById("donate_guide").style.marginRight='auto';
-             			document.getElementById("donate_guide").style.marginLeft='auto';
-
-        }
-    </script>
+    </ul>
+  </div>
 </div>
-<! -- 添加捐赠图标 -->
-
-          
-    </div>
-
-    <div class="post-footer">
-        <div>
-            
-                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
-            
-        </div>
-
-        <div>
-            
-        </div>
-    </div>
-</article>
-
-<div class="article-nav prev-next-wrap clearfix">
-    
-        <a href="/2016/01/12/ELK服务搭建之初识/" class="pre-post btn btn-default" title='ELK服务搭建之初识'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">ELK服务搭建之初识</span>
-        </a>
-    
-    
-        <a href="/2015/04/12/本地服务器搭建之秘钥登录/" class="next-post btn btn-default" title='本地服务器搭建之秘钥登录'>
-            <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">本地服务器搭建之秘钥登录</span><i class="fa fa-angle-right fa-fw"></i>
-        </a>
-    
-</div>
-
-
-    <div id="comments">
-        
-	
-<div id="lv-container" data-id="city" data-uid="MTAyMC8zNTY3NC8xMjIxMA==">
-  <script type="text/javascript">
-     (function(d, s) {
-         var j, e = d.getElementsByTagName(s)[0];
-         if (typeof LivereTower === 'function') { return; }
-         j = d.createElement(s);
-         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-         j.async = true;
-         e.parentNode.insertBefore(j, e);
-     })(document, 'script');
-  </script>
-</div>
-
-
-    </div>
 
 
 

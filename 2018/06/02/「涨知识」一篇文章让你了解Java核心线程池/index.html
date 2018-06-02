@@ -30,7 +30,7 @@
     <!--Title-->
 
 
-<title>CentOs配置防火墙 | 程序猿升级课</title>
+<title>「涨知识」一篇文章让你了解Java核心线程池 | 程序猿升级课</title>
 
 
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
@@ -155,9 +155,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="CentOs配置防火墙">
+        <h1 id="「涨知识」一篇文章让你了解Java核心线程池">
             
-	            CentOs配置防火墙
+	            「涨知识」一篇文章让你了解Java核心线程池
             
         </h1>
         <div class="post-meta">
@@ -176,8 +176,8 @@
         <span class="tags-meta">
             
                 
-                    <a href="/tags/服务器" title='服务器'>
-                        服务器
+                    <a href="/tags/杂记" title='杂记'>
+                        杂记
                     </a>
                 
             
@@ -199,7 +199,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2015/06/12</span>
+            <span class="date-meta">2018/06/02</span>
         </span>
          <span id="busuanzi_container_page_pv">
                               被围观:<span id="busuanzi_value_page_pv" ></span>次
@@ -209,14 +209,92 @@
 
             
             
-            <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>1085</strong>天之前发表，文中内容可能已经过时。
-            </p>
-        
     </div>
     
     <div class="post-body post-content">
-        <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">使用命令的方式配置CentOS7防火墙</span><br><span class="line"></span><br><span class="line"><span class="comment">##Add</span></span><br><span class="line">firewall-<span class="keyword">cmd</span><span class="bash"> --permanent --zone=public --add-port=80/tcp</span></span><br><span class="line"><span class="bash"><span class="comment">##Remove</span></span></span><br><span class="line"><span class="bash">firewall-cmd --permanent --zone=public --remove-port=80/tcp</span></span><br><span class="line"><span class="bash"><span class="comment">##Reload</span></span></span><br><span class="line"><span class="bash">firewall-cmd --reload</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">复制代码</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">检查是否生效</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">firewall-cmd --zone=public --query-port=80/tcp</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">列出所有的开放端口</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">firewall-cmd --list-all</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">查看防火墙状态</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">systemctl status firewalld.service</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">启动防火墙</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">systemctl start firewalld.service</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">关闭防火墙</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">systemctl stop firewalld.service</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">重新启动防火墙</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">systemctl restart firewalld.service</span></span><br></pre></td></tr></table></figure>
+        <blockquote>
+<p>本篇文章通读时间大概3分钟,希望在三分钟内的讲解，对你有所帮助，<br>一定要认真看并思考，好了。废话不多数，直接上干货,本节内容我们讲<br>的是Java的线程池,在讲之前我们首先看一下有哪些线程池，这些线程池<br>我们不过多讲解,因为我们的关注点是他们是如何实现的,和其运行的原理。</p>
+</blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li>常用线程池列表</li>
+<li>ThreadPoolExecutor</li>
+<li>ThreadFactory线程工厂</li>
+<li>RejectedExecutionHandler拒绝策略</li>
+<li>Queue任务队列</li>
+</ol>
+<h3 id="一-常用线程池列表"><a href="#一-常用线程池列表" class="headerlink" title="一. 常用线程池列表"></a>一. 常用线程池列表</h3><p>这部分内容,只是帮助你回顾一下线程池的知识，大家重点看方法内的实现</p>
+<p>1、构造一个固定线程数目的线程池，配置的corePoolSize与maximumPoolSize大小相同，同时使用了一个无界LinkedBlockingQueue存放阻塞任务，因此多余的任务将存在再阻塞队列，不会由RejectedExecutionHandler处理<br><img src="http://p1.pstatp.com/large/pgc-image/1527861202003d9190acc05" alt=""></p>
+<p>2、构造一个缓冲功能的线程池，配置corePoolSize=0，maximumPoolSize=Integer.MAX_VALUE，keepAliveTime=60s,以及一个无容量的阻塞队列 SynchronousQueue，因此任务提交之后，将会创建新的线程执行；线程空闲超过60s将会销毁<br><img src="http://p3.pstatp.com/large/pgc-image/15278612020155b42fec9fa" alt=""></p>
+<p>3、构造一个只支持一个线程的线程池，配置corePoolSize=maximumPoolSize=1，无界阻塞队列LinkedBlockingQueue；保证任务由一个线程串行执行<br><img src="http://p3.pstatp.com/large/pgc-image/1527861202047d594f2169d" alt=""></p>
+<p>4、构造有定时功能的线程池，配置corePoolSize，无界延迟阻塞队列DelayedWorkQueue；有意思的是：maximumPoolSize=Integer.MAX_VALUE，由于DelayedWorkQueue是无界队列，所以这个值是没有意义的<br><img src="http://p1.pstatp.com/large/pgc-image/1527861202053b105b58990" alt=""></p>
+<h3 id="二-ThreadPoolExecutor"><a href="#二-ThreadPoolExecutor" class="headerlink" title="二. ThreadPoolExecutor"></a>二. ThreadPoolExecutor</h3><p>相信大家从上面的众多线程池中都已经看到了这个类,因为上面的线程池底层的构造都是由这个类创建的,</p>
+<p>那么我们就开始研究这个类<br><img src="http://p3.pstatp.com/large/pgc-image/152786120209486f92499b2" alt=""></p>
+<p>首先看一下构造方法，关于注释一定要好好看，每个参数都理解了，那么你就弄懂了</p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/15278614183235c7828fbc6" alt=""></p>
+<hr>
+<ol>
+<li><p>核心的线程池</p>
+</li>
+<li><p>最大线程池就是说你定义的线程池运行创建的最大线程数量</p>
+</li>
+<li><p>空闲时间回收，当这个时间后还没有任务执行就将线程回收</p>
+</li>
+<li><p>单位,控制上面时间的单位，可以为秒，或者分钟</p>
+</li>
+<li><p>核心线程都已经去执行任务但是，任务还有，那么久先放到这个队列里，就相当于集合</p>
+</li>
+<li><p>创建线程用户的线程工厂,里面只有一个方法就是newThread，你可以自定义线程名</p>
+</li>
+<li><p>拒绝策略，当任务已经执行不了，你拒绝的策略</p>
+</li>
+</ol>
+<font color="red">上面的文字可能你看的不太明白，小编这里画了一个图，大家仔细看看 </font>
+
+<p><img src="http://p3.pstatp.com/large/pgc-image/1527861418069d8804f8a08" alt=""></p>
+<h3 id="三-ThreadFactory"><a href="#三-ThreadFactory" class="headerlink" title="三. ThreadFactory"></a>三. ThreadFactory</h3><p>ThreadFactory有什么用呢？ 其实就是一个接口，既然是线程工厂，那么肯定就是创建线程的了</p>
+<p><img src="http://p9.pstatp.com/large/pgc-image/1527861417757ca2ccdae0a" alt=""></p>
+<p>接口就是这么简单，那么我们在开发中到底有什么实际用处呢？ 下面是小编写的一个线程工厂，主要是在创建线程的时候</p>
+<p>给当前线程分配名字和线程组方便控制。读到这里，有没有一点启发呢？</p>
+<p><img src="http://p1.pstatp.com/large/pgc-image/15278614184253a9c7a461e" alt=""></p>
+<h3 id="四-拒绝策略"><a href="#四-拒绝策略" class="headerlink" title="四. 拒绝策略"></a>四. 拒绝策略</h3><p>拒绝策略就是任务实在是已经执行不了，那么就需要你告诉程序，怎么样去拒绝在执行其他任务</p>
+<p>ThreadPoolExecutor类里面是内置了4中拒绝策略，我们一个一个来分析</p>
+<ul>
+<li>策略-1<br>用于被拒绝任务的处理程序，它直接在 execute 方法的调用线程中运行被拒绝的任务；如果执行程序已关闭，则会丢弃该任务。如下：</li>
+</ul>
+<p><img src="http://p1.pstatp.com/large/pgc-image/152786141806617a6102921" alt=""></p>
+<ul>
+<li>策略-2</li>
+</ul>
+<p>直接抛出异常</p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/15278614180694721fc80e0" alt=""></p>
+<ul>
+<li>策略-3<br>什么都不做直接丢弃</li>
+</ul>
+<p><img src="http://p1.pstatp.com/large/pgc-image/15278614187523e0c355d68" alt=""></p>
+<ul>
+<li>策略-4<br>从任务队列中移除最早的一个，然后将拒绝的任务重新执行</li>
+</ul>
+<p><img src="http://p3.pstatp.com/large/pgc-image/15278614188350fb6aec9b5" alt=""></p>
+<p>到这里拒绝策略就说完了，应该都明白了吧，下面我们说下实际中会怎么用。</p>
+<p>如果在任务不是特别多特别重要的情境下，可以在执行拒绝策略发送一个通知事件，通知相关的人查看。</p>
+<p>比如以下这种</p>
+<p><img src="http://p9.pstatp.com/large/pgc-image/1527861418912b86d1a85e7" alt=""></p>
+<p>但是当任务特别重要的时候，比如说银行处理用户的转账信息更新事物的任务时候，那么这个任务就比较重要了，不可能用这种的，这种对数据要求高的我们都是用Elastic-Job，这种分布式任务处理框架，任务会首先落数据库，然后从数据库中批量读取任务执行。感兴趣的童鞋可以下去自行了解。</p>
+<h3 id="五-任务队列"><a href="#五-任务队列" class="headerlink" title="五. 任务队列"></a>五. 任务队列</h3><p>扩展点知识，队列再次，小编不对队列进行讲解，只提到，感兴趣的童鞋下去在深入研究</p>
+<h4 id="Queue"><a href="#Queue" class="headerlink" title="Queue:"></a>Queue:</h4><p>分为阻塞队列和非阻塞队里</p>
+<p>阻塞队列一共有四套方法分别用来进行insert、remove和examine，当每套方法对应的操作不能马上执行时会有不同的反应，下面这个表格就分类列出了这些方法：<br><img src="http://p1.pstatp.com/large/pgc-image/1527861734176833c0cd182" alt=""></p>
+<ol>
+<li>ThrowsException：如果操作不能马上进行，则抛出异常</li>
+<li>SpecialValue：如果操作不能马上进行，将会返回一个特殊的值，一般是true或者false</li>
+<li>Blocks:如果操作不能马上进行，操作会被阻塞</li>
+<li>TimesOut:如果操作不能马上进行，操作会被阻塞指定的时间，如果指定时间没执行，则返回一个特殊值，一般是true或者false 需要注意的是，我们不能向BlockingQueue中插入null，否则会报NullPointerException。</li>
+<li>LinkedBlockingQueue 无边界队里</li>
+<li>PriorityBlockingQueue 排序队列，内部会排序但是要实现排序接口</li>
+<li>SynchronousQueue 同步队列</li>
+<li>ArrayBlockingQueue 阻塞队里，内不是数组，有边界</li>
+<li>DelayQueue 延迟队里</li>
+</ol>
+<p><img src="http://p3.pstatp.com/large/pgc-image/1527862347454c84074926e" alt=""></p>
 
         <!--打赏模块-->
           
@@ -270,15 +348,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2016/01/12/ELK服务搭建之初识/" class="pre-post btn btn-default" title='ELK服务搭建之初识'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">ELK服务搭建之初识</span>
-        </a>
     
-    
-        <a href="/2015/04/12/本地服务器搭建之秘钥登录/" class="next-post btn btn-default" title='本地服务器搭建之秘钥登录'>
+        <a href="/2018/05/02/Java开发者们for-和while-true-的区别应该了解下/" class="next-post btn btn-default" title='Java开发者们for(;;)和while(true)的区别应该了解下'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">本地服务器搭建之秘钥登录</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">Java开发者们for(;;)和while(true)的区别应该了解下</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
