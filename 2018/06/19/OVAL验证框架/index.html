@@ -30,7 +30,7 @@
     <!--Title-->
 
 
-<title>归档：2018/6 | 程序猿升级课</title>
+<title>OVAL验证框架 | 程序猿升级课</title>
 
 
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
@@ -166,27 +166,180 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <div id="main">
-  <div id="post-list">
-    <ul class="archives-post-list">
-    	<h1 class="info">2018年 6月</h1>
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="OVAL验证框架">
+            
+	            OVAL验证框架
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/杂记">
+            杂记
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/杂记" title='杂记'>
+                        杂记
+                    </a>
+                
+            
+        </span>
+    </span>
+    <!-- 添加作者-->
+    <span class="fa-wrap">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <span>
+            
+                liuxin
+             
+        </span>
+    </span>
+
+    
+
+    
         
-          <li class="post-items" _href="/2018/06/19/OVAL验证框架/">
-            <h3 class="post-item-title">
-            	<a href="/2018/06/19/OVAL验证框架/"> OVAL验证框架 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/06/02/「涨知识」一篇文章让你了解Java核心线程池/">
-            <h3 class="post-item-title">
-            	<a href="/2018/06/02/「涨知识」一篇文章让你了解Java核心线程池/"> 「涨知识」一篇文章让你了解Java核心线程池 </a>
-            </h3>  
-          </li>
-        
-    </ul>
-  </div>
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/06/19</span>
+        </span>
+         <span id="busuanzi_container_page_pv">
+                              被围观:<span id="busuanzi_value_page_pv" ></span>次
+                            </span>
+    
 </div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <blockquote>
+<p>本篇文章没有技术点,只给各位看官介绍有这么一个东西,浏览全文预计需要1分钟,小编相信各位看官会在30s就知道是否对你有用,如果有用知道即可</p>
+</blockquote>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>对入参进行校验,不需要专门写校验代码,只加一个注解即可</p>
+<p>###使用场景</p>
+<p>web开发controller层对入参进行校验<br>rpc调用,对入参校验</p>
+<hr>
+<p><strong>使用前后对比图,如果看到这里你还感兴趣,那么可以继续学习!</strong></p>
+<p><img src="http://p9.pstatp.com/large/pgc-image/1528375003072a4ea1df9b8" alt=""></p>
+<ol>
+<li>字符类型</li>
+</ol>
+<p>@AsserURL、@Email、@Length、@MaxLength、@MinLength</p>
+<p>@NotNull、@NotBlank、@NotEmpty、</p>
+<p>@Digits、@HasSubstring: 是否包含子串</p>
+<ol start="2">
+<li>数值类型</li>
+</ol>
+<p>@Range、@Max、@Min、@NotNegative</p>
+<ol start="3">
+<li>布尔类型</li>
+</ol>
+<p>@AssertFalse、@AssertTrue</p>
+<ol start="4">
+<li>集合数组</li>
+</ol>
+<p>@Size、@MaxSize、@MinSize、@MemberOf、@NotMemberOf</p>
+<ol start="5">
+<li>表达式或自定义</li>
+</ol>
+<p>@Assert、@CheckWith、@NotMatchPatternCheck，@MatchPatternCheck、</p>
+<p>@ValidateWithMethod</p>
+<p><img src="http://p9.pstatp.com/large/pgc-image/1528375151240e67ab79471" alt=""></p>
+
+        <!--打赏模块-->
+          
+               <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate_a"  href="javascript:;" onclick="aClick()" title="打赏."></a>
+        <span class="donate_txt">
+           &uarr;<br>
+           如果您觉得文章对你有用,可以赏我一杯咖啡
+        </span>
+        <br>
+      </div>
+    <div id="donate_guide" class="donate_bar" >
+          <!-- 微信打赏图案 -->
+        <img src="https://otjenik28.bkt.clouddn.com/wwx.png"
+    </div>
+    <script type="text/javascript">
+       function aClick(){
+            <!--元素隐藏，但是原由位置不隐藏-->
+                        document.getElementById("donate_board").style.visibility="hidden";
+                         <!--隐藏原由位置-->
+                        document.getElementById("donate_board").style.display="none";
+                        document.getElementById("donate_board").style.marginRight='auto';
+             			document.getElementById("donate_board").style.marginLeft='auto';
+                        document.getElementById("donate_guide").style.visibility="visible";
+                        document.getElementById("donate_guide").style.display="inline";
+                        document.getElementById("donate_guide").style.marginRight='auto';
+             			document.getElementById("donate_guide").style.marginLeft='auto';
+
+        }
+    </script>
+</div>
+<! -- 添加捐赠图标 -->
+
+          
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
+        </div>
+
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/06/02/「涨知识」一篇文章让你了解Java核心线程池/" class="next-post btn btn-default" title='「涨知识」一篇文章让你了解Java核心线程池'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">「涨知识」一篇文章让你了解Java核心线程池</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNTY3NC8xMjIxMA==">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
 
 
 
