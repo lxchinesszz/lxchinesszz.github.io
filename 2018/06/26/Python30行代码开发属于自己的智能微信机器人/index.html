@@ -30,7 +30,7 @@
     <!--Title-->
 
 
-<title>SpringBoot定义事件和监听器 | 程序猿升级课</title>
+<title>Python30行代码开发属于自己的智能微信机器人 | 程序猿升级课</title>
 
 
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
@@ -170,9 +170,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="SpringBoot定义事件和监听器">
+        <h1 id="Python30行代码开发属于自己的智能微信机器人">
             
-	            SpringBoot定义事件和监听器
+	            Python30行代码开发属于自己的智能微信机器人
             
         </h1>
         <div class="post-meta">
@@ -180,8 +180,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/Spring-Boot">
-            Spring-Boot
+        <a href="/categories/杂记">
+            杂记
         </a>
     </span>
     
@@ -191,8 +191,8 @@
         <span class="tags-meta">
             
                 
-                    <a href="/tags/Spring-Boot" title='Spring-Boot'>
-                        Spring-Boot
+                    <a href="/tags/杂记" title='杂记'>
+                        杂记
                     </a>
                 
             
@@ -214,7 +214,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2017/09/12</span>
+            <span class="date-meta">2018/06/26</span>
         </span>
          <span id="busuanzi_container_page_pv">
                               被围观:<span id="busuanzi_value_page_pv" ></span>次
@@ -227,13 +227,25 @@
     </div>
     
     <div class="post-body post-content">
-        <ul>
-<li>继承事件 <code>ApplicationEvent</code></li>
-<li>定义监听 <code>ApplicationListener</code></li>
-</ul>
-<h3 id="继承事件-ApplicationEvent"><a href="#继承事件-ApplicationEvent" class="headerlink" title="继承事件 ApplicationEvent"></a>继承事件 <code>ApplicationEvent</code></h3><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class EmailEvent extends ApplicationEvent &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;Description：&lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1</span>L;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">String</span> address;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">String</span> <span class="built_in">text</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> EmailEvent(<span class="keyword">Object</span> source) &#123;</span><br><span class="line">        <span class="keyword">super</span>(source);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> EmailEvent(<span class="keyword">Object</span> source, <span class="keyword">String</span> address, <span class="keyword">String</span> <span class="built_in">text</span>) &#123;</span><br><span class="line">        <span class="keyword">super</span>(source);</span><br><span class="line">        <span class="keyword">this</span>.address = address;</span><br><span class="line">        <span class="keyword">this</span>.<span class="built_in">text</span> = <span class="built_in">text</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="built_in">print</span>()&#123;</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"hello spring event!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="定义监听-ApplicationListener"><a href="#定义监听-ApplicationListener" class="headerlink" title="定义监听 ApplicationListener"></a>定义监听 <code>ApplicationListener</code></h3><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EmailListener</span> <span class="title">implements</span> <span class="title">ApplicationListener</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onApplicationEvent</span>(<span class="params">ApplicationEvent <span class="keyword">event</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">event</span> instanceof EmailEvent)&#123;</span><br><span class="line">            EmailEvent emailEvent = (EmailEvent)<span class="keyword">event</span>;</span><br><span class="line">            emailEvent.print();</span><br><span class="line">            System.<span class="keyword">out</span>.println(<span class="string">"the source is:"</span>+emailEvent.getSource());</span><br><span class="line">            System.<span class="keyword">out</span>.println(<span class="string">"the address is:"</span>+emailEvent.address);</span><br><span class="line">            System.<span class="keyword">out</span>.println(<span class="string">"the email's context is:"</span>+emailEvent.text);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="代码测试"><a href="#代码测试" class="headerlink" title="代码测试"></a>代码测试</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">      ConfigurableApplicationContext applicationContext = SpringApplication.<span class="built_in">run</span>(Application.class, args);</span><br><span class="line">      EmailEvent emailEvent=<span class="keyword">new</span> EmailEvent(<span class="string">"hello"</span>,<span class="string">"lxchinesszz@163.com"</span>,<span class="string">"this is a email text"</span>);</span><br><span class="line">      applicationContext.publishEvent(emailEvent);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+        <blockquote>
+<p>今天我们不做Java代码的分享,小编今天发现了一个好玩的东西,我们利用免费的图灵机器人和微信接口调用,做一个智能的微信机器人,像这样，当你不想聊天时候,把机器人启动，让朋友给你聊天。当然itchat和图灵机器人不只是玩的，我们可以做出更多有趣的应用，或者是客服系统之类。也可以调用百度的自然语言分析,做一个翻译,分词之类的应用。下面给大家介绍下。<br>Python30行代码开发属于自己的智能微信机器人</p>
+</blockquote>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ol>
+<li><p>安装Python运行环境</p>
+</li>
+<li><p>安装微信库itchat(利用web微信接口的python调用库)</p>
+</li>
+<li><p>注册图灵机器人</p>
+</li>
+<li><p>代码示例</p>
+</li>
+</ol>
+<hr>
+<h4 id="安装Python运行环境"><a href="#安装Python运行环境" class="headerlink" title="安装Python运行环境"></a>安装Python运行环境</h4><p>Mac的用户不用安装,因为系统自带有Python,如果没有可以用用<br><img src="http://p1.pstatp.com/large/pgc-image/15299234357434d1477f261" alt=""></p>
+<h4 id="安装微信库itchat-利用web微信接口的python调用库"><a href="#安装微信库itchat-利用web微信接口的python调用库" class="headerlink" title="安装微信库itchat(利用web微信接口的python调用库)"></a>安装微信库itchat(利用web微信接口的python调用库)</h4><p><img src="http://p1.pstatp.com/large/pgc-image/1529923439416c4208c9c42" alt=""></p>
+<h4 id="注册图灵机器人"><a href="#注册图灵机器人" class="headerlink" title="注册图灵机器人"></a>注册图灵机器人</h4><p>可以给机器人定义名字或者是性别,及选择词库<br><img src="http://p9.pstatp.com/large/pgc-image/15299234285430cf028263d" alt=""></p>
+<p>复制下面代码即可使用(头条展示代码比较另类所以通过截图的方式,感兴趣的童鞋点击关注私信:机器人，就可获取代码)</p>
+<p><img src="http://p1.pstatp.com/large/pgc-image/15299234399056576a36e08" alt=""></p>
 
         <!--打赏模块-->
           
@@ -287,15 +299,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/01/12/SpringBoot整合Sentry监控项目日志/" class="pre-post btn btn-default" title='SpringBoot整合Sentry监控项目日志'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">SpringBoot整合Sentry监控项目日志</span>
-        </a>
     
-    
-        <a href="/2017/07/12/SpringBoot之自定义Servlet/" class="next-post btn btn-default" title='SpringBoot之自定义Servlet'>
+        <a href="/2018/06/19/OVAL验证框架/" class="next-post btn btn-default" title='OVAL验证框架'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">SpringBoot之自定义Servlet</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">OVAL验证框架</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
