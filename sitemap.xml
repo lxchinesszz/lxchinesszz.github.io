@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.springlearn.cn/2015/03/11/me/</loc>
+    
+    <lastmod>2018-06-26T15:26:17.502Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.springlearn.cn/2018/06/26/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8B%E9%9A%94%E7%A6%BB%E6%8A%80%E6%9C%AFThreadLocal%E6%BA%90%E7%A0%81%E8%AF%A6%E8%A7%A3/</loc>
     
     <lastmod>2018-06-26T14:57:08.742Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>https://blog.springlearn.cn/2018/06/02/%E3%80%8C%E6%B6%A8%E7%9F%A5%E8%AF%86%E3%80%8D%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E8%AE%A9%E4%BD%A0%E4%BA%86%E8%A7%A3Java%E6%A0%B8%E5%BF%83%E7%BA%BF%E7%A8%8B%E6%B1%A0/</loc>
     
     <lastmod>2018-06-02T10:05:21.470Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.springlearn.cn/2015/03/11/me/</loc>
-    
-    <lastmod>2018-05-07T06:24:09.920Z</lastmod>
     
   </url>
   
