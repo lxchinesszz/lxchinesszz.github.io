@@ -1,0 +1,602 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序猿升级课">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="baidu-site-verification" content="DhI4Hjwyp4" />
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://blog.springlearn.cn">
+    <!--SEO-->
+
+<meta name="description" content="一个关注于程序猿技术提升的博客"/>
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Springboot2.0中webflux到底优秀在哪里 | 程序猿升级课</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
+
+
+    <link rel="icon" href="https://lxchinesszz.gitee.io/chinesszz/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " https://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+
+    
+
+</head>
+
+<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+<!--统计浏览量-->
+<script>AV.init('IwOl4kKmvkph85YhYWKm26tr-gzGzoHsz', 'N1rlzE7cJFetMehvtgaHnKhB');</script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='liuxin'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 科技改变生活! </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Spring-Boot/"><i class="fa "></i>SpringBoot</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Spring-Boot2-0/"><i class="fa "></i>SpringBoot2.0</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Spring-Cloud/"><i class="fa "></i>SpringCloud</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/通信/"><i class="fa "></i>通信</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据处理/"><i class="fa "></i>数据处理</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/源码阅读/"><i class="fa "></i>源码阅读</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂记/"><i class="fa "></i>杂记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/2015/03/11/me/"><i class="fa "></i>关于</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Springboot2.0中webflux到底优秀在哪里">
+            
+	            Springboot2.0中webflux到底优秀在哪里
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/Spring-Boot2.0">
+            Spring-Boot2.0
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/Spring-Boot2.0" title='Spring-Boot2.0'>
+                        Spring-Boot2.0
+                    </a>
+                
+            
+        </span>
+    </span>
+    <!-- 添加作者-->
+    <span class="fa-wrap">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <span>
+            
+                liuxin
+             
+        </span>
+    </span>
+
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/06/26</span>
+        </span>
+         <span id="busuanzi_container_page_pv">
+                              被围观:<span id="busuanzi_value_page_pv" ></span>次
+                            </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p><strong>Spring-boot-webflux中所说的反应堆式编程reactor到底优秀在哪里？</strong></p>
+<p>小编的Springboot2.0的课程已经快全部写完了。总结来看，对于有基础的同学学习难度不是很大,一周内就能上手。但是在小编看来编程如果说只会用,而不了解其编程模型和这样设计的好处，其实对于开发人员来说，并没有多大的收获！所以为了让感兴趣的同学对2.0编程模型反应式编程和Mono，Flux有一个清醒的认识，减少后面的学习难度。小编我总结了这篇文章。文章概念性东西比较多,希望大家有所收获!</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li>什么是反应式编程(Reactive)？</li>
+<li>反应式的编程模型的好处是什么？</li>
+<li>代码如何去实现反应式编程?</li>
+<li>Mono和Flux常用API</li>
+<li>Mono和Flux在Webflux中的用处？</li>
+</ol>
+<h3 id="1-什么是反应式编程-Reactive-？"><a href="#1-什么是反应式编程-Reactive-？" class="headerlink" title="1.什么是反应式编程(Reactive)？"></a>1.什么是反应式编程(Reactive)？</h3><p>Reactive小编理解下来就是基于事件驱动(事件模式或者说订阅者模式)，类似于Netty异步事件编程模型，对不同的事件做不同的处理。所有信息都通过一个编程模型处理，就像水在管道里面运动一样（这里把事件比作水流）</p>
+<p><img src="http://p1.pstatp.com/large/pgc-image/15295886539700aa006d39e" alt=""></p>
+<p>所有的信息都封装成一个Channel,这个channel就像在管道中流动一样,被管道中的这些处理器所处理。</p>
+<p><img src="http://p9.pstatp.com/large/pgc-image/152958865408618227db359" alt=""></p>
+<p>比如大名鼎鼎的React 前端框架配合redux 流模型，将服务器返回的信息包装成action数据流，然后根据action去映射到页面上，页面随着action的改变而改变。页面和数据就相当于这管道中的东西，被一层一层的梳理，展示。</p>
+<h3 id="2-反应式的编程模型的好处是什么？"><a href="#2-反应式的编程模型的好处是什么？" class="headerlink" title="2. 反应式的编程模型的好处是什么？"></a>2. 反应式的编程模型的好处是什么？</h3><p>为了给各位看官充分证明其好处，我们先来分析下传统的模式有哪些不足！</p>
+<p>作为Java web开发人员，我们写的最多的代码都是放在web容器中tomcat中运行的，Tomcat就是基于Servelt运行的,我们回顾下Servlet的知识,可能我们最熟悉的就是HttpServletRequest，和HttpServletResponse</p>
+<p>当你脑子中有Servlet的概念就好理解了。</p>
+<ul>
+<li>Servlet3.0之前 线程会一直阻塞，只有当业务处理完成并返回后时结束 Servlet线程。</li>
+<li>3.0规范其中一个新特性是异步处理支持,即是在接收到请求之后，Servlet 线程可以将耗时的操作委派给另一个线程来完成，在不生成响应的情况下返回至容器</li>
+</ul>
+<h4 id="这样说可能大家还不太容易理解，我们来举一个例子-这点引用小编之前写的文章-SpringBoot2-0之WebFlux解析及实战"><a href="#这样说可能大家还不太容易理解，我们来举一个例子-这点引用小编之前写的文章-SpringBoot2-0之WebFlux解析及实战" class="headerlink" title="这样说可能大家还不太容易理解，我们来举一个例子(这点引用小编之前写的文章)SpringBoot2.0之WebFlux解析及实战"></a>这样说可能大家还不太容易理解，我们来举一个例子(这点引用小编之前写的文章)SpringBoot2.0之WebFlux解析及实战</h4><p>eg： 我们假设,设置tomcat最大线程为200,遇到200个非常耗时的请求</p>
+<ol>
+<li><p>那么当有200个线程同时并发在处理,那么当来201个请求的时候,就已经处理不了，因为所有的线程都阻塞了。这是3.0之前的处理情况</p>
+</li>
+<li><p>而3.0之后异步处理是怎样处理呢？学过Netty通信框架的同学会比较容易理解一点，Servlet3.0类似于Netty一样就一个boss线程池和work线程池，boss线程只负责接收请求,work线程只负责处理逻辑。那么servlet3.0规范中，这200个线程只负责接收请求，然后每个线程将收到的请求，转发到work线程去处理。因为这200个线程只负责接收请求，并不负责处理逻辑，故不会被阻塞，而影响通信，就算处理非常耗时，也只是对work线程形成阻塞，所以当再来请求，同样可以处理,其主要应用场景是针对业务处理较耗时的情况可以减少服务器资源的占用，并且提高并发处理速度。</p>
+</li>
+</ol>
+<p><img src="http://p3.pstatp.com/large/pgc-image/15295886541071568ccdf41" alt=""></p>
+<h3 id="3-代码如何去实现反应式编程"><a href="#3-代码如何去实现反应式编程" class="headerlink" title="3.代码如何去实现反应式编程?"></a>3.代码如何去实现反应式编程?</h3><p>前面说了反应式编程可以理解为事件模式或者是订阅者模式,我们如何去实现事件模式？</p>
+<p>小编在这里引入两个框架或许各位看官就理解了</p>
+<ul>
+<li><ol>
+<li>RxJava</li>
+</ol>
+</li>
+</ul>
+<p>下图是RxJava小编写的例子,大概描述下,事件源即使onNext方法的入参，将信息发送,消费者就是</p>
+<p>subscribe方法，里面会对事件源做处理，onCompleted: 完成 onError:错误</p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/15295886541429eb153b22f" alt=""></p>
+<ul>
+<li><ol start="2">
+<li>Guava的EventBus实现</li>
+</ol>
+</li>
+</ul>
+<p>怎么样订阅者模式,或者是观察者模式是不是很好理解</p>
+<p>但是我们还是觉得这种方法,太复杂了,比如我们为了扩展性,就创建了这么多类. 那么我们怎么更简单呢? 接下来介绍EventBus使用,只要掌握一个注解@Subscribe就可以了.</p>
+<p><img src="http://p1.pstatp.com/large/pgc-image/15295886540479b0de2ec3d" alt=""></p>
+<h3 id="4-Mono和Flux常用API"><a href="#4-Mono和Flux常用API" class="headerlink" title="4.Mono和Flux常用API"></a>4.Mono和Flux常用API</h3><p>Mone和Flux都是数据反应式编程的核心组件，开发人员就是多利用其编写出高效率的代码</p>
+<p>Reactor是JVM的完全非阻塞反应式编程基础，具有高效的需求管理（以管理“背压”的形式）。它直接与Java 8功能的API，特别是整合CompletableFuture，Stream和 Duration。它提供了可组合的异步序列API Flux（用于[N]元素）和Mono（用于[0 | 1]元素），广泛地实现了Reactive Extensions规范。这段的重点是和Java8结合利用lambda表达式简洁的优点。</p>
+<p>Flux 相当于一个 RxJava Observable 观察者</p>
+<p>观察者可以把生产者的消息Publisher,推送给消费者subscribe</p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/152958865448653993e03ba" alt=""></p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/15295886543052ff14b164e" alt=""><br>我们可以把Mono理解为一个结果它对应的数据是 1，其实可以理解为对结果的一个包装</p>
+<p><img src="http://p1.pstatp.com/large/pgc-image/1529588654479e1bec671ff" alt=""></p>
+<h3 id="5-Mono和Flux在Webflux中的用处？"><a href="#5-Mono和Flux在Webflux中的用处？" class="headerlink" title="5.Mono和Flux在Webflux中的用处？"></a>5.Mono和Flux在Webflux中的用处？</h3><p><img src="http://p1.pstatp.com/large/pgc-image/1529588654490f10058b09f" alt=""><br>更令小编感到热血沸腾的是SpringBoot2.0后可以用Netty作为web容器,我们构建一个web项目更简单了,小编曾羡慕过Node.js构建web项目的便捷，只需要10行左右代码,就能构建出一个web项目或者更短。如今我们利用SpringBoot2.0也可以了5行。</p>
+<p><img src="http://p1.pstatp.com/large/pgc-image/1529588956279e701cb71f3" alt=""></p>
+<p>好了这篇文章就到这里了,相信你对springboot2的webflux和reactive都有一个大概的认识了，下一步学习Springboot2其他webflux组件就相对比较简单了，喜欢的童鞋点击下关注,小编会持续为你推送最新的技术文章。</p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/15295890048306802465c9c" alt=""></p>
+<p><a href="https://projectreactor.io/docs/core/release/reference/#flux" target="_blank" rel="noopener">Flux参考地址</a></p>
+<p>以上是小编的理解，可能也不是全对，欢迎指出问题批评，技术交流,思想碰撞的火花，才能促进进步，最后小编希望和各位看官一起共同进步。</p>
+
+        <!--打赏模块-->
+          
+               <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate_a"  href="javascript:;" onclick="aClick()" title="打赏."></a>
+        <span class="donate_txt">
+           &uarr;<br>
+           如果您觉得文章对你有用,可以赏我一杯咖啡
+        </span>
+        <br>
+      </div>
+    <div id="donate_guide" class="donate_bar" >
+          <!-- 微信打赏图案 -->
+        <img src="https://otjenik28.bkt.clouddn.com/wwx.png"
+    </div>
+    <script type="text/javascript">
+       function aClick(){
+            <!--元素隐藏，但是原由位置不隐藏-->
+                        document.getElementById("donate_board").style.visibility="hidden";
+                         <!--隐藏原由位置-->
+                        document.getElementById("donate_board").style.display="none";
+                        document.getElementById("donate_board").style.marginRight='auto';
+             			document.getElementById("donate_board").style.marginLeft='auto';
+                        document.getElementById("donate_guide").style.visibility="visible";
+                        document.getElementById("donate_guide").style.display="inline";
+                        document.getElementById("donate_guide").style.marginRight='auto';
+             			document.getElementById("donate_guide").style.marginLeft='auto';
+
+        }
+    </script>
+</div>
+<! -- 添加捐赠图标 -->
+
+          
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
+        </div>
+
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/06/26/SpringBoot2-0中MVC和WebFlux控制层Controller对比/" class="next-post btn btn-default" title='SpringBoot2.0中MVC和WebFlux控制层Controller对比'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">SpringBoot2.0中MVC和WebFlux控制层Controller对比</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNTY3NC8xMjIxMA==">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="https://music.163.com/outchain/player?type=1&id=34930257&auto=0&height=32"></iframe>
+           </div>
+
+
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <p>
+<a href="https://spring4all.com" target="_blank">Spring For All社区</a>
+是关于Spring的纯技术交流社区（涵盖Spring Boot、Spring Cloud等内容），集诸多开源爱好者和技术大牛贡献内容和交流问题。我们不夸大、不装逼、做最纯粹的技术分享！！！
+<hr/>小编GITHUB开源项目,接受贡献,不限于提交问题与需求，修复代码。欢迎Pull Request<br/>支持一下：<a href="https://github.com/lxchinesszz">Star一下</a>
+<hr/>专注于程序猿技术的提升的博客,欢迎投稿 <a href="mailto:lxchinesszz@163.com">投稿邮箱</a>
+</p>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="https://github.com/lxchinesszz" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="github fa fa-github"></i>
+			    </a>
+            
+	            <a href="mailto:lxchinesszz@163.com" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope fa fa-envelope"></i>
+			    </a>
+            
+	            <a href="https://wpa.qq.com/msgrd?v=3&uin=1213327162&site=qq&menu=yes" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Cloud/"><i class="fa" aria-hidden="true">Spring Cloud</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/"><i class="fa" aria-hidden="true">Spring-Boot</i></a><span class="category-list-count">42</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot2-0/"><i class="fa" aria-hidden="true">Spring-Boot2.0</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/about/"><i class="fa" aria-hidden="true">about</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据处理/"><i class="fa" aria-hidden="true">数据处理</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/杂记/"><i class="fa" aria-hidden="true">杂记</i></a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/通信/"><i class="fa" aria-hidden="true">通信</i></a><span class="category-list-count">2</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/GC/" style="font-size: 10px;">GC</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/Linux服务器/" style="font-size: 10px;">Linux服务器</a> <a href="/tags/Netty/" style="font-size: 11.67px;">Netty</a> <a href="/tags/Rabbitmq/" style="font-size: 15px;">Rabbitmq</a> <a href="/tags/Spring-Cloud/" style="font-size: 11.67px;">Spring Cloud</a> <a href="/tags/Spring-Boot/" style="font-size: 20px;">Spring-Boot</a> <a href="/tags/Spring-Boot2-0/" style="font-size: 13.33px;">Spring-Boot2.0</a> <a href="/tags/Spring定时器/" style="font-size: 10px;">Spring定时器</a> <a href="/tags/Spring整合Quartz/" style="font-size: 10px;">Spring整合Quartz</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/日志/" style="font-size: 13.33px;">日志</a> <a href="/tags/服务器/" style="font-size: 16.67px;">服务器</a> <a href="/tags/杂记/" style="font-size: 18.33px;">杂记</a> <a href="/tags/深浅拷贝/" style="font-size: 10px;">深浅拷贝</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友情链接</h3>
+        <div class="content friends-link">
+        
+            <a href="https://www.jianshu.com/u/e210c8fa704f" class="fa" target="_blank">简书</a>
+        
+            <a href="https://blog.csdn.net/message_lx" class="fa" target="_blank">CSDN</a>
+        
+            <a href="https://www.toutiao.com/c/user/3686495601/#mid=1563737358895105" class="fa" target="_blank">头条</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+        <span id="busuanzi_container_site_pv">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        |
+        <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人次
+        </span>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+<!--page counter part统计文章字数,核心代码;来源:https://crescentmoon.info/2014/12/11/popular-widget/-->
+<script>
+    function addCount (Counter) {
+        url=$('.article-date').attr('href').trim();
+        title = $('.article-title').text().trim();
+        var query=new AV.Query(Counter);
+        //use url as unique idnetfication
+        query.equalTo("url",url);
+        query.find({
+            success: function(results){
+                if(results.length>0)
+                {
+                    var counter=results[0];
+                    counter.fetchWhenSave(true); //get recent result
+                    counter.increment("time");
+                    counter.save();
+                }
+                else
+                {
+                    var newcounter=new Counter();
+                    newcounter.set("title",title);
+                    newcounter.set("url",url);
+                    newcounter.set("time",1);
+                    newcounter.save(null,{
+                        success: function(newcounter){
+                            //alert('New object created');
+                        },
+                        error: function(newcounter,error){
+                            alert('Failed to create');
+                        }
+                    });
+                }
+            },
+            error: function(error){
+                //find null is not a error
+                alert('Error:'+error.code+" "+error.message);
+            }
+        });
+    }
+    $(function(){
+        var Counter=AV.Object.extend("Counter");
+        //only increse visit counting when intering a page
+        if ($('.article-title').length == 1)
+            addCount(Counter);
+        var query=new AV.Query(Counter);
+        query.descending("time");
+        // the sum of popular posts
+        query.limit(10);
+        query.find({
+                success: function(results){
+                    for(var i=0;i<results.length;i++)
+                    {
+                        var counter=results[i];
+                        title=counter.get("title");
+                        url=counter.get("url");
+                        time=counter.get("time");
+                        // add to the popularlist widget
+                        showcontent=title+" ("+time+")";
+                        //notice the "" in href
+                        $('.popularlist').append('<li><a href="'+url+'">'+showcontent+'</a></li>');
+                    }
+                },
+                error: function(error){
+                    alert("Error:"+error.code+" "+error.message);
+                }
+            }
+        )
+    });
+</script>
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> |
+                <span>
+                    The Blog by <a href="个人介绍" class="copyright-links" target="_blank" rel="nofollow">liuxin</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
