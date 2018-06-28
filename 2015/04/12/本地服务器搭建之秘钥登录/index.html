@@ -325,36 +325,54 @@ var _hmt = _hmt || [];
         <!--打赏模块-->
           
                <! -- 添加捐赠图标 -->
-<div class ="post-donate">
+<div class="post-donate">
     <div id="donate_board" class="donate_bar center">
-        <a id="btn_donate_a"  href="javascript:;" onclick="aClick()" title="打赏."></a>
+        <a id="btn_donate_a" href="javascript:;" onclick="aClick()" title="打赏."></a>
         <span class="donate_txt">
            &uarr;<br>
-           如果您觉得文章对你有用,可以赏我一杯咖啡
+            如果您觉得文章对你有用,可以赏我一杯咖啡
         </span>
         <br>
-      </div>
-    <div id="donate_guide" class="donate_bar" >
-          <!-- 微信打赏图案 -->
+    </div>
+    <div id="donate_guide" class="donate_bar">
+        <!-- 微信打赏图案 -->
         <img src="https://otjenik28.bkt.clouddn.com/wwx.png"
     </div>
     <script type="text/javascript">
-       function aClick(){
+        function aClick() {
             <!--元素隐藏，但是原由位置不隐藏-->
-                        document.getElementById("donate_board").style.visibility="hidden";
-                         <!--隐藏原由位置-->
-                        document.getElementById("donate_board").style.display="none";
-                        document.getElementById("donate_board").style.marginRight='auto';
-             			document.getElementById("donate_board").style.marginLeft='auto';
-                        document.getElementById("donate_guide").style.visibility="visible";
-                        document.getElementById("donate_guide").style.display="inline";
-                        document.getElementById("donate_guide").style.marginRight='auto';
-             			document.getElementById("donate_guide").style.marginLeft='auto';
+            document.getElementById("donate_board").style.visibility = "hidden";
+            <!--隐藏原由位置-->
+            document.getElementById("donate_board").style.display = "none";
+            document.getElementById("donate_board").style.marginRight = 'auto';
+            document.getElementById("donate_board").style.marginLeft = 'auto';
+            document.getElementById("donate_guide").style.visibility = "visible";
+            document.getElementById("donate_guide").style.display = "inline";
+            document.getElementById("donate_guide").style.marginRight = 'auto';
+            document.getElementById("donate_guide").style.marginLeft = 'auto';
 
         }
     </script>
 </div>
 <! -- 添加捐赠图标 -->
+
+<!--分享模块-->
+<div>
+    <div class="-mob-share-ui-button -mob-share-open">分享</div>
+    <div class="-mob-share-ui" style="display: none">
+        <ul class="-mob-share-list">
+            <li class="-mob-share-weibo"><p>新浪微博</p></li>
+            <li class="-mob-share-weixin"><p>微信</p></li>
+            <li class="-mob-share-qzone"><p>QQ空间</p></li>
+            <li class="-mob-share-qq"><p>QQ好友</p></li>
+            <li class="-mob-share-douban"><p>豆瓣</p></li>
+            <li class="-mob-share-youdao"><p>有道云笔记</p></li>
+        </ul>
+        <div class="-mob-share-close">取消</div>
+    </div>
+    <div class="-mob-share-ui-bg"></div>
+    <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=269b281e77584"></script>
+</div>
 
           
     </div>
@@ -371,32 +389,17 @@ var _hmt = _hmt || [];
         </div>
     </div>
 </article>
-<!--MOB SHARE BEGIN-->
-<div class="-mob-share-ui-button -mob-share-open">分享</div>
-<div class="-mob-share-ui" style="display: none">
-    <ul class="-mob-share-list">
-        <li class="-mob-share-weibo"><p>新浪微博</p></li>
-        <li class="-mob-share-weixin"><p>微信</p></li>
-        <li class="-mob-share-qzone"><p>QQ空间</p></li>
-        <li class="-mob-share-qq"><p>QQ好友</p></li>
-        <li class="-mob-share-douban"><p>豆瓣</p></li>
-        <li class="-mob-share-youdao"><p>有道云笔记</p></li>
-    </ul>
-    <div class="-mob-share-close">取消</div>
-</div>
-<div class="-mob-share-ui-bg"></div>
-<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=269b281e77584"></script>
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2015/06/12/CentOs配置防火墙/" class="pre-post btn btn-default" title='CentOs配置防火墙'>
+        <a href="/2015/04/12/本地服务器搭建/" class="pre-post btn btn-default" title='本地服务器搭建'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">CentOs配置防火墙</span>
+            <span class="hidden-xs">本地服务器搭建</span>
         </a>
     
     
-        <a href="/2015/04/12/本地服务器搭建/" class="next-post btn btn-default" title='本地服务器搭建'>
+        <a href="/2015/04/12/服务器防止ping配置/" class="next-post btn btn-default" title='服务器防止ping配置'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">本地服务器搭建</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">服务器防止ping配置</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
