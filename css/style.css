@@ -1318,7 +1318,7 @@ pre .comment {
     text-align: right;
     /*background-color: #000;*/
     /*//行号背景*/
-    background-color: #a9c0ca;
+    background-color: #4d4d68;
 }
 
 .highlight .code pre {
@@ -1327,7 +1327,7 @@ pre .comment {
     padding-right: 10px;
     /*background-color: #1d1f21;*/
     /*//background-color: #1d1f21; 代码背景*/
-    background-color: #f6f8fa;
+    background-color: #cacad0;
 }
 
 .highlight .line {
