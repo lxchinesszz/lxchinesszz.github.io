@@ -40,7 +40,7 @@
     <!--Title-->
 
 
-<title>做一个优秀的Coder,必须要知道的设计模式六大原则 | 程序猿升级课</title>
+<title>Python报表API之Pyecharts使用 | 程序猿升级课</title>
 
 
     <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
@@ -193,9 +193,9 @@ var _hmt = _hmt || [];
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="做一个优秀的Coder,必须要知道的设计模式六大原则">
+        <h1 id="Python报表API之Pyecharts使用">
             
-	            做一个优秀的Coder,必须要知道的设计模式六大原则
+	            Python报表API之Pyecharts使用
             
         </h1>
         <div class="post-meta">
@@ -214,8 +214,8 @@ var _hmt = _hmt || [];
         <span class="tags-meta">
             
                 
-                    <a href="/tags/杂记" title='杂记'>
-                        杂记
+                    <a href="/tags/python" title='python'>
+                        python
                     </a>
                 
             
@@ -237,7 +237,7 @@ var _hmt = _hmt || [];
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/05/02</span>
+            <span class="date-meta">2018/06/28</span>
         </span>
          <span id="busuanzi_container_page_pv">
                               被围观:<span id="busuanzi_value_page_pv" ></span>次
@@ -250,48 +250,24 @@ var _hmt = _hmt || [];
     </div>
     
     <div class="post-body post-content">
-        <blockquote>
-<p>如果说编码是筋骨皮，那么思想就是一口气，就是内功。内功深厚决定你功力的大小。刚刚读完了设计模式那本书。随着项目业务的复杂，越发的感觉到设计模式的重要性。在此参考CSDN、伯乐在线和开源中国社区，优秀的博文，以此总结。开始新的起点。写于2017/02/28</p>
-</blockquote>
-<blockquote>
-<p>分析内容,属于当第二次看设计模式的感悟,写于2017/12/10 凌晨02:44</p>
-</blockquote>
-<p><img src="http://p9.pstatp.com/large/pgc-image/15252744515019332b95897" alt=""></p>
-<h3 id="一、开闭原则"><a href="#一、开闭原则" class="headerlink" title="一、开闭原则"></a>一、开闭原则</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>一个软件实体如类、模块和函数应该对扩展开放，对修改关闭。</p>
-<h4 id="问题由来"><a href="#问题由来" class="headerlink" title="问题由来"></a>问题由来</h4><p>在软件的生命周期内，因为变化、升级和维护等原因需要对软件原有代码进行修改时，可能会给旧代码中引入错误，也可能会使我们不得不对整个功能进行重构，并且需要原有代码经过重新测试。</p>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>当软件需要变化时，尽量通过扩展软件实体的行为来实现变化，而不是通过修改已有的代码来实现变化。</p>
-<h4 id="表达"><a href="#表达" class="headerlink" title="表达"></a>表达</h4><p><strong>用抽象构建框架，用实现扩展细节</strong>因为抽象灵活性好，适应性广，只要抽象的合理，可以基本保持软件架构的稳定。而软件中易变的细节，我们用从抽象派生的实现类来进行扩展，当软件需要发生变化时，我们只需要根据需求重新派生一个实现类来扩展就可以了。当然前提是我们的抽象要合理，要对需求的变更有前瞻性和预见性才行。</p>
-<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>就是对扩展开放,对修改关闭, 里式替换原则理论支持了这个一说法,及子类要能替换父类,这样子类就可以在父类的基础上,扩展</p>
-<h3 id="二、单一职责原则"><a href="#二、单一职责原则" class="headerlink" title="二、单一职责原则"></a>二、单一职责原则</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><p><strong>不要存在多于一个导致类变更的原因</strong>通俗的说，即一个类只负责一项职责。</p>
-<h4 id="问题由来-1"><a href="#问题由来-1" class="headerlink" title="问题由来"></a>问题由来</h4><p>类T负责两个不同的职责：职责P1，职责P2。当由于职责P1需求发生改变而需要修改类T时，有可能会导致原本运行正常的职责P2功能发生故障。</p>
-<h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h4><p>遵循单一职责原则。分别建立两个类T1、T2，使T1完成职责P1功能，T2完成职责P2功能。这样，当修改类T1时，不会使职责P2发生故障风险；同理，当修改T2时，也不会使职责P1发生故障风险。</p>
-<h4 id="表达-1"><a href="#表达-1" class="headerlink" title="表达"></a>表达</h4><p>不要让责任扩散</p>
-<h4 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h4><p>一个类,指责要单一,避免如果有多种职责,修改一个职责的时候,误触到其他职责的问题</p>
-<h3 id="三、里氏替换原则"><a href="#三、里氏替换原则" class="headerlink" title="三、里氏替换原则"></a>三、里氏替换原则</h3><h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h4><p>所有引用基类的地方必须能透明地使用其子类的对象。</p>
-<h4 id="问题由来-2"><a href="#问题由来-2" class="headerlink" title="问题由来"></a>问题由来</h4><p>有一功能P由类A完成，现在要扩展P,其中P由类A的子类B完成，则子类在完成的同时，可能会导致原来功能故障</p>
-<h4 id="解决方案-2"><a href="#解决方案-2" class="headerlink" title="解决方案"></a>解决方案</h4><p>当使用继承时，遵循里氏替换原则。类B继承类A时，除添加新的方法完成新增功能外，尽量不要重写父类A的方法，也尽量不要重载父类A的方法。</p>
-<h4 id="表达-2"><a href="#表达-2" class="headerlink" title="表达"></a>表达</h4><p>使用继承的时候，不要随便修改父类中已经实现的方法</p>
-<h4 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h4><p>子类要能替换父类</p>
-<h3 id="四、依赖倒置原则"><a href="#四、依赖倒置原则" class="headerlink" title="四、依赖倒置原则"></a>四、依赖倒置原则</h3><h4 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h4><p>高层模块不应该依赖低层模块，二者都应该依赖其抽象；抽象不应该依赖细节；细节应该依赖抽象。</p>
-<h4 id="问题由来-3"><a href="#问题由来-3" class="headerlink" title="问题由来"></a>问题由来</h4><p>类A直接依赖类B，假如要将类A改为依赖类C，则必须通过修改类A的代码来达成。这种场景下，类A一般是高层模块，负责复杂的业务逻辑；类B和类C是低层模块，负责基本的原子操作；假如修改类A，会给程序带来不必要的风险。</p>
-<h4 id="解决方案-3"><a href="#解决方案-3" class="headerlink" title="解决方案"></a>解决方案</h4><p>将类A修改为依赖接口I，类B和类C各自实现接口I，类A通过接口I间接与类B或者类C发生联系，则会大大降低修改类A的几率。</p>
-<h4 id="表达-3"><a href="#表达-3" class="headerlink" title="表达"></a>表达</h4><p>如果A依赖B，现在要改为依赖C，如果直接修改A有风险，可以让A去依赖一个接口，BC都实现这个接口，也就是策略模式</p>
-<h4 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h4><p>白话就是说,要根据接口或者抽象去设计,不要依赖于细节,eg.项目中要换数据库,不用重新写底层的数据库代码. 就是使用了hibernate一样,替换方言就好了,因为hibernate是根据接口设计的,不同数据库有不同的实现,可以直接使用.  eg2: 我生病了要去买药,如果A药铺,没有我就用B药铺买. 因为他们都是药铺,都有一样的功能,可以友好的替换</p>
-<h3 id="五、接口隔离原则"><a href="#五、接口隔离原则" class="headerlink" title="五、接口隔离原则"></a>五、接口隔离原则</h3><h4 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h4><p>客户端不应该依赖它不需要的接口；一个类对另一个类的依赖应该建立在最小的接口上。</p>
-<h4 id="问题由来-4"><a href="#问题由来-4" class="headerlink" title="问题由来"></a>问题由来</h4><p>类A通过接口I依赖类B，类C通过接口I依赖类D，如果接口I对于类A和类B来说不是最小接口，则<strong>类B和类D必须去实现他们不需要的方法</strong>。</p>
-<h4 id="解决方案-4"><a href="#解决方案-4" class="headerlink" title="解决方案"></a>解决方案</h4><p>将臃肿的接口I拆分为独立的几个接口，类A和类C分别与他们需要的接口建立依赖关系。也就是采用接口隔离原则</p>
-<h4 id="表达-4"><a href="#表达-4" class="headerlink" title="表达"></a>表达</h4><p>防止去实现不需要的接口方法，可以按接口拆分，避免臃肿。</p>
-<h4 id="分析-4"><a href="#分析-4" class="headerlink" title="分析"></a>分析</h4><p>白话,接口要最小化,功能更细分. 目的是:不需要的功能,就不要去实现</p>
-<p>比如有些接口可能里面什么方法都没有，其存在的意义，就是为了其实现类拥有特殊的功能.所以我们也要怕我们的接口里面没有方法，就怀疑了它存在的价值</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/15252748840938c3a336f1d" alt=""></p>
-<p>当实现RandomAccess的类比如ArrayList就具有随机访问的能力，而没有实现该接口的，就只能去迭代访问</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/152527498178322dd5d22e4" alt=""></p>
-<h3 id="六、迪米特法则"><a href="#六、迪米特法则" class="headerlink" title="六、迪米特法则"></a>六、迪米特法则</h3><h4 id="定义-5"><a href="#定义-5" class="headerlink" title="定义"></a>定义</h4><p>一个对象应该对其他对象保持最少的了解。</p>
-<h4 id="问题由来-5"><a href="#问题由来-5" class="headerlink" title="问题由来"></a>问题由来</h4><p>类与类之间的关系越密切，耦合度越大，当一个类发生改变时，对另一个类的影响也越大。</p>
-<h4 id="解决方案-5"><a href="#解决方案-5" class="headerlink" title="解决方案"></a>解决方案</h4><p>尽量降低类与类之间的耦合。</p>
-<h4 id="表达-5"><a href="#表达-5" class="headerlink" title="表达"></a>表达</h4><p>尽量降低类与类之间的耦合。</p>
-<h4 id="分析-5"><a href="#分析-5" class="headerlink" title="分析"></a>分析</h4><p>降低类与类之间直接交互,能隐藏的属性就可以隐藏. eg. 修电脑,去IT部门,之前一直找小张,现在小张走了,还需要重新认识小李.   迪米特法则,就是直接找IT主管,让主管派人修.<br>这里其实也抢到了接口的重要性</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/15252744514214ed2a16cb7" alt=""></p>
+        <p><strong>今天给大家介绍一个制作报表的API工具,语言是Python,是小编平时做报表用的,主要是以图片的形式分享,因为头条放代码排版会很乱,今天把他分享出来。如果想要代码的话,私信发送报表。</strong></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li>安装pyecharts库</li>
+<li>环形图</li>
+<li>条形图</li>
+<li>折线图</li>
+<li>雷达图</li>
+<li>水球图</li>
+<li>词云</li>
+</ol>
+<hr>
+<h3 id="1-安装pyecharts库"><a href="#1-安装pyecharts库" class="headerlink" title="1.安装pyecharts库"></a>1.安装pyecharts库</h3><p><img src="http://p1.pstatp.com/large/pgc-image/1530102303543bf8d424677" alt=""></p>
+<h3 id="2-环形图"><a href="#2-环形图" class="headerlink" title="2. 环形图"></a>2. 环形图</h3><p><img src="http://p1.pstatp.com/large/pgc-image/15301017636367c257d6303" alt=""><br><img src="http://p3.pstatp.com/large/pgc-image/1530101763967d81bef30dd" alt=""></p>
+<h3 id="3-条形图"><a href="#3-条形图" class="headerlink" title="3. 条形图"></a>3. 条形图</h3><p><img src="http://p1.pstatp.com/large/pgc-image/15301018443994bef6eec18" alt=""><br><img src="http://p3.pstatp.com/large/pgc-image/1530101844437756c4b775c" alt=""></p>
+<h3 id="4-折线图"><a href="#4-折线图" class="headerlink" title="4. 折线图"></a>4. 折线图</h3><p><img src="http://p3.pstatp.com/large/pgc-image/1530101896771e093f43a96" alt=""><br><img src="http://p1.pstatp.com/large/pgc-image/1530101896807cb9e34b79d" alt=""></p>
+<h3 id="5-雷达图"><a href="#5-雷达图" class="headerlink" title="5. 雷达图"></a>5. 雷达图</h3><p><img src="http://p1.pstatp.com/large/pgc-image/15301020053121b62090581" alt=""><br><img src="http://p1.pstatp.com/large/pgc-image/1530102004565924975ca21" alt=""></p>
+<h3 id="6-水球图"><a href="#6-水球图" class="headerlink" title="6. 水球图"></a>6. 水球图</h3><p><img src="http://p1.pstatp.com/large/pgc-image/1530102067235e9e7fdbca6" alt=""><br><img src="http://p9.pstatp.com/large/pgc-image/1530102067744ab4c66d64a" alt=""></p>
+<h3 id="7-词云"><a href="#7-词云" class="headerlink" title="7. 词云"></a>7. 词云</h3><p><img src="http://p3.pstatp.com/large/pgc-image/1530102118733be8657ac56" alt=""><br><img src="http://p1.pstatp.com/large/pgc-image/15301021396908e4a3eaa20" alt=""></p>
 
         <!--打赏模块-->
           
@@ -345,15 +321,10 @@ var _hmt = _hmt || [];
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/05/02/Java开发者们for-和while-true-的区别应该了解下/" class="pre-post btn btn-default" title='Java开发者们for(;;)和while(true)的区别应该了解下'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">Java开发者们for(;;)和while(true)的区别应该了解下</span>
-        </a>
     
-    
-        <a href="/2018/04/30/跟我动手搭框架三之Web容器实现/" class="next-post btn btn-default" title='跟我动手搭框架三之Web容器实现'>
+        <a href="/2018/06/26/Java多线程之隔离技术ThreadLocal源码详解/" class="next-post btn btn-default" title='Java多线程之隔离技术ThreadLocal源码详解'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">跟我动手搭框架三之Web容器实现</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">Java多线程之隔离技术ThreadLocal源码详解</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
@@ -367,7 +338,7 @@ var _hmt = _hmt || [];
 <script src="https://billts.site/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
-        id: "Wed May 02 2018 23:31:40 GMT+0800",
+        id: "Thu Jun 28 2018 15:16:06 GMT+0800",
         owner:"lxchinesszz",
         repo:"lxchinesszz.github.io",
         oauth: {
