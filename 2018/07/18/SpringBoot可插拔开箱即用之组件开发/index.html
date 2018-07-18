@@ -1,0 +1,662 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序猿升级课">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="baidu-site-verification" content="DhI4Hjwyp4" />
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://blog.springlearn.cn">
+    <!--SEO-->
+
+<meta name="description" content="本站是程序猿升级课（刘鑫）的技术分享博客。内容涵盖Java后端技术、Spring Boot、Spring Cloud、微服务架构、系统监控等相关的研究与知识分享。"/>
+<meta property="og:description" content="本站是程序猿升级课（刘鑫）的技术分享博客。内容涵盖Java后端技术、Spring Boot、Spring Cloud、微服务架构、系统监控等相关的研究与知识分享。">
+
+
+
+<meta name="keywords" content="SpringBoot2,SpringCloud,SpringBoot,计算机,Java开发,微服务,东方既白,刘鑫,chinesszz,lxchinesszz"/>
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="程序猿升级课">
+<meta property="og:url" content="http://blog.springlearn.cn/">
+<meta property="og:site_name" content="程序猿升级课">
+<meta property="og:locale" content="zh-CN">
+
+    <!--Title-->
+
+
+<title>SpringBoot可插拔开箱即用之组件开发 | 程序猿升级课</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序猿升级课" type="application/atom+xml">
+
+
+    <link rel="icon" href="https://lxchinesszz.gitee.io/chinesszz/favicon.ico">
+
+    
+
+
+    <link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " https://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+
+    
+
+</head>
+
+<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=269b281e77584"></script>
+
+<!--统计浏览量-->
+<script>AV.init('IwOl4kKmvkph85YhYWKm26tr-gzGzoHsz', 'N1rlzE7cJFetMehvtgaHnKhB');</script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<!--百度统计-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?9c6cbc2c6a87fb178690b81fd50fb759";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='liuxin'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 科技改变生活! </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/" style="font-weight: bold"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Spring-Boot/" style="font-weight: bold"><i class="fa "></i>SpringBoot</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Spring-Boot2-0/" style="font-weight: bold"><i class="fa "></i>SpringBoot2.0</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Spring-Cloud/" style="font-weight: bold"><i class="fa "></i>SpringCloud</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/通信/" style="font-weight: bold"><i class="fa https://dn-coding-net-production-static.qbox.me/static/2dbbee2f9a978988dad72752b93c4417.svg"></i>通信</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据处理/" style="font-weight: bold"><i class="fa "></i>数据处理</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/源码阅读/" style="font-weight: bold"><i class="fa "></i>源码阅读</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/杂记/" style="font-weight: bold"><i class="fa "></i>杂记</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/2015/03/11/me/" style="font-weight: bold"><i class="fa "></i>关于</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="SpringBoot可插拔开箱即用之组件开发">
+            
+	            SpringBoot可插拔开箱即用之组件开发
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/杂记">
+            杂记
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/杂记" title='杂记'>
+                        杂记
+                    </a>
+                
+            
+        </span>
+    </span>
+    <!-- 添加作者-->
+    <span class="fa-wrap">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <span>
+            
+                liuxin
+             
+        </span>
+    </span>
+
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/07/18</span>
+        </span>
+         <span id="busuanzi_container_page_pv">
+                              被围观:<span id="busuanzi_value_page_pv" ></span>次
+                            </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><blockquote>
+<p>由于适应公司不断发展带来的,售后问题,要求我们要对所有服务进行,主动检查.避免服务异常，造成损失。在这里将该项目的思路及springboot的自动化配置使用分享给大家，希望共同进步。学习。有共同爱好的童鞋，可以点击关注小编，如果看完本文想学习下源码，可以私信我，发送autoconfig关键字获取，地址。</p>
+</blockquote>
+<hr>
+<p>目前的方式是这样:</p>
+<ul>
+<li>网关部门定时扫描各个服务,进行监控状态检查,并通知给指定负责人.</li>
+</ul>
+<p>实现逻辑:</p>
+<ul>
+<li>要求每个线上服务暴露一个/status 地址,并返回指定json,将项目中依赖的数据库连接信息返回</li>
+</ul>
+<p>实现要求:</p>
+<ol>
+<li><p>组件式开发</p>
+</li>
+<li><p>引入即可用,自动监控项目中数据库连接</p>
+</li>
+<li><p>暴露一个指定的可供网关扫描的地址</p>
+</li>
+</ol>
+<p>技术实现方式:</p>
+<ol>
+<li><p>引入spring-boot-autoconfigure自动配置</p>
+</li>
+<li><p>引入spring-boot-actuator 使用EndPoint 定制暴露给网关的扫描地址</p>
+</li>
+</ol>
+<hr>
+<ol>
+<li>在autoconfigure中实现定制url的方式是这样的,而不是使用@RequestMapping注解，id就是我们的url，其他属性见注释，非常清楚</li>
+</ol>
+<p><img src="http://p3.pstatp.com/large/5b4b00023d7c197d0dad" alt=""></p>
+<ol start="2">
+<li>加入配置信息,交给合项目负责人维护</li>
+</ol>
+<p><img src="http://p3.pstatp.com/large/5b4c000215e28ef5e8b2" alt=""></p>
+<p>3 .导入我们定制的节点</p>
+<p><img src="http://p1.pstatp.com/large/5b4900060ab63e94b1b8" alt=""></p>
+<ol start="4">
+<li>数据库的健康我们按照Spring的套路来</li>
+</ol>
+<p>首先定义个接口,然后是抽象模板类,然后是各个数据源的实现类</p>
+<p><img src="http://p3.pstatp.com/large/5b4a0005922fd1e82700" alt=""></p>
+<p>Mongo检查</p>
+<p><img src="http://p1.pstatp.com/large/5b4a00059265da2c2e0b" alt=""></p>
+<p>消息队列检查</p>
+<p><img src="http://p3.pstatp.com/large/5b4e00019d62a0d02972" alt=""></p>
+<ol start="5">
+<li>将以上数据检查组件都加入到配置中</li>
+</ol>
+<p>注意，要判断，如果服务中没有引入过 Mongodb等数据源，就不要注入，否则强制注入会保存，这里要注意下，这几个注解的意思。这里就不介绍了。</p>
+<p><img src="http://p1.pstatp.com/large/5b4e00019d8bcbc4253a" alt=""></p>
+<p>6 . 将这些配置交给autoconfigure 管理,通过服务中的springboot main 启动中@EnableAutoConfiguration 引入，我们组建中的配置。</p>
+<p><img src="http://p9.pstatp.com/large/5b4e00019dc131f0a1d1" alt=""></p>
+<p>7 .重点来了,看我们的工具类怎么写的,逻辑就是</p>
+<p>从上下文中获取到我们项目中依赖的数据源，首先要判断是否存在,并实现IStatus继承抽象接口中status()方式返回boolean来判断是否数据源连接状态,并返回json给网关,执行EndPoint中的invoke方法返回</p>
+<p><img src="http://p1.pstatp.com/large/5b4b00023ee17d50e57e" alt=""><br><img src="http://p3.pstatp.com/large/5b4900060bb32d3db9ff" alt=""></p>
+<p>8 .使用方法</p>
+<p>application.yml 中添加</p>
+<p><img src="http://p3.pstatp.com/large/5b4b00023f12d580235d" alt=""></p>
+<p>应用启动验证</p>
+<p><img src="http://p3.pstatp.com/large/5b4e00019e52c360ee48" alt=""></p>
+<p>接口验证<br><img src="http://p1.pstatp.com/large/5b4f0001880812888fe5" alt=""></p>
+<p>看到这里，基本就介绍完了，是不是很简单，其实没什么难点，spring是契约式开发，没有会不会一说，只有会不会用，看的多了就会了。最后感谢你的阅读！感兴趣的同学可以关注小编，会不断分享实战知识给大家。如果你发现有错误，请提出宝贵意见，会及时改正！谢谢</p>
+<p><img src="http://p3.pstatp.com/large/5b4c000217ac6ca10a79" alt=""></p>
+
+        <!--打赏模块-->
+          
+               <! -- 添加捐赠图标 -->
+<div class="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate_a" href="javascript:;" onclick="aClick()" title="打赏."></a>
+        <span class="donate_txt">
+           &uarr;<br>
+            如果您觉得文章对你有用,可以赏我一杯咖啡
+        </span>
+        <br>
+    </div>
+    <div id="donate_guide" class="donate_bar">
+        <!-- 微信打赏图案 -->
+        <img src="https://blog.springlearn.cn/wwx.png">
+    </div>
+    <script type="text/javascript">
+        function aClick() {
+            <!--元素隐藏，但是原由位置不隐藏-->
+            document.getElementById("donate_board").style.visibility = "hidden";
+            <!--隐藏原由位置-->
+            document.getElementById("donate_board").style.display = "none";
+            document.getElementById("donate_board").style.marginRight = 'auto';
+            document.getElementById("donate_board").style.marginLeft = 'auto';
+            document.getElementById("donate_guide").style.visibility = "visible";
+            document.getElementById("donate_guide").style.display = "inline";
+            document.getElementById("donate_guide").style.marginRight = 'auto';
+            document.getElementById("donate_guide").style.marginLeft = 'auto';
+
+        }
+    </script>
+</div>
+<! -- 添加捐赠图标 -->
+
+<!--分享模块-->
+
+    <div class="-mob-share-ui-button -mob-share-open">分享</div>
+    <div class="-mob-share-ui" style="display: none">
+        <ul class="-mob-share-list">
+            <li class="-mob-share-weibo"><p>新浪微博</p></li>
+            <li class="-mob-share-weixin"><p>微信</p></li>
+            <li class="-mob-share-qzone"><p>QQ空间</p></li>
+            <li class="-mob-share-qq"><p>QQ好友</p></li>
+            <li class="-mob-share-douban"><p>豆瓣</p></li>
+            <li class="-mob-share-youdao"><p>有道云笔记</p></li>
+        </ul>
+        <div class="-mob-share-close">取消</div>
+    </div>
+    <div class="-mob-share-ui-bg"></div>
+
+
+          
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">lxchinesszz</a>
+            
+        </div>
+
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/06/28/Python报表API之Pyecharts使用/" class="next-post btn btn-default" title='Python报表API之Pyecharts使用'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Python报表API之Pyecharts使用</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<!--
+<script type="text/javascript" src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+-->
+<script src="https://billts.site/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: "Wed Jul 18 2018 14:12:38 GMT+0800",
+        owner:"lxchinesszz",
+        repo:"lxchinesszz.github.io",
+        oauth: {
+          client_id:"7728f0d477b42832cc5f",
+          client_secret:"0f5d9c5e909fbc5bf1bada3648bb49e662ec0000"
+        },
+        perPage:"10",
+    });
+    gitment.render('comments');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+<!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="https://music.163.com/outchain/player?type=1&id=34930257&auto=0&height=32"></iframe>-->
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="https://music.163.com/outchain/player?type=2&id=573384240&auto=0&height=32"></iframe>
+           </div>
+
+
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <p>
+<a href="https://spring4all.com" target="_blank">Spring For All社区</a>
+是关于Spring的纯技术交流社区（涵盖Spring Boot、Spring Cloud等内容），集诸多开源爱好者和技术大牛贡献内容和交流问题。我们不夸大、不装逼、做最纯粹的技术分享！！！
+<hr/>小编GITHUB开源项目,接受贡献,不限于提交问题与需求，修复代码。欢迎Pull Request<br/>支持一下：<a href="https://github.com/lxchinesszz">Star一下</a>
+<hr/>专注于程序猿技术的提升的博客,欢迎投稿 <a href="mailto:lxchinesszz@163.com">投稿邮箱</a>
+</p>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="https://github.com/lxchinesszz" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="github fa fa-github"></i>
+			    </a>
+            
+	            <a href="mailto:lxchinesszz@163.com" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope fa fa-envelope"></i>
+			    </a>
+            
+	            <a href="https://wpa.qq.com/msgrd?v=3&uin=1213327162&site=qq&menu=yes" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Cloud/"><i class="fa" aria-hidden="true">Spring Cloud</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/"><i class="fa" aria-hidden="true">Spring-Boot</i></a><span class="category-list-count">42</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot2-0/"><i class="fa" aria-hidden="true">Spring-Boot2.0</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/about/"><i class="fa" aria-hidden="true">about</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据处理/"><i class="fa" aria-hidden="true">数据处理</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/杂记/"><i class="fa" aria-hidden="true">杂记</i></a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/源码阅读/"><i class="fa" aria-hidden="true">源码阅读</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/通信/"><i class="fa" aria-hidden="true">通信</i></a><span class="category-list-count">2</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/GC/" style="font-size: 10px;">GC</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/Linux服务器/" style="font-size: 10px;">Linux服务器</a> <a href="/tags/Netty/" style="font-size: 11.67px;">Netty</a> <a href="/tags/Rabbitmq/" style="font-size: 15px;">Rabbitmq</a> <a href="/tags/Spring-Cloud/" style="font-size: 11.67px;">Spring Cloud</a> <a href="/tags/Spring-Boot/" style="font-size: 20px;">Spring-Boot</a> <a href="/tags/Spring-Boot2-0/" style="font-size: 13.33px;">Spring-Boot2.0</a> <a href="/tags/Spring定时器/" style="font-size: 10px;">Spring定时器</a> <a href="/tags/Spring整合Quartz/" style="font-size: 10px;">Spring整合Quartz</a> <a href="/tags/python/" style="font-size: 11.67px;">python</a> <a href="/tags/博客搭建/" style="font-size: 10px;">博客搭建</a> <a href="/tags/日志/" style="font-size: 13.33px;">日志</a> <a href="/tags/服务器/" style="font-size: 16.67px;">服务器</a> <a href="/tags/杂记/" style="font-size: 18.33px;">杂记</a> <a href="/tags/深浅拷贝/" style="font-size: 10px;">深浅拷贝</a> <a href="/tags/源码阅读/" style="font-size: 10px;">源码阅读</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友情链接</h3>
+        <div class="content friends-link">
+        
+            <a href="https://www.jianshu.com/u/e210c8fa704f" class="fa" target="_blank">简书</a>
+        
+            <a href="https://blog.csdn.net/message_lx" class="fa" target="_blank">CSDN</a>
+        
+            <a href="https://www.toutiao.com/c/user/3686495601/#mid=1563737358895105" class="fa" target="_blank">头条</a>
+        
+        </div>
+    </div>
+
+
+        
+        
+  <div class="widget">
+        <h3 class="title">推广</h3>
+        <div class="content friends-link">
+             <a href="https://coding.net/pages"><img src="https://dn-coding-net-production-static.qbox.me/static/2dbbee2f9a978988dad72752b93c4417.svg"></img></a>
+        </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+        <span id="busuanzi_container_site_pv">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        |
+        <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人次
+        </span>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+<!--page counter part统计文章字数,核心代码;来源:https://crescentmoon.info/2014/12/11/popular-widget/-->
+<script>
+    function addCount (Counter) {
+        url=$('.article-date').attr('href').trim();
+        title = $('.article-title').text().trim();
+        var query=new AV.Query(Counter);
+        //use url as unique idnetfication
+        query.equalTo("url",url);
+        query.find({
+            success: function(results){
+                if(results.length>0)
+                {
+                    var counter=results[0];
+                    counter.fetchWhenSave(true); //get recent result
+                    counter.increment("time");
+                    counter.save();
+                }
+                else
+                {
+                    var newcounter=new Counter();
+                    newcounter.set("title",title);
+                    newcounter.set("url",url);
+                    newcounter.set("time",1);
+                    newcounter.save(null,{
+                        success: function(newcounter){
+                            //alert('New object created');
+                        },
+                        error: function(newcounter,error){
+                            alert('Failed to create');
+                        }
+                    });
+                }
+            },
+            error: function(error){
+                //find null is not a error
+                alert('Error:'+error.code+" "+error.message);
+            }
+        });
+    }
+    $(function(){
+        var Counter=AV.Object.extend("Counter");
+        //only increse visit counting when intering a page
+        if ($('.article-title').length == 1)
+            addCount(Counter);
+        var query=new AV.Query(Counter);
+        query.descending("time");
+        // the sum of popular posts
+        query.limit(10);
+        query.find({
+                success: function(results){
+                    for(var i=0;i<results.length;i++)
+                    {
+                        var counter=results[i];
+                        title=counter.get("title");
+                        url=counter.get("url");
+                        time=counter.get("time");
+                        // add to the popularlist widget
+                        showcontent=title+" ("+time+")";
+                        //notice the "" in href
+                        $('.popularlist').append('<li><a href="'+url+'">'+showcontent+'</a></li>');
+                    }
+                },
+                error: function(error){
+                    alert("Error:"+error.code+" "+error.message);
+                }
+            }
+        )
+    });
+</script>
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> |
+                <span>
+                    The Blog by <a href="个人介绍" class="copyright-links" target="_blank" rel="nofollow">liuxin</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
